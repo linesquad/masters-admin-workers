@@ -29,3 +29,11 @@ export const getUser = async () => {
     throw error;
   }
 };
+
+export const logoutUser = async () => {
+  try {
+    await instance.post("/api/auth/logout");
+  } catch (error) {
+    throw error;
+  }
+};

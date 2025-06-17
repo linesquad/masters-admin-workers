@@ -7,21 +7,10 @@ import { redirect } from "@tanstack/react-router";
 import { useLogin } from "@/modules/auth/hooks/useLogin";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { z } from "zod";
-
-const loginSchema = z.object({
-  email: z
-    .string()
-    .email("Invalid email format")
-    .max(255, "Email too long")
-    .toLowerCase(),
-  password: z
-    .string()
-    .min(1, "Password is required")
-    .max(100, "Password too long"),
-});
-
-type LoginFormData = z.infer<typeof loginSchema>;
+import {
+  loginSchema,
+  type LoginFormData,
+} from "@/modules/auth/schema/loginSchema";
 
 export const Route = createFileRoute({
   component: LoginForm,
@@ -36,7 +25,7 @@ export const Route = createFileRoute({
 
 function LoginForm() {
   const { mutate: login, isPending } = useLogin();
-  
+
   const {
     register,
     handleSubmit,
@@ -48,7 +37,7 @@ function LoginForm() {
   const onSubmit = (data: LoginFormData) => {
     login(data);
   };
-  
+
   return (
     <section
       className="min-h-screen flex items-center justify-center bg-cover bg-center bg-no-repeat px-4"
