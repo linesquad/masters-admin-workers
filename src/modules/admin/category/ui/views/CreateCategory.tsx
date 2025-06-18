@@ -7,6 +7,7 @@ import { createCategorySchema } from "@/modules/admin/category/schema/categorySc
 import type { CreateCategoryData } from "@/modules/admin/category/schema/categorySchema";
 import { useCategories } from "@/modules/admin/category/hooks/useCategory";
 import CategoryCard from "../components/CategoryCard";
+import CategorySkeleton from "../components/CategorySkeleton";
 function CreateCategory() {
   const { mutate: createCategory, isPending } = useCreateCategory();
   const { data: categories, isLoading, isError } = useCategories();
@@ -34,7 +35,7 @@ function CreateCategory() {
     handleSubmit(onSubmit)();
   };
 
-  if (isLoading) return <div>Loading...</div>;
+  if (isLoading) return <CategorySkeleton />;
   if (isError) return <div>Error loading categories</div>;
   return (
     <div>
