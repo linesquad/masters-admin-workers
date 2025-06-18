@@ -13,8 +13,9 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
-import { Route as AuthenticateddashboardsIndexRouteImport } from './routes/_authenticated/(dashboards)/index'
-import { Route as AuthenticateddashboardsMasterRouteImport } from './routes/_authenticated/(dashboards)/master'
+import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authenticated/(admin)/index'
+import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
+import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -25,48 +26,57 @@ const authLoginRoute = authLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AuthenticateddashboardsIndexRoute =
-  AuthenticateddashboardsIndexRouteImport.update({
-    id: '/(dashboards)/',
-    path: '/',
+const AuthenticatedadminIndexRoute = AuthenticatedadminIndexRouteImport.update({
+  id: '/(admin)/',
+  path: '/',
+  getParentRoute: () => AuthenticatedRoute,
+} as any)
+const AuthenticatedmasterMasterRoute =
+  AuthenticatedmasterMasterRouteImport.update({
+    id: '/(master)/master',
+    path: '/master',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticateddashboardsMasterRoute =
-  AuthenticateddashboardsMasterRouteImport.update({
-    id: '/(dashboards)/master',
-    path: '/master',
+const AuthenticatedadminRegisterRoute =
+  AuthenticatedadminRegisterRouteImport.update({
+    id: '/(admin)/register',
+    path: '/register',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 
 export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/login': typeof authLoginRoute
-  '/master': typeof AuthenticateddashboardsMasterRoute
-  '/': typeof AuthenticateddashboardsIndexRoute
+  '/register': typeof AuthenticatedadminRegisterRoute
+  '/master': typeof AuthenticatedmasterMasterRoute
+  '/': typeof AuthenticatedadminIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
-  '/master': typeof AuthenticateddashboardsMasterRoute
-  '/': typeof AuthenticateddashboardsIndexRoute
+  '/register': typeof AuthenticatedadminRegisterRoute
+  '/master': typeof AuthenticatedmasterMasterRoute
+  '/': typeof AuthenticatedadminIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
-  '/_authenticated/(dashboards)/master': typeof AuthenticateddashboardsMasterRoute
-  '/_authenticated/(dashboards)/': typeof AuthenticateddashboardsIndexRoute
+  '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
+  '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
+  '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/master' | '/'
+  fullPaths: '' | '/login' | '/register' | '/master' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/master' | '/'
+  to: '/login' | '/register' | '/master' | '/'
   id:
     | '__root__'
     | '/_authenticated'
     | '/(auth)/login'
-    | '/_authenticated/(dashboards)/master'
-    | '/_authenticated/(dashboards)/'
+    | '/_authenticated/(admin)/register'
+    | '/_authenticated/(master)/master'
+    | '/_authenticated/(admin)/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -90,18 +100,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/(dashboards)/master': {
-      id: '/_authenticated/(dashboards)/master'
-      path: '/master'
-      fullPath: '/master'
-      preLoaderRoute: typeof AuthenticateddashboardsMasterRouteImport
+    '/_authenticated/(admin)/register': {
+      id: '/_authenticated/(admin)/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthenticatedadminRegisterRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/(dashboards)/': {
-      id: '/_authenticated/(dashboards)/'
+    '/_authenticated/(master)/master': {
+      id: '/_authenticated/(master)/master'
+      path: '/master'
+      fullPath: '/master'
+      preLoaderRoute: typeof AuthenticatedmasterMasterRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/': {
+      id: '/_authenticated/(admin)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof AuthenticateddashboardsIndexRouteImport
+      preLoaderRoute: typeof AuthenticatedadminIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }
@@ -125,33 +142,44 @@ declare module './routes/(auth)/login' {
     FileRoutesByPath['/(auth)/login']['fullPath']
   >
 }
-declare module './routes/_authenticated/(dashboards)/master' {
+declare module './routes/_authenticated/(admin)/register' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/(dashboards)/master',
-    FileRoutesByPath['/_authenticated/(dashboards)/master']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(dashboards)/master']['id'],
-    FileRoutesByPath['/_authenticated/(dashboards)/master']['path'],
-    FileRoutesByPath['/_authenticated/(dashboards)/master']['fullPath']
+    '/_authenticated/(admin)/register',
+    FileRoutesByPath['/_authenticated/(admin)/register']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/register']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/register']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/register']['fullPath']
   >
 }
-declare module './routes/_authenticated/(dashboards)/index' {
+declare module './routes/_authenticated/(master)/master' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/(dashboards)/',
-    FileRoutesByPath['/_authenticated/(dashboards)/']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(dashboards)/']['id'],
-    FileRoutesByPath['/_authenticated/(dashboards)/']['path'],
-    FileRoutesByPath['/_authenticated/(dashboards)/']['fullPath']
+    '/_authenticated/(master)/master',
+    FileRoutesByPath['/_authenticated/(master)/master']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(master)/master']['id'],
+    FileRoutesByPath['/_authenticated/(master)/master']['path'],
+    FileRoutesByPath['/_authenticated/(master)/master']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(admin)/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/',
+    FileRoutesByPath['/_authenticated/(admin)/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/']['fullPath']
   >
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticateddashboardsMasterRoute: typeof AuthenticateddashboardsMasterRoute
-  AuthenticateddashboardsIndexRoute: typeof AuthenticateddashboardsIndexRoute
+  AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
+  AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
+  AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticateddashboardsMasterRoute: AuthenticateddashboardsMasterRoute,
-  AuthenticateddashboardsIndexRoute: AuthenticateddashboardsIndexRoute,
+  AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
+  AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
+  AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

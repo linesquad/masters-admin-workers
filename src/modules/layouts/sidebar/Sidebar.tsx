@@ -1,4 +1,4 @@
-import { Home } from "lucide-react";
+import { Home, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -18,6 +18,11 @@ const mainItems = [
     url: "/",
     icon: Home,
   },
+  {
+    title: "Create User",
+    url: "/register",
+    icon: User,
+  },
 ];
 
 export function SideBar() {
@@ -32,7 +37,7 @@ export function SideBar() {
       <SidebarContent>
         {/* Main Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-white/70">Panel</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-white/70">Admin</SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {mainItems.map((item) => (

@@ -45,4 +45,30 @@ export const logoutUser = async () => {
     throw error;
   }
 };
+export const createUser = async ({
+  email,
+  password,
+  fullName,
+  phone,
+  role,
+}: {
+  email: string;
+  password: string;
+  fullName: string;
+  phone: string;
+  role: string;
+}) => {
+  try {
+    const response = await instance.post("/api/auth/create-user-by-admin", {
+      email,
+      password,
+      fullName,
+      phone,
+      role,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
 export type User = Awaited<ReturnType<typeof getUser>>;
