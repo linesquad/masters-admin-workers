@@ -9,11 +9,13 @@ import { useCategories } from "@/modules/admin/category/hooks/useCategory";
 import CategoryCard from "../components/CategoryCard";
 import CategorySkeleton from "../components/CategorySkeleton";
 import { useDeleteCategory } from "../../hooks/useDeleteCategory";
-import toast from "react-hot-toast";
+import { useUpdateCategory } from "../../hooks/useUpdateCategory";
+
 function CreateCategory() {
   const { mutate: createCategory, isPending } = useCreateCategory();
   const { data: categories, isLoading, isError } = useCategories();
   const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
+  const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
   console.log(categories);
   const {
     register,
@@ -36,6 +38,16 @@ function CreateCategory() {
 
   const handleDelete = (id: string) => {
     deleteCategory(id);
+  };
+  const handleUpdate = (
+    id: string,
+    name: {
+      en: string;
+      ka: string;
+      ru: string;
+    }
+  ) => {
+    updateCategory({ id, name });
   };
   const handleFormSubmit = () => {
     handleSubmit(onSubmit)();
@@ -105,6 +117,8 @@ function CreateCategory() {
             categories={categories}
             handleDelete={handleDelete}
             isDeleting={isDeleting}
+            handleUpdate={handleUpdate}
+            isUpdating={isUpdating}
           />
         </div>
       </section>

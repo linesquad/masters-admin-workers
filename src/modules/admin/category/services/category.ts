@@ -30,3 +30,18 @@ export const deleteCategory = async (id: string) => {
     throw error;
   }
 };
+export const updateCategory = async (
+  id: string,
+  name: {
+    en: string;
+    ka: string;
+    ru: string;
+  }
+) => {
+  try {
+    const response = await instance.put(`/api/categories/${id}`, { name });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

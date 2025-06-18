@@ -172,7 +172,7 @@ export function ThreeLanguageInputs({
             type="button" 
             onClick={handleNext}
             disabled={!canProceed()}
-            className="w-full"
+            className="w-full cursor-pointer"
           >
             {currentStep === 'en' && `Next: Add ${labels.ka}`}
             {currentStep === 'ka' && `Next: Add ${labels.ru}`}
@@ -183,7 +183,7 @@ export function ThreeLanguageInputs({
             type="button"
             onClick={onSubmit}
             disabled={isSubmitting || !watchedValues[fieldNames.en] || !watchedValues[fieldNames.ka] || !watchedValues[fieldNames.ru]}
-            className="w-full"
+            className="w-full bg-blue-500 cursor-pointer text-white"
           >
             {isSubmitting ? submittingText : submitButtonText}
           </Button>

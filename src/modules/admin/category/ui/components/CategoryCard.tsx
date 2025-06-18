@@ -6,10 +6,18 @@ function CategoryCard({
   categories,
   handleDelete,
   isDeleting,
+  handleUpdate,
+  isUpdating,
 }: {
   categories: { data: Category[] } | undefined;
   handleDelete: (id: string) => void;
   isDeleting: boolean;
+  handleUpdate: (id: string, name: {
+    en: string;
+    ka: string;
+    ru: string;
+  }) => void;
+  isUpdating: boolean;
 }) {
   return (
     <div>
@@ -23,6 +31,8 @@ function CategoryCard({
               category={category}
               handleDelete={handleDelete}
               isDeleting={isDeleting}
+              handleUpdate={handleUpdate}
+              isUpdating={isUpdating}
             />
           ))}
         </div>

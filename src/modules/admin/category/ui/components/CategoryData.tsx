@@ -1,15 +1,61 @@
 import { CheckCircle, Edit, Loader2, Trash2 } from "lucide-react";
+import { useState } from "react";
 import type { Category } from "../../types/category";
+import Modal from "@/components/Modal";
+import { ThreeLanguageInputs } from "@/components/ThreeLanguageInputs";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { createCategorySchema } from "../../schema/categorySchema";
+import type { CreateCategoryData } from "../../schema/categorySchema";
 
 function CategoryData({
   category,
   handleDelete,
   isDeleting,
+  handleUpdate,
+  isUpdating,
 }: {
   category: Category;
   handleDelete: (id: string) => void;
   isDeleting: boolean;
+  handleUpdate: (
+    id: string,
+    name: {
+      en: string;
+      ka: string;
+      ru: string;
+    }
+  ) => void;
+  isUpdating: boolean;
 }) {
+  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    watch,
+    getValues,
+    formState: { errors },
+    reset,
+  } = useForm<CreateCategoryData>({
+    resolver: zodResolver(createCategorySchema),
+    defaultValues: {
+      en: category.name.en,
+      ka: category.name.ka,
+      ru: category.name.ru,
+    },
+  });
+
+  const onSubmit = (data: CreateCategoryData) => {
+    handleUpdate(category.id, data);
+    setIsEditModalOpen(false);
+    reset();
+  };
+
+  const handleFormSubmit = () => {
+    handleSubmit(onSubmit)();
+  };
+
   return (
     <div key={category.id} className="group relative">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -57,6 +103,7 @@ function CategoryData({
         <div className="flex gap-2">
           <button
             type="button"
+            onClick={() => setIsEditModalOpen(true)}
             className="cursor-pointer flex-1 flex items-center justify-center gap-2 px-4 py-2.5 bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 rounded-xl transition-all duration-200 font-medium group/btn"
           >
             <Edit className="w-4 h-4  group-hover/btn:scale-110 transition-transform" />
@@ -76,6 +123,35 @@ function CategoryData({
           </button>
         </div>
       </div>
+      <Modal
+        isOpen={isEditModalOpen}
+        onClose={() => setIsEditModalOpen(false)}
+        title="Edit Category"
+        size="md"
+      >
+        <form onSubmit={handleSubmit(onSubmit)}>
+          <ThreeLanguageInputs
+            register={register}
+            watch={watch}
+            getValues={getValues}
+            errors={errors}
+            onSubmit={handleFormSubmit}
+            isSubmitting={isUpdating}
+            submitButtonText="Update Category"
+            submittingText="Updating..."
+            labels={{
+              en: "English Name",
+              ka: "Georgian Name",
+              ru: "Russian Name",
+            }}
+            placeholders={{
+              en: "Category name in English",
+              ka: "Category name in Georgian",
+              ru: "Category name in Russian",
+            }}
+          />
+        </form>
+      </Modal>
     </div>
   );
 }
