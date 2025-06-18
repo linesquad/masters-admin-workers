@@ -1,4 +1,4 @@
-import { Home, User } from "lucide-react";
+import { Box, Home, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,
@@ -11,19 +11,7 @@ import {
   SidebarHeader,
 } from "@/components/ui/sidebar";
 import DashboardUser from "./dashboard-user";
-// Main navigation items
-const mainItems = [
-  {
-    title: "Dashboard",
-    url: "/",
-    icon: Home,
-  },
-  {
-    title: "Create User",
-    url: "/register",
-    icon: User,
-  },
-];
+import { mainItems } from "@/lib/admin-dashboard";
 
 export function SideBar() {
   return (

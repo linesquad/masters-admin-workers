@@ -16,6 +16,7 @@ import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authenticated/(admin)/index'
 import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
+import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -43,16 +44,24 @@ const AuthenticatedadminRegisterRoute =
     path: '/register',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedadminCreateCategoryRoute =
+  AuthenticatedadminCreateCategoryRouteImport.update({
+    id: '/(admin)/create-category',
+    path: '/create-category',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/login': typeof authLoginRoute
+  '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/': typeof AuthenticatedadminIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
+  '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/': typeof AuthenticatedadminIndexRoute
@@ -61,19 +70,21 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
+  '/_authenticated/(admin)/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
   '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/register' | '/master' | '/'
+  fullPaths: '' | '/login' | '/create-category' | '/register' | '/master' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/register' | '/master' | '/'
+  to: '/login' | '/create-category' | '/register' | '/master' | '/'
   id:
     | '__root__'
     | '/_authenticated'
     | '/(auth)/login'
+    | '/_authenticated/(admin)/create-category'
     | '/_authenticated/(admin)/register'
     | '/_authenticated/(master)/master'
     | '/_authenticated/(admin)/'
@@ -99,6 +110,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login'
       preLoaderRoute: typeof authLoginRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/(admin)/create-category': {
+      id: '/_authenticated/(admin)/create-category'
+      path: '/create-category'
+      fullPath: '/create-category'
+      preLoaderRoute: typeof AuthenticatedadminCreateCategoryRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/register': {
       id: '/_authenticated/(admin)/register'
@@ -142,6 +160,15 @@ declare module './routes/(auth)/login' {
     FileRoutesByPath['/(auth)/login']['fullPath']
   >
 }
+declare module './routes/_authenticated/(admin)/create-category' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/create-category',
+    FileRoutesByPath['/_authenticated/(admin)/create-category']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/create-category']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/create-category']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/create-category']['fullPath']
+  >
+}
 declare module './routes/_authenticated/(admin)/register' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(admin)/register',
@@ -171,12 +198,14 @@ declare module './routes/_authenticated/(admin)/index' {
 }
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
   AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedadminCreateCategoryRoute: AuthenticatedadminCreateCategoryRoute,
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
   AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
   AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
