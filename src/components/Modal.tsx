@@ -67,7 +67,7 @@ function Modal({ children, isOpen, onClose, title, size = "md" }: ModalProps) {
                 <button
                   type="button"
                   onClick={onClose}
-                  className="rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
+                  className="cursor-pointer rounded-lg p-1 text-gray-400 hover:bg-gray-100 hover:text-gray-600 transition-colors"
                 >
                   <X className="h-5 w-5" />
                 </button>
