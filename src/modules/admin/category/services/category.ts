@@ -12,3 +12,12 @@ export const createCategory = async (name: {
     throw error;
   }
 };
+
+export const getCategories = async () => {
+  try {
+    const response = await instance.get("/api/categories");
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
