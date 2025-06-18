@@ -24,10 +24,10 @@ export const registerSchema = z.object({
     .max(13, "Phone number too long")
     .regex(/^\+995\d{9}$/, "Phone number must be in format +995XXXXXXXXX"),
   role: z
-    .enum(["admin", "master", "user"], {
+    .enum(["admin", "master", "client"], {
       required_error: "Please select a role",
       invalid_type_error: "Invalid role selected",
     }),
 });
 
-export type RegisterFormData = z.infer<typeof registerSchema>; 
+ 
