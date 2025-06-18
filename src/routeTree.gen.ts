@@ -12,45 +12,61 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
-import { Route as AuthenticatedIndexRouteImport } from './routes/_authenticated/index'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
+import { Route as AuthenticateddashboardsIndexRouteImport } from './routes/_authenticated/(dashboards)/index'
+import { Route as AuthenticateddashboardsMasterRouteImport } from './routes/_authenticated/(dashboards)/master'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
-} as any)
-const AuthenticatedIndexRoute = AuthenticatedIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AuthenticatedRoute,
 } as any)
 const authLoginRoute = authLoginRouteImport.update({
   id: '/(auth)/login',
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticateddashboardsIndexRoute =
+  AuthenticateddashboardsIndexRouteImport.update({
+    id: '/(dashboards)/',
+    path: '/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticateddashboardsMasterRoute =
+  AuthenticateddashboardsMasterRouteImport.update({
+    id: '/(dashboards)/master',
+    path: '/master',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/login': typeof authLoginRoute
-  '/': typeof AuthenticatedIndexRoute
+  '/master': typeof AuthenticateddashboardsMasterRoute
+  '/': typeof AuthenticateddashboardsIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
-  '/': typeof AuthenticatedIndexRoute
+  '/master': typeof AuthenticateddashboardsMasterRoute
+  '/': typeof AuthenticateddashboardsIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
-  '/_authenticated/': typeof AuthenticatedIndexRoute
+  '/_authenticated/(dashboards)/master': typeof AuthenticateddashboardsMasterRoute
+  '/_authenticated/(dashboards)/': typeof AuthenticateddashboardsIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '' | '/login' | '/'
+  fullPaths: '' | '/login' | '/master' | '/'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/'
-  id: '__root__' | '/_authenticated' | '/(auth)/login' | '/_authenticated/'
+  to: '/login' | '/master' | '/'
+  id:
+    | '__root__'
+    | '/_authenticated'
+    | '/(auth)/login'
+    | '/_authenticated/(dashboards)/master'
+    | '/_authenticated/(dashboards)/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -74,11 +90,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof authLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/_authenticated/': {
-      id: '/_authenticated/'
+    '/_authenticated/(dashboards)/master': {
+      id: '/_authenticated/(dashboards)/master'
+      path: '/master'
+      fullPath: '/master'
+      preLoaderRoute: typeof AuthenticateddashboardsMasterRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(dashboards)/': {
+      id: '/_authenticated/(dashboards)/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof AuthenticatedIndexRouteImport
+      preLoaderRoute: typeof AuthenticateddashboardsIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }
@@ -102,22 +125,33 @@ declare module './routes/(auth)/login' {
     FileRoutesByPath['/(auth)/login']['fullPath']
   >
 }
-declare module './routes/_authenticated/index' {
+declare module './routes/_authenticated/(dashboards)/master' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/',
-    FileRoutesByPath['/_authenticated/']['parentRoute'],
-    FileRoutesByPath['/_authenticated/']['id'],
-    FileRoutesByPath['/_authenticated/']['path'],
-    FileRoutesByPath['/_authenticated/']['fullPath']
+    '/_authenticated/(dashboards)/master',
+    FileRoutesByPath['/_authenticated/(dashboards)/master']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(dashboards)/master']['id'],
+    FileRoutesByPath['/_authenticated/(dashboards)/master']['path'],
+    FileRoutesByPath['/_authenticated/(dashboards)/master']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(dashboards)/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(dashboards)/',
+    FileRoutesByPath['/_authenticated/(dashboards)/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(dashboards)/']['id'],
+    FileRoutesByPath['/_authenticated/(dashboards)/']['path'],
+    FileRoutesByPath['/_authenticated/(dashboards)/']['fullPath']
   >
 }
 
 interface AuthenticatedRouteChildren {
-  AuthenticatedIndexRoute: typeof AuthenticatedIndexRoute
+  AuthenticateddashboardsMasterRoute: typeof AuthenticateddashboardsMasterRoute
+  AuthenticateddashboardsIndexRoute: typeof AuthenticateddashboardsIndexRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
-  AuthenticatedIndexRoute: AuthenticatedIndexRoute,
+  AuthenticateddashboardsMasterRoute: AuthenticateddashboardsMasterRoute,
+  AuthenticateddashboardsIndexRoute: AuthenticateddashboardsIndexRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

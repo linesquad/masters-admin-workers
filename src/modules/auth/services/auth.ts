@@ -29,6 +29,14 @@ export const getUser = async () => {
     throw error;
   }
 };
+export const getUserRole = async () => {
+  try {
+    const response = await instance.get("/api/auth/me");
+    return response.data.user.role;
+  } catch (error) {
+    throw error;
+  }
+};
 
 export const logoutUser = async () => {
   try {
@@ -37,3 +45,4 @@ export const logoutUser = async () => {
     throw error;
   }
 };
+export type User = Awaited<ReturnType<typeof getUser>>;

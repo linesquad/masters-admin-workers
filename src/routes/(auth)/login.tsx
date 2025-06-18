@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import logoLight from "@/assets/logo_light.svg";
 import heroImage from "@/assets/hero_1.jpg";
-import { getUserId } from "@/modules/auth/services/auth";
+import { getUser, getUserRole } from "@/modules/auth/services/auth";
 import { redirect } from "@tanstack/react-router";
 import { useLogin } from "@/modules/auth/hooks/useLogin";
 import { useForm } from "react-hook-form";
@@ -14,12 +14,13 @@ import {
 
 export const Route = createFileRoute({
   component: LoginForm,
-  beforeLoad: async () => {
-    const user = await getUserId().catch(() => null);
+  loader: async () => {
+    const user = await getUser().catch(() => null);
+    const role = await getUserRole().catch(() => null);
     if (user) {
-      throw redirect({ to: "/" });
+      throw redirect({ to: `/` });
     }
-    return { user };
+    return { user, role };
   },
 });
 
