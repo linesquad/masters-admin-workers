@@ -1,7 +1,15 @@
-import { CheckCircle, Edit, Trash2 } from "lucide-react";
+import { CheckCircle, Edit, Loader2, Trash2 } from "lucide-react";
 import type { Category } from "../../types/category";
 
-function CategoryData({ category }: { category: Category }) {
+function CategoryData({
+  category,
+  handleDelete,
+  isDeleting,
+}: {
+  category: Category;
+  handleDelete: (id: string) => void;
+  isDeleting: boolean;
+}) {
   return (
     <div key={category.id} className="group relative">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-2xl opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -57,8 +65,14 @@ function CategoryData({ category }: { category: Category }) {
           <button
             type="button"
             className="cursor-pointer flex items-center justify-center w-11 h-11 bg-gray-50 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-xl transition-all duration-200 group/btn"
+            onClick={() => handleDelete(category.id)}
+            disabled={isDeleting}
           >
-            <Trash2 className="w-4 h-4  group-hover/btn:scale-110 transition-transform" />
+            {isDeleting ? (
+              <Loader2 className="w-4 h-4 animate-spin" />
+            ) : (
+              <Trash2 className="w-4 h-4  group-hover/btn:scale-110 transition-transform" />
+            )}
           </button>
         </div>
       </div>

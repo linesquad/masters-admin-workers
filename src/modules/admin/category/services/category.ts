@@ -21,3 +21,12 @@ export const getCategories = async () => {
     throw error;
   }
 };
+
+export const deleteCategory = async (id: string) => {
+  try {
+    const response = await instance.delete(`/api/categories/${id}`);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
