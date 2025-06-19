@@ -1,8 +1,11 @@
 import { Edit, Calendar } from "lucide-react";
-
 import { useState } from "react";
-import type { Job } from "../../../types/jobs";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useCategories } from "@/modules/admin/category/hooks/useCategory";
+import type { Job, UpdateJobFormData } from "../../../types/jobs";
 import { DeleteJobDialog } from "./delete-job-dialog";
+import { EditJobHeaderSheet } from "./edit-job-header-sheet";
+import { EditJobHeaderDrawer } from "./edit-job-header-drawer";
 
 export function EditJobCard({
   job,
@@ -10,10 +13,19 @@ export function EditJobCard({
   onDelete,
 }: {
   job: Job;
-  onEdit: (job: Job) => void;
+  onEdit: (data: UpdateJobFormData) => void;
   onDelete: (categoryId: string, jobId: string) => void;
 }) {
   const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
+  const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+  const isMobile = useIsMobile();
+  const { data: categoriesResponse } = useCategories();
+  const categories = categoriesResponse?.data || [];
+
+  const handleUpdateJob = (data: UpdateJobFormData) => {
+    onEdit(data);
+    setIsEditDialogOpen(false);
+  };
 
   const formatDate = (dateString: string) => {
     return new Date(dateString).toLocaleDateString("en-US", {
@@ -23,15 +35,7 @@ export function EditJobCard({
     });
   };
 
-  const handleDeleteConfirm = ({
-    job,
-    onEdit,
-    onDelete,
-  }: {
-    job: Job;
-    onEdit: (job: Job) => void;
-    onDelete: (categoryId: string, jobId: string) => void;
-  }) => {
+  const handleDeleteConfirm = () => {
     onDelete(job.categoryId, job.id);
     setIsDeleteDialogOpen(false);
   };
@@ -98,7 +102,7 @@ export function EditJobCard({
         {/* Action buttons */}
         <div className="flex gap-2 pt-4 border-t border-gray-100">
           <button
-            onClick={() => onEdit(job)}
+            onClick={() => setIsEditDialogOpen(true)}
             className="cursor-pointer flex-1 flex items-center justify-center gap-2 px-3 py-2 bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 rounded-lg transition-all duration-200 font-medium group/btn"
           >
             <Edit className="w-4 h-4 group-hover/btn:scale-110 transition-transform" />
@@ -109,13 +113,30 @@ export function EditJobCard({
             isDeleteDialogOpen={isDeleteDialogOpen}
             setIsDeleteDialogOpen={setIsDeleteDialogOpen}
             job={job}
-            onEdit={onEdit}
-            onDelete={onDelete}
-            handleDeleteConfirm={() =>
-              handleDeleteConfirm({ job, onEdit, onDelete })
-            }
+            handleDeleteConfirm={handleDeleteConfirm}
           />
         </div>
+
+        {/* Edit Modals */}
+        {isMobile ? (
+          <EditJobHeaderDrawer
+            isOpen={isEditDialogOpen}
+            setIsOpen={setIsEditDialogOpen}
+            handleUpdateJob={handleUpdateJob}
+            categories={categories}
+            isPending={false}
+            job={job}
+          />
+        ) : (
+          <EditJobHeaderSheet
+            isOpen={isEditDialogOpen}
+            setIsOpen={setIsEditDialogOpen}
+            handleUpdateJob={handleUpdateJob}
+            categories={categories}
+            isPending={false}
+            job={job}
+          />
+        )}
       </div>
     </div>
   );

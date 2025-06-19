@@ -13,8 +13,8 @@ export function JobCards({
 }: JobCardsProps) {
   if (isLoading) {
     return (
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        {Array.from({ length: 6 }, (_, i) => (
+      <div className="">
+        {Array.from({ length: 1 }, (_, i) => (
           <CategorySkeleton key={i} />
         ))}
       </div>

@@ -16,24 +16,12 @@ export function DeleteJobDialog({
   isDeleteDialogOpen,
   setIsDeleteDialogOpen,
   job,
-  onEdit,
-  onDelete,
   handleDeleteConfirm,
 }: {
   isDeleteDialogOpen: boolean;
   setIsDeleteDialogOpen: (isOpen: boolean) => void;
   job: Job;
-  onEdit: (job: Job) => void;
-  onDelete: (categoryId: string, jobId: string) => void;
-  handleDeleteConfirm: ({
-    job,
-    onEdit,
-    onDelete,
-  }: {
-    job: Job;
-    onEdit: (job: Job) => void;
-    onDelete: (categoryId: string, jobId: string) => void;
-  }) => void;
+  handleDeleteConfirm: () => void;
 }) {
   return (
     <AlertDialog open={isDeleteDialogOpen} onOpenChange={setIsDeleteDialogOpen}>
@@ -64,7 +52,7 @@ export function DeleteJobDialog({
             Cancel
           </AlertDialogCancel>
           <AlertDialogAction
-            onClick={() => handleDeleteConfirm({ job, onEdit, onDelete })}
+            onClick={handleDeleteConfirm}
             className="cursor-pointer bg-gradient-to-r from-red-500 to-pink-600 hover:from-red-600 hover:to-pink-700 text-white font-medium transition-all duration-200 shadow-lg hover:shadow-xl"
           >
             Delete Job

@@ -20,6 +20,24 @@ export type CreateJobFormData = {
     ka: string;
   };
 };
+
+export type UpdateJobFormData = {
+  categoryId: string;
+  jobId: string;
+  jobData: {
+    categoryId: string;
+    title: {
+      en: string;
+      ru: string;
+      ka: string;
+    };
+    description: {
+      en: string;
+      ru: string;
+      ka: string;
+    };
+  };
+};
 export interface Job {
   id: string;
   title: {
@@ -39,7 +57,7 @@ export interface Job {
 
 export interface JobCardsProps {
   jobs: Job[];
-  onEdit: (job: Job) => void;
+  onEdit: (data: UpdateJobFormData) => void;
   onDelete: (categoryId: string, jobId: string) => void;
   isLoading?: boolean;
   error?: Error | null;

@@ -46,3 +46,31 @@ export const deleteJobInCategory = async (
     throw error;
   }
 };
+
+export const updateJobInCategory = async (
+  categoryId: string,
+  jobId: string,
+  jobData: {
+    title: {
+      en: string;
+      ru: string;
+      ka: string;
+    };
+    description: {
+      en: string;
+      ru: string;
+      ka: string;
+    };
+  }
+) => {
+  try {
+    const response = await instance.put(
+      `/api/categories/${categoryId}/jobs/${jobId}`,
+      jobData
+    );
+    return response.data;
+  } catch (error) { 
+    console.log(error);
+    throw error;
+  }
+};
