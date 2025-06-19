@@ -1,16 +1,8 @@
-import { EditJobEmpty } from "./edit-delete-job/edit-job-empty";
-import { EditJobError } from "./edit-delete-job/edit-job-error";
-import { EditJobCard } from "./edit-delete-job/edit-job-card";
-import type { Job } from "../../types/jobs";
+import { EditJobEmpty } from "./edit-delete-job/edit-delete-job-empty";
+import { EditJobError } from "./edit-delete-job/edit-delete-job-error";
+import { EditJobCard } from "./edit-delete-job/edit-delete-job-card";
 import { CategorySkeleton } from "@/modules/admin/category/ui/components/category-skeleton";
-
-interface JobCardsProps {
-  jobs: Job[];
-  onEdit: (job: Job) => void;
-  onDelete: (categoryId: string, jobId: string) => void;
-  isLoading?: boolean;
-  error?: Error | null;
-}
+import type { JobCardsProps } from "../../types/jobs";
 
 export function JobCards({
   jobs,

@@ -36,3 +36,11 @@ export interface Job {
   createdAt: string;
   masterCount: number;
 }
+
+export interface JobCardsProps {
+  jobs: Job[];
+  onEdit: (job: Job) => void;
+  onDelete: (categoryId: string, jobId: string) => void;
+  isLoading?: boolean;
+  error?: Error | null;
+}
