@@ -34,8 +34,6 @@ export function JobCategoryHeader({ categories }: { categories: Category[] }) {
               </p>
             </div>
           </div>
-
-          {/* Add Job Button - Responsive Sidebar/Drawer */}
           <div className="flex items-center justify-end gap-3 shrink-0">
             {isMobile ? (
               <JobAddHeaderDrawer

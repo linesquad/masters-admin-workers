@@ -1,0 +1,50 @@
+import { EditJobEmpty } from "./edit-delete-job/edit-job-empty";
+import { EditJobError } from "./edit-delete-job/edit-job-error";
+import { EditJobCard } from "./edit-delete-job/edit-job-card";
+import type { Job } from "../../types/jobs";
+import { CategorySkeleton } from "@/modules/admin/category/ui/components/category-skeleton";
+
+interface JobCardsProps {
+  jobs: Job[];
+  onEdit: (job: Job) => void;
+  onDelete: (categoryId: string, jobId: string) => void;
+  isLoading?: boolean;
+  error?: Error | null;
+}
+
+export function JobCards({
+  jobs,
+  onEdit,
+  onDelete,
+  isLoading,
+  error,
+}: JobCardsProps) {
+  if (isLoading) {
+    return (
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {Array.from({ length: 6 }, (_, i) => (
+          <CategorySkeleton key={i} />
+        ))}
+      </div>
+    );
+  }
+  if (error) {
+    return <EditJobError error={error} />;
+  }
+  if (!jobs || jobs.length === 0) {
+    return <EditJobEmpty />;
+  }
+
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {jobs.map((job) => (
+        <EditJobCard
+          key={job.id}
+          job={job}
+          onEdit={onEdit}
+          onDelete={onDelete}
+        />
+      ))}
+    </div>
+  );
+}

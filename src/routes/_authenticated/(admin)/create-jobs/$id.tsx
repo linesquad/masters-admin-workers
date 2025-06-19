@@ -1,4 +1,5 @@
 import { getJobsByCategoryId } from "@/modules/admin/createjob/services/jobs";
+import { JobSingleView } from "@/modules/admin/createjob/ui/views/job-single-view";
 
 export const Route = createFileRoute({
   component: RouteComponent,
@@ -9,5 +10,5 @@ export const Route = createFileRoute({
 });
 
 function RouteComponent() {
-  return <div>Hello "/_authenticated/(admin)/create-jobs/$id"!</div>;
+  return <JobSingleView />;
 }

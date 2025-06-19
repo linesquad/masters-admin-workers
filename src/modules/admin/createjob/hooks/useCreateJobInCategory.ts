@@ -18,8 +18,11 @@ export const useCreateJobInCategory = () => {
         ka: string;
       };
     }) => createJobInCategory(jobData),
-    onSuccess: () => {
+    onSuccess: (_, { categoryId }) => {
+      // Invalidate the categories query to update job counts
       queryClient.invalidateQueries({ queryKey: ["categories"] });
+      // Invalidate the specific category's jobs query to refresh the job list
+      queryClient.invalidateQueries({ queryKey: ["jobByCategoryId", categoryId] });
       toast.success("Job created successfully");
     },
     onError: () => {

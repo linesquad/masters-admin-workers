@@ -20,3 +20,19 @@ export type CreateJobFormData = {
     ka: string;
   };
 };
+export interface Job {
+  id: string;
+  title: {
+    en: string;
+    ka: string;
+    ru: string;
+  };
+  description: {
+    en: string;
+    ka: string;
+    ru: string;
+  };
+  categoryId: string;
+  createdAt: string;
+  masterCount: number;
+}

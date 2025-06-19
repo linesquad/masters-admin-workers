@@ -10,7 +10,6 @@ export const getJobsByCategoryId = async (categoryId: string) => {
   }
 };
 
-
 export const createJobInCategory = async (jobData: {
   categoryId: string;
   title: {
@@ -31,4 +30,19 @@ export const createJobInCategory = async (jobData: {
     console.log(error);
     throw error;
   }
-}
+};
+
+export const deleteJobInCategory = async (
+  categoryId: string,
+  jobId: string
+) => {
+  try {
+    const response = await instance.delete(
+      `/api/categories/${categoryId}/jobs/${jobId}`
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
