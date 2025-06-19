@@ -19,6 +19,17 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import {
+  AlertDialog,
+  AlertDialogTrigger,
+  AlertDialogContent,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@/components/ui/alert-dialog";
 
 function CategoryData({
   category,
@@ -41,6 +52,7 @@ function CategoryData({
   isUpdating: boolean;
 }) {
   const [isEditOpen, setIsEditOpen] = useState(false);
+  const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
   const isMobile = useIsMobile();
 
   const {
@@ -67,6 +79,11 @@ function CategoryData({
 
   const handleFormSubmit = () => {
     handleSubmit(onSubmit)();
+  };
+
+  const handleDeleteConfirm = () => {
+    handleDelete(category.id);
+    setIsDeleteDialogOpen(false);
   };
 
   return (
@@ -122,18 +139,58 @@ function CategoryData({
             <Edit className="w-3 h-3 group-hover/btn:scale-110 transition-transform" />
             <span className="text-xs">Edit</span>
           </button>
-          <button
-            type="button"
-            className="cursor-pointer flex items-center justify-center w-8 h-8 bg-gray-50 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-all duration-200 group/btn"
-            onClick={() => handleDelete(category.id)}
-            disabled={isDeleting}
+          <AlertDialog
+            open={isDeleteDialogOpen}
+            onOpenChange={setIsDeleteDialogOpen}
           >
-            {isDeleting ? (
-              <Loader2 className="w-3 h-3 animate-spin" />
-            ) : (
-              <Trash2 className="w-3 h-3 group-hover/btn:scale-110 transition-transform" />
-            )}
-          </button>
+            <AlertDialogTrigger asChild>
+              <button
+                type="button"
+                className="cursor-pointer flex items-center justify-center w-8 h-8 bg-gray-50 hover:bg-red-50 text-gray-400 hover:text-red-500 rounded-lg transition-all duration-200 group/btn"
+                disabled={isDeleting}
+              >
+                {isDeleting ? (
+                  <Loader2 className="w-3 h-3 animate-spin" />
+                ) : (
+                  <Trash2 className="w-3 h-3 group-hover/btn:scale-110 transition-transform" />
+                )}
+              </button>
+            </AlertDialogTrigger>
+            <AlertDialogContent className="bg-gradient-to-br from-blue-50 to-purple-50 border-blue-200 shadow-xl">
+              <AlertDialogHeader>
+                <AlertDialogTitle className="text-gray-800 font-bold text-xl flex items-center gap-2">
+                  <div className="w-8 h-8 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg flex items-center justify-center">
+                    <Trash2 className="w-4 h-4 text-white" />
+                  </div>
+                  Delete Category
+                </AlertDialogTitle>
+                <AlertDialogDescription className="text-gray-600 text-base leading-relaxed">
+                  Are you sure you want to delete the category{" "}
+                  <span className="font-semibold text-blue-600">
+                    "{category.name.en}"
+                  </span>
+                  ?
+                  <br />
+                  <span className="text-red-500 font-medium">
+                    This action cannot be undone
+                  </span>{" "}
+                  and will remove the category permanently.
+                </AlertDialogDescription>
+              </AlertDialogHeader>
+              <AlertDialogFooter className="gap-3">
+                <AlertDialogCancel className="cursor-pointer bg-white hover:bg-gray-50 text-gray-700 border-gray-300 font-medium px-6 shadow-sm">
+                  Cancel
+                </AlertDialogCancel>
+                <AlertDialogAction
+                  onClick={handleDeleteConfirm}
+                  className="bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 cursor-pointer text-white font-medium px-6 shadow-lg hover:shadow-xl transition-all duration-200"
+                >
+                  <Trash2 className="w-4 h-4 mr-2" />
+                  Delete Category
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         </div>
       </div>
 
