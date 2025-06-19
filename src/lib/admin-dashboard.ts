@@ -18,7 +18,7 @@ export const mainItems = [
   },
   {
     title: "Create Job",
-    url: "/create-jobs",
+    url: "/create-jobs/jobs",
     icon: Briefcase,
   },
 ];
