@@ -1,12 +1,24 @@
 import { CheckCircle, Edit, Loader2, Trash2 } from "lucide-react";
 import { useState } from "react";
 import type { Category } from "../../types/category";
-import Modal from "@/components/Modal";
 import { ThreeLanguageInputs } from "@/components/ThreeLanguageInputs";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { createCategorySchema } from "../../schema/categorySchema";
 import type { CreateCategoryData } from "../../schema/categorySchema";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 function CategoryData({
   category,
@@ -28,7 +40,8 @@ function CategoryData({
   ) => void;
   isUpdating: boolean;
 }) {
-  const [isEditModalOpen, setIsEditModalOpen] = useState(false);
+  const [isEditOpen, setIsEditOpen] = useState(false);
+  const isMobile = useIsMobile();
 
   const {
     register,
@@ -48,13 +61,39 @@ function CategoryData({
 
   const onSubmit = (data: CreateCategoryData) => {
     handleUpdate(category.id, data);
-    setIsEditModalOpen(false);
+    setIsEditOpen(false);
     reset();
   };
 
   const handleFormSubmit = () => {
     handleSubmit(onSubmit)();
   };
+
+ 
+  const FormContent = () => (
+    <form onSubmit={handleSubmit(onSubmit)} className="px-4">
+      <ThreeLanguageInputs
+        register={register}
+        watch={watch}
+        getValues={getValues}
+        errors={errors}
+        onSubmit={handleFormSubmit}
+        isSubmitting={isUpdating}
+        submitButtonText="Update Category"
+        submittingText="Updating..."
+        labels={{
+          en: "English Name",
+          ka: "Georgian Name",
+          ru: "Russian Name",
+        }}
+        placeholders={{
+          en: "Category name in English",
+          ka: "Category name in Georgian",
+          ru: "Category name in Russian",
+        }}
+      />
+    </form>
+  );
 
   return (
     <div key={category.id} className="group relative">
@@ -103,7 +142,7 @@ function CategoryData({
         <div className="flex gap-1">
           <button
             type="button"
-            onClick={() => setIsEditModalOpen(true)}
+            onClick={() => setIsEditOpen(true)}
             className="cursor-pointer flex-1 flex items-center justify-center gap-1 px-2 py-1.5 bg-gray-50 hover:bg-blue-50 text-gray-700 hover:text-blue-600 rounded-lg transition-all duration-200 font-medium group/btn"
           >
             <Edit className="w-3 h-3 group-hover/btn:scale-110 transition-transform" />
@@ -123,35 +162,26 @@ function CategoryData({
           </button>
         </div>
       </div>
-      <Modal
-        isOpen={isEditModalOpen}
-        onClose={() => setIsEditModalOpen(false)}
-        title="Edit Category"
-        size="md"
-      >
-        <form onSubmit={handleSubmit(onSubmit)}>
-          <ThreeLanguageInputs
-            register={register}
-            watch={watch}
-            getValues={getValues}
-            errors={errors}
-            onSubmit={handleFormSubmit}
-            isSubmitting={isUpdating}
-            submitButtonText="Update Category"
-            submittingText="Updating..."
-            labels={{
-              en: "English Name",
-              ka: "Georgian Name",
-              ru: "Russian Name",
-            }}
-            placeholders={{
-              en: "Category name in English",
-              ka: "Category name in Georgian",
-              ru: "Category name in Russian",
-            }}
-          />
-        </form>
-      </Modal>
+
+      {isMobile ? (
+        <Drawer open={isEditOpen} onOpenChange={setIsEditOpen}>
+          <DrawerContent className="px-4 pb-6">
+            <DrawerHeader>
+              <DrawerTitle>Edit Category</DrawerTitle>
+            </DrawerHeader>
+            <FormContent />
+          </DrawerContent>
+        </Drawer>
+      ) : (
+        <Sheet open={isEditOpen} onOpenChange={setIsEditOpen}>
+          <SheetContent className="overflow-y-auto bg-white text-black">
+            <SheetHeader>
+              <SheetTitle>Edit Category</SheetTitle>
+            </SheetHeader>
+            <FormContent />
+          </SheetContent>
+        </Sheet>
+      )}
     </div>
   );
 }
