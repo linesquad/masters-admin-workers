@@ -69,32 +69,6 @@ function CategoryData({
     handleSubmit(onSubmit)();
   };
 
- 
-  const FormContent = () => (
-    <form onSubmit={handleSubmit(onSubmit)} className="px-4">
-      <ThreeLanguageInputs
-        register={register}
-        watch={watch}
-        getValues={getValues}
-        errors={errors}
-        onSubmit={handleFormSubmit}
-        isSubmitting={isUpdating}
-        submitButtonText="Update Category"
-        submittingText="Updating..."
-        labels={{
-          en: "English Name",
-          ka: "Georgian Name",
-          ru: "Russian Name",
-        }}
-        placeholders={{
-          en: "Category name in English",
-          ka: "Category name in Georgian",
-          ru: "Category name in Russian",
-        }}
-      />
-    </form>
-  );
-
   return (
     <div key={category.id} className="group relative">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-purple-600 rounded-lg opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
@@ -169,7 +143,28 @@ function CategoryData({
             <DrawerHeader>
               <DrawerTitle>Edit Category</DrawerTitle>
             </DrawerHeader>
-            <FormContent />
+            <form onSubmit={handleSubmit(onSubmit)} className="px-4">
+              <ThreeLanguageInputs
+                register={register}
+                watch={watch}
+                getValues={getValues}
+                errors={errors}
+                onSubmit={handleFormSubmit}
+                isSubmitting={isUpdating}
+                submitButtonText="Update Category"
+                submittingText="Updating..."
+                labels={{
+                  en: "English Name",
+                  ka: "Georgian Name",
+                  ru: "Russian Name",
+                }}
+                placeholders={{
+                  en: "Category name in English",
+                  ka: "Category name in Georgian",
+                  ru: "Category name in Russian",
+                }}
+              />
+            </form>
           </DrawerContent>
         </Drawer>
       ) : (
@@ -178,7 +173,28 @@ function CategoryData({
             <SheetHeader>
               <SheetTitle>Edit Category</SheetTitle>
             </SheetHeader>
-            <FormContent />
+            <form onSubmit={handleSubmit(onSubmit)} className="px-4">
+              <ThreeLanguageInputs
+                register={register}
+                watch={watch}
+                getValues={getValues}
+                errors={errors}
+                onSubmit={handleFormSubmit}
+                isSubmitting={isUpdating}
+                submitButtonText="Update Category"
+                submittingText="Updating..."
+                labels={{
+                  en: "English Name",
+                  ka: "Georgian Name",
+                  ru: "Russian Name",
+                }}
+                placeholders={{
+                  en: "Category name in English",
+                  ka: "Category name in Georgian",
+                  ru: "Category name in Russian",
+                }}
+              />
+            </form>
           </SheetContent>
         </Sheet>
       )}

@@ -7,19 +7,32 @@ import { createCategorySchema } from "@/modules/admin/category/schema/categorySc
 import type { CreateCategoryData } from "@/modules/admin/category/schema/categorySchema";
 import { useCategories } from "@/modules/admin/category/hooks/useCategory";
 import CategoryCard from "../components/CategoryCard";
-import Modal from "@/components/Modal";
 import { Plus } from "lucide-react";
 import CategorySkeleton from "../components/CategorySkeleton";
 import { useDeleteCategory } from "../../hooks/useDeleteCategory";
 import { useUpdateCategory } from "../../hooks/useUpdateCategory";
+import { useIsMobile } from "@/hooks/use-mobile";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+} from "@/components/ui/drawer";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+} from "@/components/ui/sheet";
 
 function CreateCategory() {
   const { mutate: createCategory, isPending } = useCreateCategory();
   const { data: categories, isLoading, isError } = useCategories();
   const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
   const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
-  const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
-  console.log(categories);
+  const [isCreateOpen, setIsCreateOpen] = useState(false);
+  const isMobile = useIsMobile();
+  
   const {
     register,
     handleSubmit,
@@ -35,7 +48,7 @@ function CreateCategory() {
     createCategory(data, {
       onSuccess: () => {
         reset();
-        setIsCreateModalOpen(false);
+        setIsCreateOpen(false);
       },
     });
   };
@@ -65,7 +78,7 @@ function CreateCategory() {
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
           <h1 className="text-2xl font-bold">Categories</h1>
           <button
-            onClick={() => setIsCreateModalOpen(true)}
+            onClick={() => setIsCreateOpen(true)}
             className="group cursor-pointer relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-0.5 
             transition-all duration-300 hover:scale-105 hover:shadow-xl hover:shadow-blue-500/25"
           >
@@ -101,35 +114,67 @@ function CreateCategory() {
           />
         </div>
 
-        <Modal
-          isOpen={isCreateModalOpen}
-          onClose={() => setIsCreateModalOpen(false)}
-          title="Create New Category"
-          size="md"
-        >
-          <form onSubmit={handleSubmit(onSubmit)}>
-            <ThreeLanguageInputs
-              register={register}
-              watch={watch}
-              getValues={getValues}
-              errors={errors}
-              onSubmit={handleFormSubmit}
-              isSubmitting={isPending}
-              submitButtonText="Create Category"
-              submittingText="Creating..."
-              labels={{
-                en: "English Name",
-                ka: "Georgian Name",
-                ru: "Russian Name",
-              }}
-              placeholders={{
-                en: "Category name in English",
-                ka: "Category name in Georgian",
-                ru: "Category name in Russian",
-              }}
-            />
-          </form>
-        </Modal>
+        {isMobile ? (
+          <Drawer open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+            <DrawerContent className="px-4 pb-6">
+              <DrawerHeader>
+                <DrawerTitle>Create New Category</DrawerTitle>
+              </DrawerHeader>
+              <form onSubmit={handleSubmit(onSubmit)} className="px-4">
+                <ThreeLanguageInputs
+                  register={register}
+                  watch={watch}
+                  getValues={getValues}
+                  errors={errors}
+                  onSubmit={handleFormSubmit}
+                  isSubmitting={isPending}
+                  submitButtonText="Create Category"
+                  submittingText="Creating..."
+                  labels={{
+                    en: "English Name",
+                    ka: "Georgian Name",
+                    ru: "Russian Name",
+                  }}
+                  placeholders={{
+                    en: "Category name in English",
+                    ka: "Category name in Georgian",
+                    ru: "Category name in Russian",
+                  }}
+                />
+              </form>
+            </DrawerContent>
+          </Drawer>
+        ) : (
+          <Sheet open={isCreateOpen} onOpenChange={setIsCreateOpen}>
+            <SheetContent className="overflow-y-auto bg-white text-black">
+              <SheetHeader>
+                <SheetTitle>Create New Category</SheetTitle>
+              </SheetHeader>
+              <form onSubmit={handleSubmit(onSubmit)} className="px-4">
+                <ThreeLanguageInputs
+                  register={register}
+                  watch={watch}
+                  getValues={getValues}
+                  errors={errors}
+                  onSubmit={handleFormSubmit}
+                  isSubmitting={isPending}
+                  submitButtonText="Create Category"
+                  submittingText="Creating..."
+                  labels={{
+                    en: "English Name",
+                    ka: "Georgian Name",
+                    ru: "Russian Name",
+                  }}
+                  placeholders={{
+                    en: "Category name in English",
+                    ka: "Category name in Georgian",
+                    ru: "Category name in Russian",
+                  }}
+                />
+              </form>
+            </SheetContent>
+          </Sheet>
+        )}
       </section>
     </div>
   );
