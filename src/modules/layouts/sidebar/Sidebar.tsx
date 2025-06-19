@@ -1,4 +1,3 @@
-import { Box, Home, User } from "lucide-react";
 import {
   Sidebar,
   SidebarContent,

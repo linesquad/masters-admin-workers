@@ -1,10 +1,9 @@
-
 import { redirect, Outlet } from "@tanstack/react-router";
 import MainLayout from "@/components/MainLayout";
 
 export const Route = createFileRoute({
   component: RouteComponent,
-  beforeLoad: async ({context}) => {
+  beforeLoad: async ({ context }) => {
     const user = await context.getUser().catch(() => null);
     if (!user) {
       throw redirect({ to: "/login" });

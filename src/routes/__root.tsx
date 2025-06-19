@@ -1,8 +1,13 @@
 import * as React from "react";
 import { Outlet, createRootRouteWithContext } from "@tanstack/react-router";
-import { type User } from "@/modules/auth/services/auth";
+import type { UserTypes } from "@/modules/auth/types/userTypes";
 
-export const Route = createRootRouteWithContext<User>()({
+interface RouterContext {
+  getUser: () => Promise<UserTypes>;
+  getUserRole: () => Promise<string>;
+}
+
+export const Route = createRootRouteWithContext<RouterContext>()({
   component: RootComponent,
   loader: async ({ context }) => {
     const user = await context.getUser().catch(() => null);

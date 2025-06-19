@@ -1,4 +1,5 @@
 import instance from "@/lib/axios";
+import type { UserTypes } from "../types/userTypes";
 
 export const login = async (email: string, password: string) => {
   try {
@@ -12,7 +13,7 @@ export const login = async (email: string, password: string) => {
   }
 };
 
-export const getUserId = async () => {
+export const getUserId = async (): Promise<string> => {
   try {
     const response = await instance.get("/api/auth/me");
     return response.data.user.id;
@@ -21,7 +22,7 @@ export const getUserId = async () => {
   }
 };
 
-export const getUser = async () => {
+export const getUser = async (): Promise<UserTypes> => {
   try {
     const response = await instance.get("/api/auth/me");
     return response.data.user;
@@ -29,7 +30,8 @@ export const getUser = async () => {
     throw error;
   }
 };
-export const getUserRole = async () => {
+
+export const getUserRole = async (): Promise<string> => {
   try {
     const response = await instance.get("/api/auth/me");
     return response.data.user.role;
@@ -45,6 +47,7 @@ export const logoutUser = async () => {
     throw error;
   }
 };
+
 export const createUser = async ({
   email,
   password,
@@ -71,4 +74,5 @@ export const createUser = async ({
     throw error;
   }
 };
-export type User = Awaited<ReturnType<typeof getUser>>;
+
+export type User = UserTypes;

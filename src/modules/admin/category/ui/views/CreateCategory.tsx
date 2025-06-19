@@ -8,7 +8,6 @@ import type { CreateCategoryData } from "@/modules/admin/category/schema/categor
 import { useCategories } from "@/modules/admin/category/hooks/useCategory";
 import { CategoryCard } from "../components/category-card";
 import { Plus } from "lucide-react";
-import { CategorySkeleton } from "../components/category-skeleton";
 import { useDeleteCategory } from "../../hooks/useDeleteCategory";
 import { useUpdateCategory } from "../../hooks/useUpdateCategory";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -70,7 +69,6 @@ function CreateCategory() {
     handleSubmit(onSubmit)();
   };
 
-  
   if (isError) return <div>Error loading categories</div>;
   return (
     <div>
