@@ -1,13 +1,15 @@
 import type { Category } from "../../types/category";
-import EmptyCategory from "./EmptyCategory";
-import CategoryData from "./CategoryData";
+import { EmptyCategory } from "./empty-category";
+import { CategoryData } from "./category-data";
+import { CategorySkeleton } from "./category-skeleton";
 
-function CategoryCard({
+export function CategoryCard({
   categories,
   handleDelete,
   isDeleting,
   handleUpdate,
   isUpdating,
+  isLoading,
 }: {
   categories: { data: Category[] } | undefined;
   handleDelete: (id: string) => void;
@@ -18,7 +20,9 @@ function CategoryCard({
     ru: string;
   }) => void;
   isUpdating: boolean;
+  isLoading: boolean;
 }) {
+  if (isLoading) return <CategorySkeleton />;
   return (
     <div>
       {!categories?.data || categories.data.length === 0 ? (
@@ -41,4 +45,4 @@ function CategoryCard({
   );
 }
 
-export default CategoryCard;
+

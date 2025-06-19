@@ -1,6 +1,6 @@
 import { Package } from "lucide-react";
 
-function EmptyCategory() {
+export function EmptyCategory() {
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl"></div>

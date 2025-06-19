@@ -6,9 +6,9 @@ import { ThreeLanguageInputs } from "@/components/ThreeLanguageInputs";
 import { createCategorySchema } from "@/modules/admin/category/schema/categorySchema";
 import type { CreateCategoryData } from "@/modules/admin/category/schema/categorySchema";
 import { useCategories } from "@/modules/admin/category/hooks/useCategory";
-import CategoryCard from "../components/CategoryCard";
+import { CategoryCard } from "../components/category-card";
 import { Plus } from "lucide-react";
-import CategorySkeleton from "../components/CategorySkeleton";
+import { CategorySkeleton } from "../components/category-skeleton";
 import { useDeleteCategory } from "../../hooks/useDeleteCategory";
 import { useUpdateCategory } from "../../hooks/useUpdateCategory";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -32,7 +32,7 @@ function CreateCategory() {
   const { mutate: updateCategory, isPending: isUpdating } = useUpdateCategory();
   const [isCreateOpen, setIsCreateOpen] = useState(false);
   const isMobile = useIsMobile();
-  
+
   const {
     register,
     handleSubmit,
@@ -70,7 +70,7 @@ function CreateCategory() {
     handleSubmit(onSubmit)();
   };
 
-  if (isLoading) return <CategorySkeleton />;
+  
   if (isError) return <div>Error loading categories</div>;
   return (
     <div>
@@ -111,6 +111,7 @@ function CreateCategory() {
             isDeleting={isDeleting}
             handleUpdate={handleUpdate}
             isUpdating={isUpdating}
+            isLoading={isLoading}
           />
         </div>
 

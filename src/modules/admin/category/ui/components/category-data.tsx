@@ -31,7 +31,7 @@ import {
   AlertDialogCancel,
 } from "@/components/ui/alert-dialog";
 
-function CategoryData({
+export function CategoryData({
   category,
   handleDelete,
   isDeleting,
@@ -258,5 +258,3 @@ function CategoryData({
     </div>
   );
 }
-
-export default CategoryData;
