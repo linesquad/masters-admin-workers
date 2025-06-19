@@ -9,3 +9,26 @@ export const getJobsByCategoryId = async (categoryId: string) => {
     throw error;
   }
 };
+
+
+export const createJobInCategory = async (jobData: {
+  categoryId: string;
+  title: {
+    en: string;
+    ru: string;
+    ka: string;
+  };
+  description: {
+    en: string;
+    ru: string;
+    ka: string;
+  };
+}) => {
+  try {
+    const response = await instance.post(`/api/categories/jobs`, jobData);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}

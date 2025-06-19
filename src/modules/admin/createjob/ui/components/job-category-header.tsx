@@ -1,7 +1,21 @@
 import type { Category } from "@/modules/admin/category/types/category";
 import { Briefcase } from "lucide-react";
+import { useState } from "react";
+import { useIsMobile } from "@/hooks/use-mobile";
+import { useCreateJobInCategory } from "../../hooks/useCreateJobInCategory";
+import type { CreateJobFormData } from "../../types/jobs";
+import { JobAddHeaderSheet } from "./add-job/job-add-header-sheet";
+import { JobAddHeaderDrawer } from "./add-job/job-add-header-drawer";
 
 export function JobCategoryHeader({ categories }: { categories: Category[] }) {
+  const { mutate: createJob, isPending } = useCreateJobInCategory();
+  const [isOpen, setIsOpen] = useState(false);
+  const isMobile = useIsMobile();
+
+  const handleCreateJob = (jobData: CreateJobFormData) => {
+    createJob(jobData);
+  };
+
   return (
     <div className="bg-white shadow-sm border-b border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-6 sm:py-8">
@@ -19,6 +33,27 @@ export function JobCategoryHeader({ categories }: { categories: Category[] }) {
                 opportunities
               </p>
             </div>
+          </div>
+
+          {/* Add Job Button - Responsive Sidebar/Drawer */}
+          <div className="flex items-center justify-end gap-3 shrink-0">
+            {isMobile ? (
+              <JobAddHeaderDrawer
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleCreateJob={handleCreateJob}
+                categories={categories}
+                isPending={isPending}
+              />
+            ) : (
+              <JobAddHeaderSheet
+                isOpen={isOpen}
+                setIsOpen={setIsOpen}
+                handleCreateJob={handleCreateJob}
+                categories={categories}
+                isPending={isPending}
+              />
+            )}
           </div>
         </div>
       </div>
