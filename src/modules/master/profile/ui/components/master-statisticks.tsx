@@ -23,7 +23,7 @@ export function MasterStatisticks({
               {completedJobs || 0}
             </p>
           </div>
-          <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-blue-100 rounded-lg  items-center justify-center hidden min-[400px]:flex">
             <Briefcase className="w-6 h-6 text-blue-600" />
           </div>
         </div>
@@ -37,7 +37,7 @@ export function MasterStatisticks({
               {totalReviews || 0}
             </p>
           </div>
-          <div className="w-12 h-12 bg-yellow-100 rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-yellow-100 rounded-lg  items-center justify-center hidden min-[400px]:flex">
             <Users className="w-6 h-6 text-yellow-600" />
           </div>
         </div>
@@ -59,7 +59,7 @@ export function MasterStatisticks({
               ₾{(totalEarnings || 0).toLocaleString()}
             </p>
           </div>
-          <div className="w-12 h-12 bg-green-100 rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-green-100 rounded-lg  items-center justify-center hidden min-[400px]:flex">
             <DollarSign className="w-6 h-6 text-green-600" />
           </div>
         </div>
@@ -71,7 +71,7 @@ export function MasterStatisticks({
             <p className="text-slate-600 text-sm font-medium">Points</p>
             <p className="text-2xl font-bold text-slate-900">{points || 0}</p>
           </div>
-          <div className="w-12 h-12 bg-purple-100 rounded-lg flex items-center justify-center">
+          <div className="w-12 h-12 bg-purple-100 rounded-lg   items-center justify-center hidden min-[400px]:flex">
             <Trophy className="w-6 h-6 text-purple-600" />
           </div>
         </div>
