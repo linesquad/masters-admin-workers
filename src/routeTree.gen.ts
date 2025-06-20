@@ -14,6 +14,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authenticated/(admin)/index'
+import { Route as AuthenticatedmasterMasterProfileRouteImport } from './routes/_authenticated/(master)/master-profile'
 import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
@@ -34,6 +35,12 @@ const AuthenticatedadminIndexRoute = AuthenticatedadminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedmasterMasterProfileRoute =
+  AuthenticatedmasterMasterProfileRouteImport.update({
+    id: '/(master)/master-profile',
+    path: '/master-profile',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedmasterMasterRoute =
   AuthenticatedmasterMasterRouteImport.update({
     id: '/(master)/master',
@@ -71,6 +78,7 @@ export interface FileRoutesByFullPath {
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master': typeof AuthenticatedmasterMasterRoute
+  '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -80,6 +88,7 @@ export interface FileRoutesByTo {
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master': typeof AuthenticatedmasterMasterRoute
+  '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -91,6 +100,7 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
   '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
+  '/_authenticated/(master)/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
   '/_authenticated/(admin)/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/_authenticated/(admin)/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -103,6 +113,7 @@ export interface FileRouteTypes {
     | '/create-category'
     | '/register'
     | '/master'
+    | '/master-profile'
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
@@ -112,6 +123,7 @@ export interface FileRouteTypes {
     | '/create-category'
     | '/register'
     | '/master'
+    | '/master-profile'
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
@@ -122,6 +134,7 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/create-category'
     | '/_authenticated/(admin)/register'
     | '/_authenticated/(master)/master'
+    | '/_authenticated/(master)/master-profile'
     | '/_authenticated/(admin)/'
     | '/_authenticated/(admin)/create-jobs/$id'
     | '/_authenticated/(admin)/create-jobs/jobs'
@@ -167,6 +180,13 @@ declare module '@tanstack/react-router' {
       path: '/master'
       fullPath: '/master'
       preLoaderRoute: typeof AuthenticatedmasterMasterRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(master)/master-profile': {
+      id: '/_authenticated/(master)/master-profile'
+      path: '/master-profile'
+      fullPath: '/master-profile'
+      preLoaderRoute: typeof AuthenticatedmasterMasterProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/': {
@@ -238,6 +258,15 @@ declare module './routes/_authenticated/(master)/master' {
     FileRoutesByPath['/_authenticated/(master)/master']['fullPath']
   >
 }
+declare module './routes/_authenticated/(master)/master-profile' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(master)/master-profile',
+    FileRoutesByPath['/_authenticated/(master)/master-profile']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(master)/master-profile']['id'],
+    FileRoutesByPath['/_authenticated/(master)/master-profile']['path'],
+    FileRoutesByPath['/_authenticated/(master)/master-profile']['fullPath']
+  >
+}
 declare module './routes/_authenticated/(admin)/index' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(admin)/',
@@ -270,6 +299,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
   AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
+  AuthenticatedmasterMasterProfileRoute: typeof AuthenticatedmasterMasterProfileRoute
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
   AuthenticatedadminCreateJobsIdRoute: typeof AuthenticatedadminCreateJobsIdRoute
   AuthenticatedadminCreateJobsJobsRoute: typeof AuthenticatedadminCreateJobsJobsRoute
@@ -279,6 +309,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminCreateCategoryRoute: AuthenticatedadminCreateCategoryRoute,
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
   AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
+  AuthenticatedmasterMasterProfileRoute: AuthenticatedmasterMasterProfileRoute,
   AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
   AuthenticatedadminCreateJobsIdRoute: AuthenticatedadminCreateJobsIdRoute,
   AuthenticatedadminCreateJobsJobsRoute: AuthenticatedadminCreateJobsJobsRoute,
