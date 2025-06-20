@@ -13,8 +13,8 @@ export const useLogin = () => {
       toast.success("Successfully signed in");
       router.navigate({ to: "/" });
     },
-    onError: (data: any) => {
-      toast.error(data.response.data.message);
+    onError: () => {
+      toast.error("Failed to sign in");
     },
   });
 };
