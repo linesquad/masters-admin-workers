@@ -87,7 +87,7 @@ export function MasterProfileView({ id }: { id: string }) {
               email={masterData.user.email}
               createdAt={masterData.createdAt}
             />
-            <MasterQuickActions />
+            <MasterQuickActions id={id} />
           </div>
         </div>
       </div>

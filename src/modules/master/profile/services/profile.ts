@@ -8,3 +8,18 @@ export const getMasterById = async (id: string) => {
     throw error;
   }
 };
+
+export const updateMastersAvaliability = async (
+  id: string,
+  availability: string
+) => {
+  try {
+    const response = await instance.patch(`/api/masters/availability`, {
+      id,
+      availability,
+    });
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

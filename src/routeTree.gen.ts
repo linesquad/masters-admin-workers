@@ -14,6 +14,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authenticated/(admin)/index'
+import { Route as AuthenticatedmasterMasterProfileSettingsRouteImport } from './routes/_authenticated/(master)/master-profile-settings'
 import { Route as AuthenticatedmasterMasterProfileRouteImport } from './routes/_authenticated/(master)/master-profile'
 import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
@@ -35,6 +36,12 @@ const AuthenticatedadminIndexRoute = AuthenticatedadminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedmasterMasterProfileSettingsRoute =
+  AuthenticatedmasterMasterProfileSettingsRouteImport.update({
+    id: '/(master)/master-profile-settings',
+    path: '/master-profile-settings',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedmasterMasterProfileRoute =
   AuthenticatedmasterMasterProfileRouteImport.update({
     id: '/(master)/master-profile',
@@ -79,6 +86,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
+  '/master-profile-settings': typeof AuthenticatedmasterMasterProfileSettingsRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -89,6 +97,7 @@ export interface FileRoutesByTo {
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
+  '/master-profile-settings': typeof AuthenticatedmasterMasterProfileSettingsRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -101,6 +110,7 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
   '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
   '/_authenticated/(master)/master-profile': typeof AuthenticatedmasterMasterProfileRoute
+  '/_authenticated/(master)/master-profile-settings': typeof AuthenticatedmasterMasterProfileSettingsRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
   '/_authenticated/(admin)/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/_authenticated/(admin)/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -114,6 +124,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/master'
     | '/master-profile'
+    | '/master-profile-settings'
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
@@ -124,6 +135,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/master'
     | '/master-profile'
+    | '/master-profile-settings'
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
@@ -135,6 +147,7 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/register'
     | '/_authenticated/(master)/master'
     | '/_authenticated/(master)/master-profile'
+    | '/_authenticated/(master)/master-profile-settings'
     | '/_authenticated/(admin)/'
     | '/_authenticated/(admin)/create-jobs/$id'
     | '/_authenticated/(admin)/create-jobs/jobs'
@@ -175,6 +188,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminRegisterRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/(master)/maset-profile-settings': {
+      id: '/_authenticated/(master)/maset-profile-settings'
+      path: ''
+      fullPath: '/maset-profile-settings'
+      preLoaderRoute: unknown
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated/(master)/master': {
       id: '/_authenticated/(master)/master'
       path: '/master'
@@ -187,6 +207,13 @@ declare module '@tanstack/react-router' {
       path: '/master-profile'
       fullPath: '/master-profile'
       preLoaderRoute: typeof AuthenticatedmasterMasterProfileRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(master)/master-profile-settings': {
+      id: '/_authenticated/(master)/master-profile-settings'
+      path: '/master-profile-settings'
+      fullPath: '/master-profile-settings'
+      preLoaderRoute: typeof AuthenticatedmasterMasterProfileSettingsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/': {
@@ -249,6 +276,15 @@ declare module './routes/_authenticated/(admin)/register' {
     FileRoutesByPath['/_authenticated/(admin)/register']['fullPath']
   >
 }
+declare module './routes/_authenticated/(master)/maset-profile-settings' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(master)/maset-profile-settings',
+    FileRoutesByPath['/_authenticated/(master)/maset-profile-settings']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(master)/maset-profile-settings']['id'],
+    FileRoutesByPath['/_authenticated/(master)/maset-profile-settings']['path'],
+    FileRoutesByPath['/_authenticated/(master)/maset-profile-settings']['fullPath']
+  >
+}
 declare module './routes/_authenticated/(master)/master' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(master)/master',
@@ -265,6 +301,15 @@ declare module './routes/_authenticated/(master)/master-profile' {
     FileRoutesByPath['/_authenticated/(master)/master-profile']['id'],
     FileRoutesByPath['/_authenticated/(master)/master-profile']['path'],
     FileRoutesByPath['/_authenticated/(master)/master-profile']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(master)/master-profile-settings' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(master)/master-profile-settings',
+    FileRoutesByPath['/_authenticated/(master)/master-profile-settings']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(master)/master-profile-settings']['id'],
+    FileRoutesByPath['/_authenticated/(master)/master-profile-settings']['path'],
+    FileRoutesByPath['/_authenticated/(master)/master-profile-settings']['fullPath']
   >
 }
 declare module './routes/_authenticated/(admin)/index' {
@@ -300,6 +345,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
   AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
   AuthenticatedmasterMasterProfileRoute: typeof AuthenticatedmasterMasterProfileRoute
+  AuthenticatedmasterMasterProfileSettingsRoute: typeof AuthenticatedmasterMasterProfileSettingsRoute
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
   AuthenticatedadminCreateJobsIdRoute: typeof AuthenticatedadminCreateJobsIdRoute
   AuthenticatedadminCreateJobsJobsRoute: typeof AuthenticatedadminCreateJobsJobsRoute
@@ -310,6 +356,8 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
   AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
   AuthenticatedmasterMasterProfileRoute: AuthenticatedmasterMasterProfileRoute,
+  AuthenticatedmasterMasterProfileSettingsRoute:
+    AuthenticatedmasterMasterProfileSettingsRoute,
   AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
   AuthenticatedadminCreateJobsIdRoute: AuthenticatedadminCreateJobsIdRoute,
   AuthenticatedadminCreateJobsJobsRoute: AuthenticatedadminCreateJobsJobsRoute,

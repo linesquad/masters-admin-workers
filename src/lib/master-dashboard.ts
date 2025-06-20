@@ -1,4 +1,4 @@
-import { Home, User } from "lucide-react";
+import { Home, Settings, User } from "lucide-react";
 
 export const masterMainItems = [
   {
@@ -10,5 +10,32 @@ export const masterMainItems = [
     title: "Master Profile",
     url: "/master-profile",
     icon: User,
+  },
+  {
+    title: "Profile Settings",
+    url: "/master-profile-settings",
+    icon: Settings,
+  },
+];
+export const availabilityOptions = [
+  {
+    value: "now",
+    label: "Available Now",
+    description: "Ready to take on new work immediately",
+  },
+  {
+    value: "tomorrow",
+    label: "Available Tomorrow",
+    description: "Can start work from tomorrow",
+  },
+  {
+    value: "next_week",
+    label: "Available Next Week",
+    description: "Ready to start next week",
+  },
+  {
+    value: "on_holiday",
+    label: "On Holiday",
+    description: "Currently unavailable, on vacation",
   },
 ];
