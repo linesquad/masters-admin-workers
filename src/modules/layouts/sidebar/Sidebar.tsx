@@ -11,8 +11,11 @@ import {
 } from "@/components/ui/sidebar";
 import DashboardUser from "./dashboard-user";
 import { mainItems } from "@/lib/admin-dashboard";
+import type { UserTypes } from "@/modules/auth/types/userTypes";
+import { masterMainItems } from "@/lib/master-dashboard";
 
-export function SideBar() {
+export function SideBar({ user }: { user: UserTypes }) {
+  console.log(user);
   return (
     <Sidebar className="bg-gradient-to-b from-[#2D5BE3] to-[#1E40AF] text-white [&_[data-mobile=true]]:bg-gradient-to-b [&_[data-mobile=true]]:from-[#2D5BE3] [&_[data-mobile=true]]:to-[#1E40AF] [&_[data-mobile=true]]:text-white">
       <SidebarHeader className="border-b border-white/20">
@@ -24,22 +27,39 @@ export function SideBar() {
       <SidebarContent>
         {/* Main Navigation */}
         <SidebarGroup>
-          <SidebarGroupLabel className="text-white/70">Admin</SidebarGroupLabel>
+          <SidebarGroupLabel className="text-white/70">
+            {user.role === "admin" ? "Admin" : "Master"}
+          </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {mainItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    className="text-white hover:bg-white/10 data-[active=true]:bg-white/20"
-                  >
-                    <a href={item.url}>
-                      <item.icon />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
+              {user.role === "admin" &&
+                mainItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      asChild
+                      className="text-white hover:bg-white/10 data-[active=true]:bg-white/20"
+                    >
+                      <a href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
+              {user.role === "master" &&
+                masterMainItems.map((item) => (
+                  <SidebarMenuItem key={item.title}>
+                    <SidebarMenuButton
+                      asChild
+                      className="text-white hover:bg-white/10 data-[active=true]:bg-white/20"
+                    >
+                      <a href={item.url}>
+                        <item.icon />
+                        <span>{item.title}</span>
+                      </a>
+                    </SidebarMenuButton>
+                  </SidebarMenuItem>
+                ))}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>

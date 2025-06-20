@@ -13,8 +13,9 @@ export const Route = createFileRoute({
 });
 
 function RouteComponent() {
+  const { user } = Route.useRouteContext();
   return (
-    <MainLayout>
+    <MainLayout user={user}>
       <Outlet />
     </MainLayout>
   );
