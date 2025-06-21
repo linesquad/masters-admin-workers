@@ -1,5 +1,5 @@
 import { useDeleteJobInCategory } from "../../hooks/useDeleteJobInCategory";
-import { useGetCategoryById } from "../../hooks/useGetCategoryById";
+import { useGetJobByCategoryId } from "../../hooks/useGetJobByCategoryId";
 import { useUpdateJobInCategory } from "../../hooks/useUpdateJobInCagtegory";
 import type { UpdateJobFormData } from "../../types/jobs";
 import { JobCards } from "../components/job-cards";
@@ -7,7 +7,7 @@ import { Route } from "@/routes/_authenticated/(admin)/create-jobs/$id";
 
 export function JobSingleView() {
   const { id } = Route.useParams();
-  const { data: jobsData, isLoading, isError, error } = useGetCategoryById(id);
+  const { data: jobsData, isLoading, isError, error } = useGetJobByCategoryId(id);
   const { mutate: deleteJob } = useDeleteJobInCategory();
   const { mutate: updateJob } = useUpdateJobInCategory();
   console.log(jobsData);

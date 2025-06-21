@@ -1,4 +1,4 @@
-import { Home, Settings, User } from "lucide-react";
+import { Briefcase, Home, Settings, User } from "lucide-react";
 
 export const masterMainItems = [
   {
@@ -15,6 +15,11 @@ export const masterMainItems = [
     title: "Profile Settings",
     url: "/settings",
     icon: Settings,
+  },
+  {
+    title: "Job Assignment",
+    url: "/job-assignment",
+    icon: Briefcase,
   },
 ];
 export const availabilityOptions = [

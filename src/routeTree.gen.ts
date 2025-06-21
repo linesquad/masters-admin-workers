@@ -17,6 +17,7 @@ import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedmasterSettingsRouteImport } from './routes/_authenticated/(master)/settings'
 import { Route as AuthenticatedmasterMasterProfileRouteImport } from './routes/_authenticated/(master)/master-profile'
 import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
+import { Route as AuthenticatedmasterJobAssignmentRouteImport } from './routes/_authenticated/(master)/job-assignment'
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
 import { Route as AuthenticatedadminCreateJobsJobsRouteImport } from './routes/_authenticated/(admin)/create-jobs/jobs'
@@ -54,6 +55,12 @@ const AuthenticatedmasterMasterRoute =
     path: '/master',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedmasterJobAssignmentRoute =
+  AuthenticatedmasterJobAssignmentRouteImport.update({
+    id: '/(master)/job-assignment',
+    path: '/job-assignment',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedadminRegisterRoute =
   AuthenticatedadminRegisterRouteImport.update({
     id: '/(admin)/register',
@@ -84,6 +91,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof authLoginRoute
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/register': typeof AuthenticatedadminRegisterRoute
+  '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/settings': typeof AuthenticatedmasterSettingsRoute
@@ -95,6 +103,7 @@ export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/register': typeof AuthenticatedadminRegisterRoute
+  '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/settings': typeof AuthenticatedmasterSettingsRoute
@@ -108,6 +117,7 @@ export interface FileRoutesById {
   '/(auth)/login': typeof authLoginRoute
   '/_authenticated/(admin)/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
+  '/_authenticated/(master)/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
   '/_authenticated/(master)/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/_authenticated/(master)/settings': typeof AuthenticatedmasterSettingsRoute
@@ -122,6 +132,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/create-category'
     | '/register'
+    | '/job-assignment'
     | '/master'
     | '/master-profile'
     | '/settings'
@@ -133,6 +144,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/create-category'
     | '/register'
+    | '/job-assignment'
     | '/master'
     | '/master-profile'
     | '/settings'
@@ -145,6 +157,7 @@ export interface FileRouteTypes {
     | '/(auth)/login'
     | '/_authenticated/(admin)/create-category'
     | '/_authenticated/(admin)/register'
+    | '/_authenticated/(master)/job-assignment'
     | '/_authenticated/(master)/master'
     | '/_authenticated/(master)/master-profile'
     | '/_authenticated/(master)/settings'
@@ -186,6 +199,13 @@ declare module '@tanstack/react-router' {
       path: '/register'
       fullPath: '/register'
       preLoaderRoute: typeof AuthenticatedadminRegisterRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(master)/job-assignment': {
+      id: '/_authenticated/(master)/job-assignment'
+      path: '/job-assignment'
+      fullPath: '/job-assignment'
+      preLoaderRoute: typeof AuthenticatedmasterJobAssignmentRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(master)/master': {
@@ -269,6 +289,15 @@ declare module './routes/_authenticated/(admin)/register' {
     FileRoutesByPath['/_authenticated/(admin)/register']['fullPath']
   >
 }
+declare module './routes/_authenticated/(master)/job-assignment' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(master)/job-assignment',
+    FileRoutesByPath['/_authenticated/(master)/job-assignment']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(master)/job-assignment']['id'],
+    FileRoutesByPath['/_authenticated/(master)/job-assignment']['path'],
+    FileRoutesByPath['/_authenticated/(master)/job-assignment']['fullPath']
+  >
+}
 declare module './routes/_authenticated/(master)/master' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(master)/master',
@@ -327,6 +356,7 @@ declare module './routes/_authenticated/(admin)/create-jobs/jobs' {
 interface AuthenticatedRouteChildren {
   AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
+  AuthenticatedmasterJobAssignmentRoute: typeof AuthenticatedmasterJobAssignmentRoute
   AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
   AuthenticatedmasterMasterProfileRoute: typeof AuthenticatedmasterMasterProfileRoute
   AuthenticatedmasterSettingsRoute: typeof AuthenticatedmasterSettingsRoute
@@ -338,6 +368,7 @@ interface AuthenticatedRouteChildren {
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminCreateCategoryRoute: AuthenticatedadminCreateCategoryRoute,
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
+  AuthenticatedmasterJobAssignmentRoute: AuthenticatedmasterJobAssignmentRoute,
   AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
   AuthenticatedmasterMasterProfileRoute: AuthenticatedmasterMasterProfileRoute,
   AuthenticatedmasterSettingsRoute: AuthenticatedmasterSettingsRoute,
