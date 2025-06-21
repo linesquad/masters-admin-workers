@@ -3,7 +3,7 @@ import type { UserTypes } from "../types/userTypes";
 
 export const login = async (email: string, password: string) => {
   try {
-    const response = await instance.post("/api/auth/login", {
+    const response = await instance.post("/api/auth/admin-login", {
       email,
       password,
     });

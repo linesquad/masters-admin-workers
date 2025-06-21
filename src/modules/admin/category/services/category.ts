@@ -15,7 +15,7 @@ export const createCategory = async (name: {
 
 export const getCategories = async () => {
   try {
-    const response = await instance.get("/api/categories");
+    const response = await instance.get("/api/categories?withJobCount=true");
     return response.data;
   } catch (error) {
     throw error;

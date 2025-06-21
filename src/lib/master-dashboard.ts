@@ -13,7 +13,7 @@ export const masterMainItems = [
   },
   {
     title: "Profile Settings",
-    url: "/master-profile-settings",
+    url: "/settings",
     icon: Settings,
   },
 ];
