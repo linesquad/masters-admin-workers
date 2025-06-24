@@ -6,8 +6,15 @@ import { useQueryClient } from "@tanstack/react-query";
 export const useUpdateMasterProfile = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: ({ city, bio }: { city: string; bio: string }) =>
-      updateMasterProfile(city, bio),
+    mutationFn: ({
+      city,
+      bio,
+      image,
+    }: {
+      city: string;
+      bio: string;
+      image: File | undefined;
+    }) => updateMasterProfile(city, bio, image),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["master-profile"] });
       toast.success("Profile updated successfully");

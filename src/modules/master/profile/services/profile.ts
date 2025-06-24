@@ -9,13 +9,24 @@ export const getMasterById = async (id: string) => {
   }
 };
 
-export const updateMasterProfile = async (city: string, bio: string) => {
+export const updateMasterProfile = async (
+  city: string,
+  bio: string,
+  image: File | undefined
+) => {
   try {
-    const response = await instance.post(`/api/masters/profile`, {
-      city,
-      bio,
-      imageUrl:
-        "https://pbs.twimg.com/profile_images/1286778814304071682/eBv2xdwy_400x400.jpg",
+    const formData = new FormData();
+    formData.append("city", city);
+    formData.append("bio", bio);
+    
+    if (image) {
+      formData.append("image", image);
+    }
+
+    const response = await instance.post(`/api/masters/profile`, formData, {
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
     });
     return response.data;
   } catch (error) {

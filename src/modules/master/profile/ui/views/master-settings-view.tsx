@@ -1,41 +1,75 @@
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
+import { useState, useRef } from "react";
 import { useUpdateMasterProfile } from "@/modules/master/profile/hooks/useUpdateMasterProfile";
-import { useMasterProfileById } from "@/modules/master/profile/hooks/useMasterProfileById";
-import {
-  profileSettingsSchema,
-  type ProfileSettingsData,
-} from "@/modules/master/profile/schema/settings";
 import { SettingsButtons } from "../components/settings/settings-buttons";
 import { SettingsFormInputs } from "../components/settings/settings-form-inputs";
 import { SettingsHeader } from "../components/settings/settings-header";
-import { SettingsSkeleton } from "../components/settings/settings-skeleton";
 
-export function MasterSettingsView({ id }: { id: string }) {
-  const { data, isLoading } = useMasterProfileById(id);
+export function MasterSettingsView() {
   const { mutate: updateProfile, isPending: isUpdating } =
     useUpdateMasterProfile();
-  const {
-    register,
-    handleSubmit,
-    watch,
-    formState: { errors },
-  } = useForm<ProfileSettingsData>({
-    resolver: zodResolver(profileSettingsSchema),
-    defaultValues: {
-      bio: data?.data?.bio || "",
-      city: data?.data?.city || "",
-    },
-  });
+  
+  const formRef = useRef<HTMLFormElement>(null);
+  const [resetTrigger, setResetTrigger] = useState(0);
+  const [errors, setErrors] = useState<{
+    city?: string;
+    bio?: string;
+    image?: string;
+  }>({});
 
-  const onSubmit = async (formData: ProfileSettingsData) => {
-    updateProfile({
-      city: formData.city,
-      bio: formData.bio || "",
-    });
+  const resetForm = () => {
+    if (formRef.current) {
+      formRef.current.reset();
+    }
+    setErrors({});
+    setResetTrigger(prev => prev + 1);
   };
 
-  if (isLoading) return <SettingsSkeleton />;
+  const validateForm = (formData: FormData) => {
+    const newErrors: typeof errors = {};
+    
+    const city = formData.get("city") as string;
+    const bio = formData.get("bio") as string;
+    
+    if (!city || city.trim().length === 0) {
+      newErrors.city = "City is required";
+    } else if (city.length > 100) {
+      newErrors.city = "City name is too long";
+    }
+    
+    if (bio && bio.length > 500) {
+      newErrors.bio = "Bio must be less than 500 characters";
+    }
+    
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    
+    const formData = new FormData(e.currentTarget);
+    
+    if (!validateForm(formData)) {
+      return;
+    }
+    
+    const city = formData.get("city") as string;
+    const bio = (formData.get("bio") as string) || "";
+    const imageFile = formData.get("image") as File | null;
+    
+    // Only include the image if a file was actually selected
+    const image = imageFile && imageFile.size > 0 ? imageFile : undefined;
+    
+    updateProfile({
+      city,
+      bio,
+      image,
+    }, {
+      onSuccess: () => {
+        resetForm();
+      }
+    });
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-4 md:p-6">
@@ -44,13 +78,9 @@ export function MasterSettingsView({ id }: { id: string }) {
           title="Profile Settings"
           description="Update your profile information"
         />
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
-          <SettingsFormInputs
-            register={register}
-            errors={errors}
-            watch={watch}
-          />
-          <SettingsButtons isUpdating={isUpdating} isLoading={isLoading} />
+        <form ref={formRef} onSubmit={onSubmit} className="space-y-8">
+          <SettingsFormInputs errors={errors} resetTrigger={resetTrigger} />
+          <SettingsButtons isUpdating={isUpdating} />
         </form>
       </div>
     </div>
