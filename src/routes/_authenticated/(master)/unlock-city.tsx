@@ -1,5 +1,5 @@
+import { UnlockCityView } from "@/modules/master/unlock-cities/ui/views/unlock-city-view";
 import { redirect } from "@tanstack/react-router";
-import { MasterSettingsView } from "@/modules/master/profile/ui/views/master-settings-view";
 
 export const Route = createFileRoute({
   component: RouteComponent,
@@ -13,6 +13,5 @@ export const Route = createFileRoute({
 });
 
 function RouteComponent() {
-  const { user } = Route.useLoaderData();
-  return <MasterSettingsView id={user.id} />;
+  return <UnlockCityView />;
 }

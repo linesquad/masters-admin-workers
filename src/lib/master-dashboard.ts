@@ -1,4 +1,11 @@
-import { Briefcase, Home, Settings, User } from "lucide-react";
+import {
+  Briefcase,
+  CheckCircle,
+  Home,
+  MapPin,
+  Settings,
+  User,
+} from "lucide-react";
 
 export const masterMainItems = [
   {
@@ -20,6 +27,16 @@ export const masterMainItems = [
     title: "Job Assignment",
     url: "/job-assignment",
     icon: Briefcase,
+  },
+  {
+    title: "Unlock Cities",
+    url: "/unlock-city",
+    icon: MapPin,
+  },
+  {
+    title: "Unlocked Cities",
+    url: "/unlocked-cities",
+    icon: CheckCircle,
   },
 ];
 export const availabilityOptions = [

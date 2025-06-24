@@ -14,6 +14,8 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
 import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authenticated/(admin)/index'
+import { Route as AuthenticatedmasterUnlockedCitiesRouteImport } from './routes/_authenticated/(master)/unlocked-cities'
+import { Route as AuthenticatedmasterUnlockCityRouteImport } from './routes/_authenticated/(master)/unlock-city'
 import { Route as AuthenticatedmasterSettingsRouteImport } from './routes/_authenticated/(master)/settings'
 import { Route as AuthenticatedmasterMasterProfileRouteImport } from './routes/_authenticated/(master)/master-profile'
 import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
@@ -37,6 +39,18 @@ const AuthenticatedadminIndexRoute = AuthenticatedadminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedmasterUnlockedCitiesRoute =
+  AuthenticatedmasterUnlockedCitiesRouteImport.update({
+    id: '/(master)/unlocked-cities',
+    path: '/unlocked-cities',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedmasterUnlockCityRoute =
+  AuthenticatedmasterUnlockCityRouteImport.update({
+    id: '/(master)/unlock-city',
+    path: '/unlock-city',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedmasterSettingsRoute =
   AuthenticatedmasterSettingsRouteImport.update({
     id: '/(master)/settings',
@@ -95,6 +109,8 @@ export interface FileRoutesByFullPath {
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/settings': typeof AuthenticatedmasterSettingsRoute
+  '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
+  '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -107,6 +123,8 @@ export interface FileRoutesByTo {
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/settings': typeof AuthenticatedmasterSettingsRoute
+  '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
+  '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -121,6 +139,8 @@ export interface FileRoutesById {
   '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
   '/_authenticated/(master)/master-profile': typeof AuthenticatedmasterMasterProfileRoute
   '/_authenticated/(master)/settings': typeof AuthenticatedmasterSettingsRoute
+  '/_authenticated/(master)/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
+  '/_authenticated/(master)/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
   '/_authenticated/(admin)/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/_authenticated/(admin)/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
@@ -136,6 +156,8 @@ export interface FileRouteTypes {
     | '/master'
     | '/master-profile'
     | '/settings'
+    | '/unlock-city'
+    | '/unlocked-cities'
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
@@ -148,6 +170,8 @@ export interface FileRouteTypes {
     | '/master'
     | '/master-profile'
     | '/settings'
+    | '/unlock-city'
+    | '/unlocked-cities'
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
@@ -161,6 +185,8 @@ export interface FileRouteTypes {
     | '/_authenticated/(master)/master'
     | '/_authenticated/(master)/master-profile'
     | '/_authenticated/(master)/settings'
+    | '/_authenticated/(master)/unlock-city'
+    | '/_authenticated/(master)/unlocked-cities'
     | '/_authenticated/(admin)/'
     | '/_authenticated/(admin)/create-jobs/$id'
     | '/_authenticated/(admin)/create-jobs/jobs'
@@ -227,6 +253,20 @@ declare module '@tanstack/react-router' {
       path: '/settings'
       fullPath: '/settings'
       preLoaderRoute: typeof AuthenticatedmasterSettingsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(master)/unlock-city': {
+      id: '/_authenticated/(master)/unlock-city'
+      path: '/unlock-city'
+      fullPath: '/unlock-city'
+      preLoaderRoute: typeof AuthenticatedmasterUnlockCityRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(master)/unlocked-cities': {
+      id: '/_authenticated/(master)/unlocked-cities'
+      path: '/unlocked-cities'
+      fullPath: '/unlocked-cities'
+      preLoaderRoute: typeof AuthenticatedmasterUnlockedCitiesRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/': {
@@ -325,6 +365,24 @@ declare module './routes/_authenticated/(master)/settings' {
     FileRoutesByPath['/_authenticated/(master)/settings']['fullPath']
   >
 }
+declare module './routes/_authenticated/(master)/unlock-city' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(master)/unlock-city',
+    FileRoutesByPath['/_authenticated/(master)/unlock-city']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(master)/unlock-city']['id'],
+    FileRoutesByPath['/_authenticated/(master)/unlock-city']['path'],
+    FileRoutesByPath['/_authenticated/(master)/unlock-city']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(master)/unlocked-cities' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(master)/unlocked-cities',
+    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['id'],
+    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['path'],
+    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['fullPath']
+  >
+}
 declare module './routes/_authenticated/(admin)/index' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(admin)/',
@@ -360,6 +418,8 @@ interface AuthenticatedRouteChildren {
   AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
   AuthenticatedmasterMasterProfileRoute: typeof AuthenticatedmasterMasterProfileRoute
   AuthenticatedmasterSettingsRoute: typeof AuthenticatedmasterSettingsRoute
+  AuthenticatedmasterUnlockCityRoute: typeof AuthenticatedmasterUnlockCityRoute
+  AuthenticatedmasterUnlockedCitiesRoute: typeof AuthenticatedmasterUnlockedCitiesRoute
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
   AuthenticatedadminCreateJobsIdRoute: typeof AuthenticatedadminCreateJobsIdRoute
   AuthenticatedadminCreateJobsJobsRoute: typeof AuthenticatedadminCreateJobsJobsRoute
@@ -372,6 +432,9 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
   AuthenticatedmasterMasterProfileRoute: AuthenticatedmasterMasterProfileRoute,
   AuthenticatedmasterSettingsRoute: AuthenticatedmasterSettingsRoute,
+  AuthenticatedmasterUnlockCityRoute: AuthenticatedmasterUnlockCityRoute,
+  AuthenticatedmasterUnlockedCitiesRoute:
+    AuthenticatedmasterUnlockedCitiesRoute,
   AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
   AuthenticatedadminCreateJobsIdRoute: AuthenticatedadminCreateJobsIdRoute,
   AuthenticatedadminCreateJobsJobsRoute: AuthenticatedadminCreateJobsJobsRoute,

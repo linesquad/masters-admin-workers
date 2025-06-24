@@ -10,7 +10,6 @@ import { SettingsButtons } from "../components/settings/settings-buttons";
 import { SettingsFormInputs } from "../components/settings/settings-form-inputs";
 import { SettingsHeader } from "../components/settings/settings-header";
 import { SettingsSkeleton } from "../components/settings/settings-skeleton";
-import { SettingsError } from "../components/settings/settings-error";
 
 export function MasterSettingsView({ id }: { id: string }) {
   const { data, isLoading } = useMasterProfileById(id);
