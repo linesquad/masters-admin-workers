@@ -17,6 +17,7 @@ export const useUnlockCity = () => {
     }) => unlockCity(locationId, cityId, cityPartId),
     onSuccess: () => {
       queryClient.invalidateQueries({ queryKey: ["cities"] });
+      queryClient.invalidateQueries({ queryKey: ["unlocked-master-locations"] });
       toast.success("City unlocked successfully");
     },
     onError: () => {
