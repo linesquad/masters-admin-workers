@@ -45,6 +45,7 @@ export const createCityPart = async (
       unlockCost,
       lng,
       lat,
+   
     });
     return response.data;
   } catch (error) {

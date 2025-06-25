@@ -1,6 +1,6 @@
 import type { CityPart } from "@/modules/master/unlock-cities/types/unlock";
 import { Button } from "@/components/ui/button";
-import { Crown, CheckCircle, Lock, MapPin, AlertCircle } from "lucide-react";
+import { Crown, CheckCircle, Lock, MapPin, AlertCircle, DollarSign } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { City } from "@/modules/master/unlock-cities/types/unlock";
 export function UnlockLocationParts({
@@ -104,11 +104,11 @@ export function UnlockLocationParts({
                 </h3>
               </div>
 
-              {/* Points Required */}
+                            {/* Unlock Cost */}
               <div className="flex items-center gap-2 mb-2">
                 <Crown className="size-4 text-amber-500" />
                 <span className="text-sm text-slate-600">
-                  {part.pointsRequired} points required
+                  {part.unlockCost} points required
                 </span>
               </div>
             </div>
@@ -137,7 +137,7 @@ export function UnlockLocationParts({
               ) : (
                 <div className="flex items-center gap-2">
                   <Lock className="size-4" />
-                  Unlock ({part.pointsRequired} pts)
+                  Unlock ({part.unlockCost} pts)
                 </div>
               )}
             </Button>

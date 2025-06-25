@@ -20,6 +20,15 @@ export function UnlockLocationCities({
           }`}
           onClick={() => handleCityClick(city.id)}
         >
+          {/* City Image */}
+          <div className="h-48 overflow-hidden">
+            <img
+              src={city.imageUrl}
+              alt={city.name}
+              className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            />
+          </div>
+          
           <div className="p-6">
             {/* City Info */}
             <div className="mb-4">
