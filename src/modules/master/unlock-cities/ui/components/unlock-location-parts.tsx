@@ -77,26 +77,14 @@ export function UnlockLocationParts({
       {cityParts.map((part) => (
         <div
           key={part.id}
-          className={`relative bg-white rounded-xl shadow-lg border transition-all duration-300 hover:shadow-xl overflow-hidden ${
-            part.isActive
-              ? "border-green-300 bg-gradient-to-br from-green-50 to-white shadow-green-100"
-              : "border-slate-200 hover:border-blue-300"
-          }`}
+          className="relative bg-white rounded-xl shadow-lg border transition-all duration-300 hover:shadow-xl overflow-hidden border-slate-200 hover:border-blue-300"
         >
           <div className="p-6">
             {/* Area Info */}
             <div className="mb-4">
               <div className="flex items-center gap-2 mb-3">
-                <div
-                  className={`p-2 rounded-lg ${
-                    part.isActive ? "bg-green-100" : "bg-blue-100"
-                  }`}
-                >
-                  <MapPin
-                    className={`size-5 ${
-                      part.isActive ? "text-green-600" : "text-blue-600"
-                    }`}
-                  />
+                <div className="p-2 rounded-lg bg-blue-100">
+                  <MapPin className="size-5 text-blue-600" />
                 </div>
                 <h3 className="text-xl font-bold text-slate-800">
                   {part.name}
@@ -115,23 +103,14 @@ export function UnlockLocationParts({
             {/* Action Button */}
             <Button
               onClick={() => handleUnlockCityPart(part)}
-              disabled={part.isActive || unlockingPartId === part.id}
-              variant={part.isActive ? "outline" : "default"}
-              className={`w-full transition-all duration-200 ${
-                part.isActive
-                  ? "bg-green-50 text-green-700 hover:bg-green-100 border-green-300"
-                  : "bg-blue-600 hover:bg-blue-700 text-white"
-              }`}
+              disabled={unlockingPartId === part.id}
+              variant="default"
+              className="w-full transition-all duration-200 bg-blue-600 hover:bg-blue-700 text-white"
             >
               {unlockingPartId === part.id ? (
                 <div className="flex items-center gap-2">
                   <div className="size-4 border-2 border-current border-t-transparent rounded-full animate-spin" />
                   Unlocking...
-                </div>
-              ) : part.isActive ? (
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="size-4" />
-                  Available
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
