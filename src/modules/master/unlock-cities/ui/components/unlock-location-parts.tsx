@@ -1,13 +1,12 @@
 import type { CityPart } from "@/modules/master/unlock-cities/types/unlock";
 import { Button } from "@/components/ui/button";
-import { Crown, CheckCircle, Lock, MapPin, AlertCircle, DollarSign } from "lucide-react";
+import { Crown, CheckCircle, Lock, MapPin, AlertCircle } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { City } from "@/modules/master/unlock-cities/types/unlock";
 export function UnlockLocationParts({
   cityParts,
   handleUnlockCityPart,
   unlockingPartId,
-  isUnlockingCity,
   isCityPartLoading,
   isCityPartError,
   selectedCity,
