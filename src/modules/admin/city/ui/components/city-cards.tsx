@@ -5,6 +5,7 @@ import { useDeleteCity } from "../../hooks/useDeleteCity";
 import type { CreateCityPartFormData } from "../../schema/citySchema";
 import { useCreateCityParts } from "../../hooks/useCreateCityParts";
 import { CityCardsData } from "./city-cards-data";
+import { useGetCityPart } from "@/modules/master/unlock-cities/hooks/useGetCityPart";
 
 export function CityCards({
   cities,
@@ -16,8 +17,13 @@ export function CityCards({
   const { mutate: deleteCity, isPending: isDeletingCity } = useDeleteCity();
   const [selectedCityId, setSelectedCityId] = useState<string | null>(null);
   const [isAddCityPartOpen, setIsAddCityPartOpen] = useState(false);
+  const [isCityPartsOpen, setIsCityPartsOpen] = useState(false);
+  const [cityPartsSelectedId, setCityPartsSelectedId] = useState<string | null>(null);
   const { mutate: createCityPart, isPending: isCreatingCityPart } =
     useCreateCityParts();
+  const { data: cityParts, isLoading: isLoadingCityParts } = useGetCityPart(
+    cityPartsSelectedId ?? ""
+  );
 
   const handleCreateCityPart = (data: CreateCityPartFormData) => {
     createCityPart(data, {
@@ -73,6 +79,12 @@ export function CityCards({
           isCreatingCityPart={isCreatingCityPart}
           deleteCity={deleteCity}
           isDeletingCity={isDeletingCity}
+          isCityPartsOpen={isCityPartsOpen}
+          setIsCityPartsOpen={setIsCityPartsOpen}
+          cityPartsSelectedId={cityPartsSelectedId}
+          setCityPartsSelectedId={setCityPartsSelectedId}
+          cityParts={cityParts}
+          isLoadingCityParts={isLoadingCityParts}
         />
       ))}
     </div>

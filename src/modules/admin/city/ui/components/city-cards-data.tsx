@@ -1,4 +1,3 @@
-
 import {
   AlertDialog,
   AlertDialogAction,
@@ -14,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { DrawerSheet } from "@/components/DrawerSheet";
 import { MapPin, Plus, Trash2 } from "lucide-react";
 import { CreateCityPartForm } from "./create-city-part-form";
+import { CityPartsList } from "./city-parts-list";
 import type { City } from "../../types/city";
 import type { CreateCityPartFormData } from "../../schema/citySchema";
 
@@ -27,6 +27,12 @@ export function CityCardsData({
   isCreatingCityPart,
   deleteCity,
   isDeletingCity,
+  isCityPartsOpen,
+  setIsCityPartsOpen,
+  cityPartsSelectedId,
+  setCityPartsSelectedId,
+  cityParts,
+  isLoadingCityParts,
 }: {
   city: City;
   isAddCityPartOpen: boolean;
@@ -37,13 +43,25 @@ export function CityCardsData({
   isCreatingCityPart: boolean;
   deleteCity: (id: string) => void;
   isDeletingCity: boolean;
+  isCityPartsOpen: boolean;
+  setIsCityPartsOpen: (open: boolean) => void;
+  cityPartsSelectedId: string | null;
+  setCityPartsSelectedId: (id: string | null) => void;
+  cityParts: any;
+  isLoadingCityParts: boolean;
 }) {
   return (
     <div
       className="bg-white rounded-lg border border-gray-200 shadow-sm
       hover:shadow-md transition-shadow duration-200 overflow-hidden"
     >
-      <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center relative overflow-hidden">
+      <div 
+        className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center relative overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
+        onClick={() => {
+          setIsCityPartsOpen(true);
+          setCityPartsSelectedId(city.id);
+        }}
+      >
         {city.imageUrl ? (
           <img
             src={city.imageUrl}
@@ -89,6 +107,26 @@ export function CityCardsData({
                 cityName={city.name}
                 onSubmit={handleCreateCityPart}
                 isPending={isCreatingCityPart}
+              />
+            </DrawerSheet>
+
+            {/* City Parts Drawer */}
+            <DrawerSheet
+              trigger={<span />}
+              title={`${city.name} Parts`}
+              description={`View and manage parts of ${city.name}`}
+              open={isCityPartsOpen && cityPartsSelectedId === city.id}
+              onOpenChange={(open) => {
+                setIsCityPartsOpen(open);
+                if (!open) {
+                  setCityPartsSelectedId(null);
+                }
+              }}
+            >
+              <CityPartsList
+                cityParts={cityParts?.data || cityParts || []}
+                isLoading={isLoadingCityParts}
+                cityName={city.name}
               />
             </DrawerSheet>
 

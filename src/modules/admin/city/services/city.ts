@@ -52,3 +52,13 @@ export const createCityPart = async (
     throw error;
   }
 };
+
+export const deleteCityPart = async (id: string) => {
+  try {
+    const response = await instance.delete(`/api/categories/city-parts/${id}`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
