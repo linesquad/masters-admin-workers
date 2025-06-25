@@ -23,4 +23,19 @@ export const createCitySchema = z.object({
     ),
 });
 
-export type CreateCityFormData = z.infer<typeof createCitySchema>; 
+export const createCityPartSchema = z.object({
+  cityId: z.string().uuid("Invalid city ID"),
+  name: z
+    .string()
+    .min(2, "City part name must be at least 2 characters")
+    .max(100, "City part name must be under 100 characters"),
+  unlockCost: z
+    .number()
+    .int("Unlock cost must be an integer")
+    .positive("Unlock cost must be positive"),
+  lat: z.number().optional(),
+  lng: z.number().optional(),
+});
+
+export type CreateCityFormData = z.infer<typeof createCitySchema>;
+export type CreateCityPartFormData = z.infer<typeof createCityPartSchema>; 

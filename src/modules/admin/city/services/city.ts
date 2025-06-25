@@ -30,3 +30,25 @@ export const deleteCity = async (id: string) => {
     throw error;
   }
 };
+
+export const createCityPart = async (
+  cityId: string,
+  name: string,
+  unlockCost: number,
+  lng: number | undefined,
+  lat: number | undefined
+) => {
+  try {
+    const response = await instance.post(`/api/categories/city-parts`, {
+      cityId,
+      name,
+      unlockCost,
+      lng,
+      lat,
+    });
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
