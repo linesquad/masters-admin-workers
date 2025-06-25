@@ -1,3 +1,4 @@
+
 import {
   AlertDialog,
   AlertDialogAction,
@@ -42,8 +43,16 @@ export function CityCardsData({
       className="bg-white rounded-lg border border-gray-200 shadow-sm
       hover:shadow-md transition-shadow duration-200 overflow-hidden"
     >
-      <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center">
-        <MapPin className="w-12 h-12 text-blue-500" />
+      <div className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center relative overflow-hidden">
+        {city.imageUrl ? (
+          <img
+            src={city.imageUrl}
+            alt={city.name}
+            className="w-full h-full object-cover"
+          />
+        ) : (
+          <MapPin className="w-12 h-12 text-blue-500" />
+        )}
       </div>
       <div className="p-4">
         <div className="flex items-center justify-between">
