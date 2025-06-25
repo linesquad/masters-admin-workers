@@ -21,6 +21,7 @@ import { Route as AuthenticatedmasterMasterProfileRouteImport } from './routes/_
 import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
 import { Route as AuthenticatedmasterJobAssignmentRouteImport } from './routes/_authenticated/(master)/job-assignment'
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
+import { Route as AuthenticatedadminCreateCityRouteImport } from './routes/_authenticated/(admin)/create-city'
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
 import { Route as AuthenticatedadminCreateJobsJobsRouteImport } from './routes/_authenticated/(admin)/create-jobs/jobs'
 import { Route as AuthenticatedadminCreateJobsIdRouteImport } from './routes/_authenticated/(admin)/create-jobs/$id'
@@ -81,6 +82,12 @@ const AuthenticatedadminRegisterRoute =
     path: '/register',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedadminCreateCityRoute =
+  AuthenticatedadminCreateCityRouteImport.update({
+    id: '/(admin)/create-city',
+    path: '/create-city',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedadminCreateCategoryRoute =
   AuthenticatedadminCreateCategoryRouteImport.update({
     id: '/(admin)/create-category',
@@ -104,6 +111,7 @@ export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/login': typeof authLoginRoute
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
+  '/create-city': typeof AuthenticatedadminCreateCityRoute
   '/register': typeof AuthenticatedadminRegisterRoute
   '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/master': typeof AuthenticatedmasterMasterRoute
@@ -118,6 +126,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
+  '/create-city': typeof AuthenticatedadminCreateCityRoute
   '/register': typeof AuthenticatedadminRegisterRoute
   '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/master': typeof AuthenticatedmasterMasterRoute
@@ -134,6 +143,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/_authenticated/(admin)/create-category': typeof AuthenticatedadminCreateCategoryRoute
+  '/_authenticated/(admin)/create-city': typeof AuthenticatedadminCreateCityRoute
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
   '/_authenticated/(master)/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
@@ -151,6 +161,7 @@ export interface FileRouteTypes {
     | ''
     | '/login'
     | '/create-category'
+    | '/create-city'
     | '/register'
     | '/job-assignment'
     | '/master'
@@ -165,6 +176,7 @@ export interface FileRouteTypes {
   to:
     | '/login'
     | '/create-category'
+    | '/create-city'
     | '/register'
     | '/job-assignment'
     | '/master'
@@ -180,6 +192,7 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/(auth)/login'
     | '/_authenticated/(admin)/create-category'
+    | '/_authenticated/(admin)/create-city'
     | '/_authenticated/(admin)/register'
     | '/_authenticated/(master)/job-assignment'
     | '/_authenticated/(master)/master'
@@ -218,6 +231,13 @@ declare module '@tanstack/react-router' {
       path: '/create-category'
       fullPath: '/create-category'
       preLoaderRoute: typeof AuthenticatedadminCreateCategoryRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/create-city': {
+      id: '/_authenticated/(admin)/create-city'
+      path: '/create-city'
+      fullPath: '/create-city'
+      preLoaderRoute: typeof AuthenticatedadminCreateCityRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/register': {
@@ -320,6 +340,15 @@ declare module './routes/_authenticated/(admin)/create-category' {
     FileRoutesByPath['/_authenticated/(admin)/create-category']['fullPath']
   >
 }
+declare module './routes/_authenticated/(admin)/create-city' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/create-city',
+    FileRoutesByPath['/_authenticated/(admin)/create-city']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/create-city']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/create-city']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/create-city']['fullPath']
+  >
+}
 declare module './routes/_authenticated/(admin)/register' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(admin)/register',
@@ -413,6 +442,7 @@ declare module './routes/_authenticated/(admin)/create-jobs/jobs' {
 
 interface AuthenticatedRouteChildren {
   AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
+  AuthenticatedadminCreateCityRoute: typeof AuthenticatedadminCreateCityRoute
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
   AuthenticatedmasterJobAssignmentRoute: typeof AuthenticatedmasterJobAssignmentRoute
   AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
@@ -427,6 +457,7 @@ interface AuthenticatedRouteChildren {
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminCreateCategoryRoute: AuthenticatedadminCreateCategoryRoute,
+  AuthenticatedadminCreateCityRoute: AuthenticatedadminCreateCityRoute,
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
   AuthenticatedmasterJobAssignmentRoute: AuthenticatedmasterJobAssignmentRoute,
   AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,

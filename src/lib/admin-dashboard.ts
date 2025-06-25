@@ -1,4 +1,4 @@
-import { Box, Briefcase, Home, User } from "lucide-react";
+import { Box, Briefcase, Home, MapPin, User } from "lucide-react";
 
 export const mainItems = [
   {
@@ -20,5 +20,10 @@ export const mainItems = [
     title: "Create Job",
     url: "/create-jobs/jobs",
     icon: Briefcase,
+  },
+  {
+    title: "Create City",
+    url: "/create-city",
+    icon: MapPin,
   },
 ];
