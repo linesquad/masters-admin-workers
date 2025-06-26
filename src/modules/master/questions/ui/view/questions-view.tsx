@@ -1,24 +1,7 @@
 import { useGetQuestions } from "@/modules/master/questions/hooks/useGetQuestions";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import {
-  MessageCircle,
-  TrendingUp,
-  Users,
-  Search,
-  Filter,
-  X,
-} from "lucide-react";
+import { MessageCircle } from "lucide-react";
 import { useState, useEffect } from "react";
 import { useDebounce } from "use-debounce";
-import { Input } from "@/components/ui/input";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Button } from "@/components/ui/button";
 import { QuestionPagination } from "../components/question-pagination";
 import { QuestionList } from "../components/question-list";
 import QuestionsMentaInfo from "../components/questions-menta-info";
@@ -135,7 +118,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
         return "bg-blue-100 text-blue-800";
     }
   };
-  
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
       <div className="max-w-4xl mx-auto space-y-6">
@@ -160,7 +143,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
           searchInput={searchInput}
           setSearchInput={setSearchInput}
         />
-        
+
         {/* Summary Stats */}
         <QuestionSummary questions={questions} />
 
@@ -174,7 +157,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
           getStatusColor={getStatusColor}
           getPriorityColor={getPriorityColor}
         />
-        
+
         {/* Pagination */}
         <QuestionPagination
           questions={questions}
