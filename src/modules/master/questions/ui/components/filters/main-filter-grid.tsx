@@ -5,14 +5,12 @@ import {
   SelectItem,
   SelectContent,
 } from "@/components/ui/select";
+import type { FilterComponentProps } from "../../../types/filters";
 
 export function MainFilterGrid({
   filters,
   handleFilterChange,
-}: {
-  filters: any;
-  handleFilterChange: (key: string, value: any) => void;
-}) {
+}: FilterComponentProps) {
   return (
     <div className="space-y-2">
       <label className="text-xs font-semibold text-gray-700 flex items-center gap-1.5">

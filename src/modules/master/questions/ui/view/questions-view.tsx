@@ -1,6 +1,5 @@
 import { useGetQuestions } from "@/modules/master/questions/hooks/useGetQuestions";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-
 import {
   MessageCircle,
   TrendingUp,
@@ -27,25 +26,21 @@ import { QuestionSummary } from "../components/question-summary";
 import QuestionFilterSection from "../components/filters/question-filter-section";
 import { QuestionLoading } from "../components/question-loading";
 import QuestionError from "../components/question-error";
+import type { QuestionFilters } from "../../types/filters";
 
 export function QuestionsView({ masterId }: { masterId: string }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchInput, setSearchInput] = useState("");
-  const [filters, setFilters] = useState({
+  const [filters, setFilters] = useState<QuestionFilters>({
     page: 1,
     limit: 2,
-    status: "" as "" | "pending" | "answered" | "hidden" | "deleted",
+    status: undefined,
     category: "",
     includeAnswered: true,
     includeUnanswered: true,
-    sortBy: "createdAt" as
-      | "createdAt"
-      | "answeredAt"
-      | "viewCount"
-      | "helpfulCount"
-      | "priority",
-    sortOrder: "desc" as "asc" | "desc",
-    isPublic: undefined as boolean | undefined,
+    sortBy: "createdAt",
+    sortOrder: "desc",
+    isPublic: undefined,
   });
 
   // Debounce search input
@@ -58,7 +53,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
     }
   }, [debouncedSearch, searchInput]);
 
-  const apiFilters = {
+  const apiFilters: QuestionFilters = {
     ...filters,
     page: currentPage,
     status: filters.status || undefined,
@@ -85,17 +80,12 @@ export function QuestionsView({ masterId }: { masterId: string }) {
     setFilters({
       page: 1,
       limit: 20,
-      status: "" as "" | "pending" | "answered" | "hidden" | "deleted",
+      status: undefined,
       category: "",
       includeAnswered: true,
       includeUnanswered: true,
-      sortBy: "createdAt" as
-        | "createdAt"
-        | "answeredAt"
-        | "viewCount"
-        | "helpfulCount"
-        | "priority",
-      sortOrder: "desc" as "asc" | "desc",
+      sortBy: "createdAt",
+      sortOrder: "desc",
       isPublic: undefined,
     });
     setSearchInput("");
@@ -145,6 +135,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
         return "bg-blue-100 text-blue-800";
     }
   };
+  
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
       <div className="max-w-4xl mx-auto space-y-6">
@@ -169,6 +160,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
           searchInput={searchInput}
           setSearchInput={setSearchInput}
         />
+        
         {/* Summary Stats */}
         <QuestionSummary questions={questions} />
 
@@ -182,6 +174,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
           getStatusColor={getStatusColor}
           getPriorityColor={getPriorityColor}
         />
+        
         {/* Pagination */}
         <QuestionPagination
           questions={questions}

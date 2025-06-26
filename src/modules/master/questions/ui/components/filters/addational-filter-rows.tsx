@@ -1,6 +1,7 @@
 import { Select, SelectItem, SelectContent, SelectTrigger, SelectValue } from "@/components/ui/select";
+import type { FilterComponentProps } from "../../../types/filters";
 
-export default function AddationalFilterRows({ filters, handleFilterChange }: { filters: any, handleFilterChange: (key: string, value: any) => void }) {
+export default function AddationalFilterRows({ filters, handleFilterChange }: FilterComponentProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-3 pt-2 border-t border-gray-100">
       {/* Visibility Filter */}
@@ -40,7 +41,7 @@ export default function AddationalFilterRows({ filters, handleFilterChange }: { 
           Include Answered
         </label>
         <Select
-          value={filters.includeAnswered.toString()}
+          value={filters.includeAnswered?.toString()}
           onValueChange={(value) =>
             handleFilterChange("includeAnswered", value === "true")
           }
@@ -65,7 +66,7 @@ export default function AddationalFilterRows({ filters, handleFilterChange }: { 
           Include Unanswered
         </label>
         <Select
-          value={filters.includeUnanswered.toString()}
+          value={filters.includeUnanswered?.toString()}
           onValueChange={(value) =>
             handleFilterChange("includeUnanswered", value === "true")
           }

@@ -5,14 +5,12 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import type { FilterComponentProps } from "../../../types/filters";
 
 export default function FilterControlGridQA({
   filters,
   handleFilterChange,
-}: {
-  filters: any;
-  handleFilterChange: (key: string, value: any) => void;
-}) {
+}: FilterComponentProps) {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
       {/* Status Filter */}

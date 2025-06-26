@@ -1,6 +1,5 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-
 import { Input } from "@/components/ui/input";
 import { Filter, X, Search } from "lucide-react";
 import FilterControlGridQA from "./filter-control-grid-qa";
@@ -8,6 +7,7 @@ import { MainFilterGrid } from "./main-filter-grid";
 import SortByFilterQA from "./sortby-filter-qa";
 import SortOrderQA from "./sort-order-qa";
 import AddationalFilterRows from "./addational-filter-rows";
+import type { QuestionFilterSectionProps } from "../../../types/filters";
 
 export default function QuestionFilterSection({
   filters,
@@ -15,13 +15,7 @@ export default function QuestionFilterSection({
   clearFilters,
   searchInput,
   setSearchInput,
-}: {
-  filters: any;
-  handleFilterChange: (key: string, value: any) => void;
-  clearFilters: () => void;
-  searchInput: string;
-  setSearchInput: (value: string) => void;
-}) {
+}: QuestionFilterSectionProps) {
   return (
     <div>
       <Card className="mb-6 border-0 shadow-lg bg-white/90 backdrop-blur-md">
@@ -67,22 +61,19 @@ export default function QuestionFilterSection({
 
           {/* Main Filters Grid */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
-            {/* Category Filter */}
             <MainFilterGrid
               filters={filters}
               handleFilterChange={handleFilterChange}
             />
-            {/* Sort By Filter */}
             <SortByFilterQA
               filters={filters}
               handleFilterChange={handleFilterChange}
             />
-
-            {/* Sort Order Filter */}
             <SortOrderQA
               filters={filters}
               handleFilterChange={handleFilterChange}
             />
+          </div>
 
           {/* Additional Filters Row */}
           <AddationalFilterRows

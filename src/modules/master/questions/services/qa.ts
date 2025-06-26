@@ -1,21 +1,9 @@
 import instance from "@/lib/axios";
-
-interface QuestionsFilters {
-  page?: number;
-  limit?: number;
-  status?: "pending" | "answered" | "hidden" | "deleted";
-  category?: string;
-  search?: string;
-  includeAnswered?: boolean;
-  includeUnanswered?: boolean;
-  sortBy?: "createdAt" | "answeredAt" | "viewCount" | "helpfulCount" | "priority";
-  sortOrder?: "asc" | "desc";
-  isPublic?: boolean;
-}
+import type { QuestionFilters } from "../types/filters";
 
 export const getQuestions = async (
   masterId: string,
-  filters: QuestionsFilters = {}
+  filters: QuestionFilters = {}
 ) => {
   const {
     page = 1,
