@@ -16,7 +16,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
   const [searchInput, setSearchInput] = useState("");
   const [filters, setFilters] = useState<QuestionFilters>({
     page: 1,
-    limit: 2,
+    limit: 20,
     status: undefined,
     category: "",
     includeAnswered: true,
