@@ -1,5 +1,5 @@
 import { redirect } from "@tanstack/react-router";
-import { MasterSettingsView } from "@/modules/master/profile/ui/views/master-settings-view";
+import { QuestionsView } from "@/modules/master/questions/ui/view/questions-view";
 
 export const Route = createFileRoute({
   component: RouteComponent,
@@ -13,5 +13,6 @@ export const Route = createFileRoute({
 });
 
 function RouteComponent() {
-  return <MasterSettingsView  />;
+  const { user } = Route.useLoaderData();
+  return <QuestionsView masterId={user.id} />;
 }

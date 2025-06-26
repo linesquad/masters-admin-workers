@@ -3,6 +3,7 @@ import {
   CheckCircle,
   Home,
   MapPin,
+  MessageCircle,
   Settings,
   User,
 } from "lucide-react";
@@ -37,6 +38,11 @@ export const masterMainItems = [
     title: "Unlocked Cities",
     url: "/unlocked-cities",
     icon: CheckCircle,
+  },
+  {
+    title: "Questions",
+    url: "/questions",
+    icon: MessageCircle,
   },
 ];
 export const availabilityOptions = [

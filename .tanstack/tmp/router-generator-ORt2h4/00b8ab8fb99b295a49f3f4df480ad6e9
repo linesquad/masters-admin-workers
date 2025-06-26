@@ -17,7 +17,6 @@ import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedmasterUnlockedCitiesRouteImport } from './routes/_authenticated/(master)/unlocked-cities'
 import { Route as AuthenticatedmasterUnlockCityRouteImport } from './routes/_authenticated/(master)/unlock-city'
 import { Route as AuthenticatedmasterSettingsRouteImport } from './routes/_authenticated/(master)/settings'
-import { Route as AuthenticatedmasterQuestionsRouteImport } from './routes/_authenticated/(master)/questions'
 import { Route as AuthenticatedmasterMasterProfileRouteImport } from './routes/_authenticated/(master)/master-profile'
 import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
 import { Route as AuthenticatedmasterJobAssignmentRouteImport } from './routes/_authenticated/(master)/job-assignment'
@@ -57,12 +56,6 @@ const AuthenticatedmasterSettingsRoute =
   AuthenticatedmasterSettingsRouteImport.update({
     id: '/(master)/settings',
     path: '/settings',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
-const AuthenticatedmasterQuestionsRoute =
-  AuthenticatedmasterQuestionsRouteImport.update({
-    id: '/(master)/questions',
-    path: '/questions',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedmasterMasterProfileRoute =
@@ -123,7 +116,6 @@ export interface FileRoutesByFullPath {
   '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
-  '/questions': typeof AuthenticatedmasterQuestionsRoute
   '/settings': typeof AuthenticatedmasterSettingsRoute
   '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
   '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
@@ -139,7 +131,6 @@ export interface FileRoutesByTo {
   '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/master': typeof AuthenticatedmasterMasterRoute
   '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
-  '/questions': typeof AuthenticatedmasterQuestionsRoute
   '/settings': typeof AuthenticatedmasterSettingsRoute
   '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
   '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
@@ -157,7 +148,6 @@ export interface FileRoutesById {
   '/_authenticated/(master)/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
   '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
   '/_authenticated/(master)/master-profile': typeof AuthenticatedmasterMasterProfileRoute
-  '/_authenticated/(master)/questions': typeof AuthenticatedmasterQuestionsRoute
   '/_authenticated/(master)/settings': typeof AuthenticatedmasterSettingsRoute
   '/_authenticated/(master)/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
   '/_authenticated/(master)/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
@@ -176,7 +166,6 @@ export interface FileRouteTypes {
     | '/job-assignment'
     | '/master'
     | '/master-profile'
-    | '/questions'
     | '/settings'
     | '/unlock-city'
     | '/unlocked-cities'
@@ -192,7 +181,6 @@ export interface FileRouteTypes {
     | '/job-assignment'
     | '/master'
     | '/master-profile'
-    | '/questions'
     | '/settings'
     | '/unlock-city'
     | '/unlocked-cities'
@@ -209,7 +197,6 @@ export interface FileRouteTypes {
     | '/_authenticated/(master)/job-assignment'
     | '/_authenticated/(master)/master'
     | '/_authenticated/(master)/master-profile'
-    | '/_authenticated/(master)/questions'
     | '/_authenticated/(master)/settings'
     | '/_authenticated/(master)/unlock-city'
     | '/_authenticated/(master)/unlocked-cities'
@@ -279,13 +266,6 @@ declare module '@tanstack/react-router' {
       path: '/master-profile'
       fullPath: '/master-profile'
       preLoaderRoute: typeof AuthenticatedmasterMasterProfileRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/(master)/questions': {
-      id: '/_authenticated/(master)/questions'
-      path: '/questions'
-      fullPath: '/questions'
-      preLoaderRoute: typeof AuthenticatedmasterQuestionsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(master)/settings': {
@@ -405,15 +385,6 @@ declare module './routes/_authenticated/(master)/master-profile' {
     FileRoutesByPath['/_authenticated/(master)/master-profile']['fullPath']
   >
 }
-declare module './routes/_authenticated/(master)/questions' {
-  const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/questions',
-    FileRoutesByPath['/_authenticated/(master)/questions']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/questions']['id'],
-    FileRoutesByPath['/_authenticated/(master)/questions']['path'],
-    FileRoutesByPath['/_authenticated/(master)/questions']['fullPath']
-  >
-}
 declare module './routes/_authenticated/(master)/settings' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(master)/settings',
@@ -476,7 +447,6 @@ interface AuthenticatedRouteChildren {
   AuthenticatedmasterJobAssignmentRoute: typeof AuthenticatedmasterJobAssignmentRoute
   AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
   AuthenticatedmasterMasterProfileRoute: typeof AuthenticatedmasterMasterProfileRoute
-  AuthenticatedmasterQuestionsRoute: typeof AuthenticatedmasterQuestionsRoute
   AuthenticatedmasterSettingsRoute: typeof AuthenticatedmasterSettingsRoute
   AuthenticatedmasterUnlockCityRoute: typeof AuthenticatedmasterUnlockCityRoute
   AuthenticatedmasterUnlockedCitiesRoute: typeof AuthenticatedmasterUnlockedCitiesRoute
@@ -492,7 +462,6 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedmasterJobAssignmentRoute: AuthenticatedmasterJobAssignmentRoute,
   AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
   AuthenticatedmasterMasterProfileRoute: AuthenticatedmasterMasterProfileRoute,
-  AuthenticatedmasterQuestionsRoute: AuthenticatedmasterQuestionsRoute,
   AuthenticatedmasterSettingsRoute: AuthenticatedmasterSettingsRoute,
   AuthenticatedmasterUnlockCityRoute: AuthenticatedmasterUnlockCityRoute,
   AuthenticatedmasterUnlockedCitiesRoute:
