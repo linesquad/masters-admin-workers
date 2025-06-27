@@ -1,17 +1,20 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Clock, Eye, Heart, MessageCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Clock, Eye, Heart, MessageCircle, Reply } from "lucide-react";
 
 export  function QuestionList({
   questions,
   formatDate,
   getStatusColor,
   getPriorityColor,
+  onAnswerQuestion,
 }: {
   questions: any;
   formatDate: (date: string) => string;
   getStatusColor: (status: string) => string;
   getPriorityColor: (priority: string) => string;
+  onAnswerQuestion: (questionId: string, questionText: string) => void;
 }) {
   return (
     <div>
@@ -101,25 +104,39 @@ export  function QuestionList({
                     </div>
                   )}
 
-                  <div className="flex flex-wrap items-center gap-4 text-sm">
-                    <div className="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-default">
-                      <Eye className="h-4 w-4 text-blue-500" />
-                      <span className="font-medium">{question.viewCount}</span>
-                      <span className="text-xs">views</span>
+                  <div className="flex flex-wrap items-center justify-between gap-4">
+                    <div className="flex flex-wrap items-center gap-4 text-sm">
+                      <div className="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-default">
+                        <Eye className="h-4 w-4 text-blue-500" />
+                        <span className="font-medium">{question.viewCount}</span>
+                        <span className="text-xs">views</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-default">
+                        <Heart className="h-4 w-4 text-red-500" />
+                        <span className="font-medium">
+                          {question.helpfulCount}
+                        </span>
+                        <span className="text-xs">helpful</span>
+                      </div>
+                      <div className="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-default">
+                        <Clock className="h-4 w-4 text-purple-500" />
+                        <span className="text-xs">
+                          Created {formatDate(question.createdAt)}
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-default">
-                      <Heart className="h-4 w-4 text-red-500" />
-                      <span className="font-medium">
-                        {question.helpfulCount}
-                      </span>
-                      <span className="text-xs">helpful</span>
-                    </div>
-                    <div className="flex items-center gap-2 text-gray-600 bg-gray-50 px-3 py-1.5 rounded-full hover:bg-gray-100 transition-colors cursor-default">
-                      <Clock className="h-4 w-4 text-purple-500" />
-                      <span className="text-xs">
-                        Created {formatDate(question.createdAt)}
-                      </span>
-                    </div>
+                    
+                    {/* Answer Button - only show if question is not answered */}
+                    {question.status === "pending" && !question.answer && (
+                      <Button
+                        onClick={() => onAnswerQuestion(question.id, question.question)}
+                        size="sm"
+                        className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white shadow-lg hover:shadow-xl transition-all duration-200 cursor-pointer"
+                      >
+                        <Reply className="h-4 w-4 mr-2" />
+                        Answer
+                      </Button>
+                    )}
                   </div>
 
                   {question.updatedAt !== question.createdAt && (

@@ -9,11 +9,18 @@ import { QuestionSummary } from "../components/question-summary";
 import QuestionFilterSection from "../components/filters/question-filter-section";
 import { QuestionLoading } from "../components/question-loading";
 import QuestionError from "../components/question-error";
+import { AnswerQuestionForm } from "../components/answer-question-form";
+import { DrawerSheet } from "@/components/DrawerSheet";
 import type { QuestionFilters } from "../../types/filters";
 
 export function QuestionsView({ masterId }: { masterId: string }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [searchInput, setSearchInput] = useState("");
+  const [isAnswerDrawerOpen, setIsAnswerDrawerOpen] = useState(false);
+  const [selectedQuestion, setSelectedQuestion] = useState<{
+    id: string;
+    text: string;
+  } | null>(null);
   const [filters, setFilters] = useState<QuestionFilters>({
     page: 1,
     limit: 20,
@@ -49,7 +56,6 @@ export function QuestionsView({ masterId }: { masterId: string }) {
     isError,
     error,
   } = useGetQuestions(masterId, apiFilters);
-
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
   };
@@ -73,6 +79,16 @@ export function QuestionsView({ masterId }: { masterId: string }) {
     });
     setSearchInput("");
     setCurrentPage(1);
+  };
+
+  const handleAnswerQuestion = (questionId: string, questionText: string) => {
+    setSelectedQuestion({ id: questionId, text: questionText });
+    setIsAnswerDrawerOpen(true);
+  };
+
+  const handleAnswerSuccess = () => {
+    setIsAnswerDrawerOpen(false);
+    setSelectedQuestion(null);
   };
 
   if (isLoading) {
@@ -156,6 +172,7 @@ export function QuestionsView({ masterId }: { masterId: string }) {
           formatDate={formatDate}
           getStatusColor={getStatusColor}
           getPriorityColor={getPriorityColor}
+          onAnswerQuestion={handleAnswerQuestion}
         />
 
         {/* Pagination */}
@@ -165,6 +182,24 @@ export function QuestionsView({ masterId }: { masterId: string }) {
           currentPage={currentPage}
           handlePageChange={handlePageChange}
         />
+
+        {/* Answer Question Drawer */}
+        <DrawerSheet
+          trigger={<div />}
+          title="Answer Question"
+          description="Provide a helpful and detailed answer to this question"
+          open={isAnswerDrawerOpen}
+          onOpenChange={setIsAnswerDrawerOpen}
+          sheetClassName="w-[500px] sm:w-[600px]"
+        >
+          {selectedQuestion && (
+            <AnswerQuestionForm
+              questionId={selectedQuestion.id}
+              questionText={selectedQuestion.text}
+              onSuccess={handleAnswerSuccess}
+            />
+          )}
+        </DrawerSheet>
       </div>
     </div>
   );

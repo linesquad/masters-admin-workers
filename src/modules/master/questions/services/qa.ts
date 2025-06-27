@@ -21,21 +21,40 @@ export const getQuestions = async (
   const params = new URLSearchParams({
     page: page.toString(),
     limit: limit.toString(),
-    includeAnswered: (includeAnswered !== undefined ? includeAnswered : true).toString(),
-    includeUnanswered: (includeUnanswered !== undefined ? includeUnanswered : true).toString(),
+    includeAnswered: (includeAnswered !== undefined
+      ? includeAnswered
+      : true
+    ).toString(),
+    includeUnanswered: (includeUnanswered !== undefined
+      ? includeUnanswered
+      : true
+    ).toString(),
     sortBy,
     sortOrder,
   });
 
   if (status) params.append("status", status);
   if (category && category.trim()) params.append("category", category.trim());
-  if (search && search.trim() && search.trim().length >= 1) params.append("search", search.trim());
+  if (search && search.trim() && search.trim().length >= 1)
+    params.append("search", search.trim());
   if (isPublic !== undefined) params.append("isPublic", isPublic.toString());
 
   try {
     const response = await instance.get(
       `/api/master/qa/questions/${masterId}?${params.toString()}`
     );
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};
+
+export const answereQuestion = async (questionId: string, answer: string) => {
+  try {
+    const response = await instance.post(`/api/master/qa/questions/answer`, {
+      questionId,
+      answer,
+    });
     return response.data;
   } catch (error) {
     throw error;
