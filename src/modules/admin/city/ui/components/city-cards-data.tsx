@@ -55,7 +55,7 @@ export function CityCardsData({
       className="bg-white rounded-lg border border-gray-200 shadow-sm
       hover:shadow-md transition-shadow duration-200 overflow-hidden"
     >
-      <div 
+      <div
         className="w-full h-48 bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center relative overflow-hidden cursor-pointer hover:opacity-90 transition-opacity"
         onClick={() => {
           setIsCityPartsOpen(true);

@@ -13,6 +13,7 @@ import DashboardUser from "./dashboard-user";
 import { mainItems } from "@/lib/admin-dashboard";
 import type { UserTypes } from "@/modules/auth/types/userTypes";
 import { masterMainItems } from "@/lib/master-dashboard";
+import { Link } from "@tanstack/react-router";
 
 export function SideBar({ user }: { user: UserTypes }) {
   console.log(user);
@@ -39,10 +40,10 @@ export function SideBar({ user }: { user: UserTypes }) {
                       asChild
                       className="text-white hover:bg-white/10 data-[active=true]:bg-white/20"
                     >
-                      <a href={item.url}>
+                      <Link to={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
@@ -53,10 +54,10 @@ export function SideBar({ user }: { user: UserTypes }) {
                       asChild
                       className="text-white hover:bg-white/10 data-[active=true]:bg-white/20"
                     >
-                      <a href={item.url}>
+                      <Link to={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
-                      </a>
+                      </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
