@@ -26,11 +26,8 @@ export function QuestionsView({ masterId }: { masterId: string }) {
     limit: 20,
     status: undefined,
     category: "",
-    includeAnswered: true,
-    includeUnanswered: true,
     sortBy: "createdAt",
     sortOrder: "desc",
-    isPublic: undefined,
   });
 
   // Debounce search input
@@ -71,11 +68,8 @@ export function QuestionsView({ masterId }: { masterId: string }) {
       limit: 20,
       status: undefined,
       category: "",
-      includeAnswered: true,
-      includeUnanswered: true,
       sortBy: "createdAt",
       sortOrder: "desc",
-      isPublic: undefined,
     });
     setSearchInput("");
     setCurrentPage(1);
