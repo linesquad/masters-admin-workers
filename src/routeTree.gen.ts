@@ -24,6 +24,8 @@ import { Route as AuthenticatedmasterJobAssignmentRouteImport } from './routes/_
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
 import { Route as AuthenticatedadminCreateCityRouteImport } from './routes/_authenticated/(admin)/create-city'
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
+import { Route as AuthenticatedadminGetMastersAllMastersRouteImport } from './routes/_authenticated/(admin)/get-masters/all-masters'
+import { Route as AuthenticatedadminGetMastersIdRouteImport } from './routes/_authenticated/(admin)/get-masters/$id'
 import { Route as AuthenticatedadminCreateJobsJobsRouteImport } from './routes/_authenticated/(admin)/create-jobs/jobs'
 import { Route as AuthenticatedadminCreateJobsIdRouteImport } from './routes/_authenticated/(admin)/create-jobs/$id'
 
@@ -101,6 +103,18 @@ const AuthenticatedadminCreateCategoryRoute =
     path: '/create-category',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedadminGetMastersAllMastersRoute =
+  AuthenticatedadminGetMastersAllMastersRouteImport.update({
+    id: '/(admin)/get-masters/all-masters',
+    path: '/get-masters/all-masters',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedadminGetMastersIdRoute =
+  AuthenticatedadminGetMastersIdRouteImport.update({
+    id: '/(admin)/get-masters/$id',
+    path: '/get-masters/$id',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedadminCreateJobsJobsRoute =
   AuthenticatedadminCreateJobsJobsRouteImport.update({
     id: '/(admin)/create-jobs/jobs',
@@ -130,6 +144,8 @@ export interface FileRoutesByFullPath {
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
+  '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
+  '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
@@ -146,6 +162,8 @@ export interface FileRoutesByTo {
   '/': typeof AuthenticatedadminIndexRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
+  '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
+  '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -164,6 +182,8 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
   '/_authenticated/(admin)/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/_authenticated/(admin)/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
+  '/_authenticated/(admin)/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
+  '/_authenticated/(admin)/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -183,6 +203,8 @@ export interface FileRouteTypes {
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
+    | '/get-masters/$id'
+    | '/get-masters/all-masters'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -199,6 +221,8 @@ export interface FileRouteTypes {
     | '/'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
+    | '/get-masters/$id'
+    | '/get-masters/all-masters'
   id:
     | '__root__'
     | '/_authenticated'
@@ -216,6 +240,8 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/'
     | '/_authenticated/(admin)/create-jobs/$id'
     | '/_authenticated/(admin)/create-jobs/jobs'
+    | '/_authenticated/(admin)/get-masters/$id'
+    | '/_authenticated/(admin)/get-masters/all-masters'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -328,6 +354,20 @@ declare module '@tanstack/react-router' {
       path: '/create-jobs/jobs'
       fullPath: '/create-jobs/jobs'
       preLoaderRoute: typeof AuthenticatedadminCreateJobsJobsRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/get-masters/$id': {
+      id: '/_authenticated/(admin)/get-masters/$id'
+      path: '/get-masters/$id'
+      fullPath: '/get-masters/$id'
+      preLoaderRoute: typeof AuthenticatedadminGetMastersIdRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/get-masters/all-masters': {
+      id: '/_authenticated/(admin)/get-masters/all-masters'
+      path: '/get-masters/all-masters'
+      fullPath: '/get-masters/all-masters'
+      preLoaderRoute: typeof AuthenticatedadminGetMastersAllMastersRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }
@@ -468,6 +508,24 @@ declare module './routes/_authenticated/(admin)/create-jobs/jobs' {
     FileRoutesByPath['/_authenticated/(admin)/create-jobs/jobs']['fullPath']
   >
 }
+declare module './routes/_authenticated/(admin)/get-masters/$id' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/get-masters/$id',
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/$id']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/$id']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/$id']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/$id']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(admin)/get-masters/all-masters' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/get-masters/all-masters',
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/all-masters']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/all-masters']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/all-masters']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/all-masters']['fullPath']
+  >
+}
 
 interface AuthenticatedRouteChildren {
   AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
@@ -483,6 +541,8 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
   AuthenticatedadminCreateJobsIdRoute: typeof AuthenticatedadminCreateJobsIdRoute
   AuthenticatedadminCreateJobsJobsRoute: typeof AuthenticatedadminCreateJobsJobsRoute
+  AuthenticatedadminGetMastersIdRoute: typeof AuthenticatedadminGetMastersIdRoute
+  AuthenticatedadminGetMastersAllMastersRoute: typeof AuthenticatedadminGetMastersAllMastersRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -500,6 +560,9 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
   AuthenticatedadminCreateJobsIdRoute: AuthenticatedadminCreateJobsIdRoute,
   AuthenticatedadminCreateJobsJobsRoute: AuthenticatedadminCreateJobsJobsRoute,
+  AuthenticatedadminGetMastersIdRoute: AuthenticatedadminGetMastersIdRoute,
+  AuthenticatedadminGetMastersAllMastersRoute:
+    AuthenticatedadminGetMastersAllMastersRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

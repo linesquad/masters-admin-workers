@@ -1,4 +1,3 @@
-
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { useState, useEffect } from "react";
 
@@ -16,15 +15,15 @@ const PaginationComp: React.FC<PaginationCompProps> = ({
   onPageChange,
 }) => {
   const [isMobile, setIsMobile] = useState(false);
-  
+
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 640);
     };
-    
+
     checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
   const totalPages = Math.ceil(totalcount / limit);
@@ -77,12 +76,14 @@ const PaginationComp: React.FC<PaginationCompProps> = ({
               1
             </button>
             {startPage > 2 && (
-              <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">...</span>
+              <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">
+                ...
+              </span>
             )}
           </>
         )}
 
-                {/* Page numbers */}
+        {/* Page numbers */}
         {pages.map((page) => (
           <button
             key={page}
@@ -92,9 +93,10 @@ const PaginationComp: React.FC<PaginationCompProps> = ({
             }}
             className={`
               min-w-[32px] sm:min-w-[40px] h-8 sm:h-10 flex items-center justify-center text-xs sm:text-sm font-medium rounded-lg transition-all duration-200 cursor-pointer
-              ${page === currentPage
-                ? "bg-blue-600 text-white border border-blue-600 shadow-sm"
-                : "text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:text-gray-700"
+              ${
+                page === currentPage
+                  ? "bg-blue-600 text-white border border-blue-600 shadow-sm"
+                  : "text-gray-600 bg-white border border-gray-200 hover:bg-gray-50 hover:text-gray-700"
               }
             `}
           >
@@ -106,7 +108,9 @@ const PaginationComp: React.FC<PaginationCompProps> = ({
         {endPage < totalPages && (
           <>
             {endPage < totalPages - 1 && (
-              <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">...</span>
+              <span className="px-1 sm:px-2 text-gray-400 text-xs sm:text-sm">
+                ...
+              </span>
             )}
             <button
               onClick={() => {
@@ -120,7 +124,7 @@ const PaginationComp: React.FC<PaginationCompProps> = ({
           </>
         )}
 
-                {/* Next Button */}
+        {/* Next Button */}
         <button
           onClick={() => {
             if (currentPage < totalPages) {

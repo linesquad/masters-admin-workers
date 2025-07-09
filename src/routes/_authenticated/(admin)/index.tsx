@@ -1,7 +1,6 @@
 import { AdminDashboardView } from "@/modules/admin/dashboard/ui/view/admin-dashboard-view";
 import { redirect } from "@tanstack/react-router";
 
-
 export const Route = createFileRoute({
   component: RouteComponent,
   loader: async ({ context }) => {
