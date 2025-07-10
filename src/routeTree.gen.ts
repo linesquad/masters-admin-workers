@@ -13,14 +13,13 @@ import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AuthenticatedRouteImport } from './routes/_authenticated'
 import { Route as authLoginRouteImport } from './routes/(auth)/login'
+import { Route as AuthenticatedMasterIndexRouteImport } from './routes/_authenticated/master/index'
 import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authenticated/(admin)/index'
-import { Route as AuthenticatedmasterUnlockedCitiesRouteImport } from './routes/_authenticated/(master)/unlocked-cities'
-import { Route as AuthenticatedmasterUnlockCityRouteImport } from './routes/_authenticated/(master)/unlock-city'
-import { Route as AuthenticatedmasterSettingsRouteImport } from './routes/_authenticated/(master)/settings'
-import { Route as AuthenticatedmasterQuestionsRouteImport } from './routes/_authenticated/(master)/questions'
-import { Route as AuthenticatedmasterMasterProfileRouteImport } from './routes/_authenticated/(master)/master-profile'
-import { Route as AuthenticatedmasterMasterRouteImport } from './routes/_authenticated/(master)/master'
-import { Route as AuthenticatedmasterJobAssignmentRouteImport } from './routes/_authenticated/(master)/job-assignment'
+import { Route as AuthenticatedMasterUnlockedCitiesRouteImport } from './routes/_authenticated/master/unlocked-cities'
+import { Route as AuthenticatedMasterUnlockCityRouteImport } from './routes/_authenticated/master/unlock-city'
+import { Route as AuthenticatedMasterSettingsRouteImport } from './routes/_authenticated/master/settings'
+import { Route as AuthenticatedMasterMasterProfileRouteImport } from './routes/_authenticated/master/master-profile'
+import { Route as AuthenticatedMasterJobAssignmentRouteImport } from './routes/_authenticated/master/job-assignment'
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
 import { Route as AuthenticatedadminCreateCityRouteImport } from './routes/_authenticated/(admin)/create-city'
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
@@ -43,51 +42,45 @@ const authLoginRoute = authLoginRouteImport.update({
   path: '/login',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AuthenticatedMasterIndexRoute =
+  AuthenticatedMasterIndexRouteImport.update({
+    id: '/master/',
+    path: '/master/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedadminIndexRoute = AuthenticatedadminIndexRouteImport.update({
   id: '/(admin)/',
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
-const AuthenticatedmasterUnlockedCitiesRoute =
-  AuthenticatedmasterUnlockedCitiesRouteImport.update({
-    id: '/(master)/unlocked-cities',
-    path: '/unlocked-cities',
+const AuthenticatedMasterUnlockedCitiesRoute =
+  AuthenticatedMasterUnlockedCitiesRouteImport.update({
+    id: '/master/unlocked-cities',
+    path: '/master/unlocked-cities',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedmasterUnlockCityRoute =
-  AuthenticatedmasterUnlockCityRouteImport.update({
-    id: '/(master)/unlock-city',
-    path: '/unlock-city',
+const AuthenticatedMasterUnlockCityRoute =
+  AuthenticatedMasterUnlockCityRouteImport.update({
+    id: '/master/unlock-city',
+    path: '/master/unlock-city',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedmasterSettingsRoute =
-  AuthenticatedmasterSettingsRouteImport.update({
-    id: '/(master)/settings',
-    path: '/settings',
+const AuthenticatedMasterSettingsRoute =
+  AuthenticatedMasterSettingsRouteImport.update({
+    id: '/master/settings',
+    path: '/master/settings',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedmasterQuestionsRoute =
-  AuthenticatedmasterQuestionsRouteImport.update({
-    id: '/(master)/questions',
-    path: '/questions',
+const AuthenticatedMasterMasterProfileRoute =
+  AuthenticatedMasterMasterProfileRouteImport.update({
+    id: '/master/master-profile',
+    path: '/master/master-profile',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
-const AuthenticatedmasterMasterProfileRoute =
-  AuthenticatedmasterMasterProfileRouteImport.update({
-    id: '/(master)/master-profile',
-    path: '/master-profile',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
-const AuthenticatedmasterMasterRoute =
-  AuthenticatedmasterMasterRouteImport.update({
-    id: '/(master)/master',
-    path: '/master',
-    getParentRoute: () => AuthenticatedRoute,
-  } as any)
-const AuthenticatedmasterJobAssignmentRoute =
-  AuthenticatedmasterJobAssignmentRouteImport.update({
-    id: '/(master)/job-assignment',
-    path: '/job-assignment',
+const AuthenticatedMasterJobAssignmentRoute =
+  AuthenticatedMasterJobAssignmentRouteImport.update({
+    id: '/master/job-assignment',
+    path: '/master/job-assignment',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedadminRegisterRoute =
@@ -170,14 +163,13 @@ export interface FileRoutesByFullPath {
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/create-city': typeof AuthenticatedadminCreateCityRoute
   '/register': typeof AuthenticatedadminRegisterRoute
-  '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
-  '/master': typeof AuthenticatedmasterMasterRoute
-  '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
-  '/questions': typeof AuthenticatedmasterQuestionsRoute
-  '/settings': typeof AuthenticatedmasterSettingsRoute
-  '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
-  '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
+  '/master/job-assignment': typeof AuthenticatedMasterJobAssignmentRoute
+  '/master/master-profile': typeof AuthenticatedMasterMasterProfileRoute
+  '/master/settings': typeof AuthenticatedMasterSettingsRoute
+  '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
+  '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
   '/': typeof AuthenticatedadminIndexRoute
+  '/master': typeof AuthenticatedMasterIndexRoute
   '/billing/history': typeof AuthenticatedadminBillingHistoryRoute
   '/billing/stats': typeof AuthenticatedadminBillingStatsRoute
   '/billing/trigger': typeof AuthenticatedadminBillingTriggerRoute
@@ -192,14 +184,13 @@ export interface FileRoutesByTo {
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/create-city': typeof AuthenticatedadminCreateCityRoute
   '/register': typeof AuthenticatedadminRegisterRoute
-  '/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
-  '/master': typeof AuthenticatedmasterMasterRoute
-  '/master-profile': typeof AuthenticatedmasterMasterProfileRoute
-  '/questions': typeof AuthenticatedmasterQuestionsRoute
-  '/settings': typeof AuthenticatedmasterSettingsRoute
-  '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
-  '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
+  '/master/job-assignment': typeof AuthenticatedMasterJobAssignmentRoute
+  '/master/master-profile': typeof AuthenticatedMasterMasterProfileRoute
+  '/master/settings': typeof AuthenticatedMasterSettingsRoute
+  '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
+  '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
   '/': typeof AuthenticatedadminIndexRoute
+  '/master': typeof AuthenticatedMasterIndexRoute
   '/billing/history': typeof AuthenticatedadminBillingHistoryRoute
   '/billing/stats': typeof AuthenticatedadminBillingStatsRoute
   '/billing/trigger': typeof AuthenticatedadminBillingTriggerRoute
@@ -217,14 +208,13 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/_authenticated/(admin)/create-city': typeof AuthenticatedadminCreateCityRoute
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
-  '/_authenticated/(master)/job-assignment': typeof AuthenticatedmasterJobAssignmentRoute
-  '/_authenticated/(master)/master': typeof AuthenticatedmasterMasterRoute
-  '/_authenticated/(master)/master-profile': typeof AuthenticatedmasterMasterProfileRoute
-  '/_authenticated/(master)/questions': typeof AuthenticatedmasterQuestionsRoute
-  '/_authenticated/(master)/settings': typeof AuthenticatedmasterSettingsRoute
-  '/_authenticated/(master)/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
-  '/_authenticated/(master)/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
+  '/_authenticated/master/job-assignment': typeof AuthenticatedMasterJobAssignmentRoute
+  '/_authenticated/master/master-profile': typeof AuthenticatedMasterMasterProfileRoute
+  '/_authenticated/master/settings': typeof AuthenticatedMasterSettingsRoute
+  '/_authenticated/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
+  '/_authenticated/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
+  '/_authenticated/master/': typeof AuthenticatedMasterIndexRoute
   '/_authenticated/(admin)/billing/history': typeof AuthenticatedadminBillingHistoryRoute
   '/_authenticated/(admin)/billing/stats': typeof AuthenticatedadminBillingStatsRoute
   '/_authenticated/(admin)/billing/trigger': typeof AuthenticatedadminBillingTriggerRoute
@@ -243,14 +233,13 @@ export interface FileRouteTypes {
     | '/create-category'
     | '/create-city'
     | '/register'
-    | '/job-assignment'
-    | '/master'
-    | '/master-profile'
-    | '/questions'
-    | '/settings'
-    | '/unlock-city'
-    | '/unlocked-cities'
+    | '/master/job-assignment'
+    | '/master/master-profile'
+    | '/master/settings'
+    | '/master/unlock-city'
+    | '/master/unlocked-cities'
     | '/'
+    | '/master'
     | '/billing/history'
     | '/billing/stats'
     | '/billing/trigger'
@@ -265,14 +254,13 @@ export interface FileRouteTypes {
     | '/create-category'
     | '/create-city'
     | '/register'
-    | '/job-assignment'
-    | '/master'
-    | '/master-profile'
-    | '/questions'
-    | '/settings'
-    | '/unlock-city'
-    | '/unlocked-cities'
+    | '/master/job-assignment'
+    | '/master/master-profile'
+    | '/master/settings'
+    | '/master/unlock-city'
+    | '/master/unlocked-cities'
     | '/'
+    | '/master'
     | '/billing/history'
     | '/billing/stats'
     | '/billing/trigger'
@@ -289,14 +277,13 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/create-category'
     | '/_authenticated/(admin)/create-city'
     | '/_authenticated/(admin)/register'
-    | '/_authenticated/(master)/job-assignment'
-    | '/_authenticated/(master)/master'
-    | '/_authenticated/(master)/master-profile'
-    | '/_authenticated/(master)/questions'
-    | '/_authenticated/(master)/settings'
-    | '/_authenticated/(master)/unlock-city'
-    | '/_authenticated/(master)/unlocked-cities'
+    | '/_authenticated/master/job-assignment'
+    | '/_authenticated/master/master-profile'
+    | '/_authenticated/master/settings'
+    | '/_authenticated/master/unlock-city'
+    | '/_authenticated/master/unlocked-cities'
     | '/_authenticated/(admin)/'
+    | '/_authenticated/master/'
     | '/_authenticated/(admin)/billing/history'
     | '/_authenticated/(admin)/billing/stats'
     | '/_authenticated/(admin)/billing/trigger'
@@ -356,53 +343,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminRegisterRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/(master)/job-assignment': {
-      id: '/_authenticated/(master)/job-assignment'
-      path: '/job-assignment'
-      fullPath: '/job-assignment'
-      preLoaderRoute: typeof AuthenticatedmasterJobAssignmentRouteImport
+    '/_authenticated/master/job-assignment': {
+      id: '/_authenticated/master/job-assignment'
+      path: '/master/job-assignment'
+      fullPath: '/master/job-assignment'
+      preLoaderRoute: typeof AuthenticatedMasterJobAssignmentRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/(master)/master': {
-      id: '/_authenticated/(master)/master'
-      path: '/master'
-      fullPath: '/master'
-      preLoaderRoute: typeof AuthenticatedmasterMasterRouteImport
+    '/_authenticated/master/master-profile': {
+      id: '/_authenticated/master/master-profile'
+      path: '/master/master-profile'
+      fullPath: '/master/master-profile'
+      preLoaderRoute: typeof AuthenticatedMasterMasterProfileRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/(master)/master-profile': {
-      id: '/_authenticated/(master)/master-profile'
-      path: '/master-profile'
-      fullPath: '/master-profile'
-      preLoaderRoute: typeof AuthenticatedmasterMasterProfileRouteImport
+    '/_authenticated/master/settings': {
+      id: '/_authenticated/master/settings'
+      path: '/master/settings'
+      fullPath: '/master/settings'
+      preLoaderRoute: typeof AuthenticatedMasterSettingsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/(master)/questions': {
-      id: '/_authenticated/(master)/questions'
-      path: '/questions'
-      fullPath: '/questions'
-      preLoaderRoute: typeof AuthenticatedmasterQuestionsRouteImport
+    '/_authenticated/master/unlock-city': {
+      id: '/_authenticated/master/unlock-city'
+      path: '/master/unlock-city'
+      fullPath: '/master/unlock-city'
+      preLoaderRoute: typeof AuthenticatedMasterUnlockCityRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
-    '/_authenticated/(master)/settings': {
-      id: '/_authenticated/(master)/settings'
-      path: '/settings'
-      fullPath: '/settings'
-      preLoaderRoute: typeof AuthenticatedmasterSettingsRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/(master)/unlock-city': {
-      id: '/_authenticated/(master)/unlock-city'
-      path: '/unlock-city'
-      fullPath: '/unlock-city'
-      preLoaderRoute: typeof AuthenticatedmasterUnlockCityRouteImport
-      parentRoute: typeof AuthenticatedRoute
-    }
-    '/_authenticated/(master)/unlocked-cities': {
-      id: '/_authenticated/(master)/unlocked-cities'
-      path: '/unlocked-cities'
-      fullPath: '/unlocked-cities'
-      preLoaderRoute: typeof AuthenticatedmasterUnlockedCitiesRouteImport
+    '/_authenticated/master/unlocked-cities': {
+      id: '/_authenticated/master/unlocked-cities'
+      path: '/master/unlocked-cities'
+      fullPath: '/master/unlocked-cities'
+      preLoaderRoute: typeof AuthenticatedMasterUnlockedCitiesRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/': {
@@ -410,6 +383,13 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof AuthenticatedadminIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/master/': {
+      id: '/_authenticated/master/'
+      path: '/master'
+      fullPath: '/master'
+      preLoaderRoute: typeof AuthenticatedMasterIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/billing/history': {
@@ -525,67 +505,49 @@ declare module './routes/_authenticated/(admin)/register' {
     FileRoutesByPath['/_authenticated/(admin)/register']['fullPath']
   >
 }
-declare module './routes/_authenticated/(master)/job-assignment' {
+declare module './routes/_authenticated/master/job-assignment' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/job-assignment',
-    FileRoutesByPath['/_authenticated/(master)/job-assignment']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/job-assignment']['id'],
-    FileRoutesByPath['/_authenticated/(master)/job-assignment']['path'],
-    FileRoutesByPath['/_authenticated/(master)/job-assignment']['fullPath']
+    '/_authenticated/master/job-assignment',
+    FileRoutesByPath['/_authenticated/master/job-assignment']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/job-assignment']['id'],
+    FileRoutesByPath['/_authenticated/master/job-assignment']['path'],
+    FileRoutesByPath['/_authenticated/master/job-assignment']['fullPath']
   >
 }
-declare module './routes/_authenticated/(master)/master' {
+declare module './routes/_authenticated/master/master-profile' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/master',
-    FileRoutesByPath['/_authenticated/(master)/master']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/master']['id'],
-    FileRoutesByPath['/_authenticated/(master)/master']['path'],
-    FileRoutesByPath['/_authenticated/(master)/master']['fullPath']
+    '/_authenticated/master/master-profile',
+    FileRoutesByPath['/_authenticated/master/master-profile']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/master-profile']['id'],
+    FileRoutesByPath['/_authenticated/master/master-profile']['path'],
+    FileRoutesByPath['/_authenticated/master/master-profile']['fullPath']
   >
 }
-declare module './routes/_authenticated/(master)/master-profile' {
+declare module './routes/_authenticated/master/settings' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/master-profile',
-    FileRoutesByPath['/_authenticated/(master)/master-profile']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/master-profile']['id'],
-    FileRoutesByPath['/_authenticated/(master)/master-profile']['path'],
-    FileRoutesByPath['/_authenticated/(master)/master-profile']['fullPath']
+    '/_authenticated/master/settings',
+    FileRoutesByPath['/_authenticated/master/settings']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/settings']['id'],
+    FileRoutesByPath['/_authenticated/master/settings']['path'],
+    FileRoutesByPath['/_authenticated/master/settings']['fullPath']
   >
 }
-declare module './routes/_authenticated/(master)/questions' {
+declare module './routes/_authenticated/master/unlock-city' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/questions',
-    FileRoutesByPath['/_authenticated/(master)/questions']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/questions']['id'],
-    FileRoutesByPath['/_authenticated/(master)/questions']['path'],
-    FileRoutesByPath['/_authenticated/(master)/questions']['fullPath']
+    '/_authenticated/master/unlock-city',
+    FileRoutesByPath['/_authenticated/master/unlock-city']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/unlock-city']['id'],
+    FileRoutesByPath['/_authenticated/master/unlock-city']['path'],
+    FileRoutesByPath['/_authenticated/master/unlock-city']['fullPath']
   >
 }
-declare module './routes/_authenticated/(master)/settings' {
+declare module './routes/_authenticated/master/unlocked-cities' {
   const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/settings',
-    FileRoutesByPath['/_authenticated/(master)/settings']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/settings']['id'],
-    FileRoutesByPath['/_authenticated/(master)/settings']['path'],
-    FileRoutesByPath['/_authenticated/(master)/settings']['fullPath']
-  >
-}
-declare module './routes/_authenticated/(master)/unlock-city' {
-  const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/unlock-city',
-    FileRoutesByPath['/_authenticated/(master)/unlock-city']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/unlock-city']['id'],
-    FileRoutesByPath['/_authenticated/(master)/unlock-city']['path'],
-    FileRoutesByPath['/_authenticated/(master)/unlock-city']['fullPath']
-  >
-}
-declare module './routes/_authenticated/(master)/unlocked-cities' {
-  const createFileRoute: CreateFileRoute<
-    '/_authenticated/(master)/unlocked-cities',
-    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['parentRoute'],
-    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['id'],
-    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['path'],
-    FileRoutesByPath['/_authenticated/(master)/unlocked-cities']['fullPath']
+    '/_authenticated/master/unlocked-cities',
+    FileRoutesByPath['/_authenticated/master/unlocked-cities']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/unlocked-cities']['id'],
+    FileRoutesByPath['/_authenticated/master/unlocked-cities']['path'],
+    FileRoutesByPath['/_authenticated/master/unlocked-cities']['fullPath']
   >
 }
 declare module './routes/_authenticated/(admin)/index' {
@@ -595,6 +557,15 @@ declare module './routes/_authenticated/(admin)/index' {
     FileRoutesByPath['/_authenticated/(admin)/']['id'],
     FileRoutesByPath['/_authenticated/(admin)/']['path'],
     FileRoutesByPath['/_authenticated/(admin)/']['fullPath']
+  >
+}
+declare module './routes/_authenticated/master/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/master/',
+    FileRoutesByPath['/_authenticated/master/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/']['id'],
+    FileRoutesByPath['/_authenticated/master/']['path'],
+    FileRoutesByPath['/_authenticated/master/']['fullPath']
   >
 }
 declare module './routes/_authenticated/(admin)/billing/history' {
@@ -697,14 +668,13 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
   AuthenticatedadminCreateCityRoute: typeof AuthenticatedadminCreateCityRoute
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
-  AuthenticatedmasterJobAssignmentRoute: typeof AuthenticatedmasterJobAssignmentRoute
-  AuthenticatedmasterMasterRoute: typeof AuthenticatedmasterMasterRoute
-  AuthenticatedmasterMasterProfileRoute: typeof AuthenticatedmasterMasterProfileRoute
-  AuthenticatedmasterQuestionsRoute: typeof AuthenticatedmasterQuestionsRoute
-  AuthenticatedmasterSettingsRoute: typeof AuthenticatedmasterSettingsRoute
-  AuthenticatedmasterUnlockCityRoute: typeof AuthenticatedmasterUnlockCityRoute
-  AuthenticatedmasterUnlockedCitiesRoute: typeof AuthenticatedmasterUnlockedCitiesRoute
+  AuthenticatedMasterJobAssignmentRoute: typeof AuthenticatedMasterJobAssignmentRoute
+  AuthenticatedMasterMasterProfileRoute: typeof AuthenticatedMasterMasterProfileRoute
+  AuthenticatedMasterSettingsRoute: typeof AuthenticatedMasterSettingsRoute
+  AuthenticatedMasterUnlockCityRoute: typeof AuthenticatedMasterUnlockCityRoute
+  AuthenticatedMasterUnlockedCitiesRoute: typeof AuthenticatedMasterUnlockedCitiesRoute
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
+  AuthenticatedMasterIndexRoute: typeof AuthenticatedMasterIndexRoute
   AuthenticatedadminCreateJobsIdRoute: typeof AuthenticatedadminCreateJobsIdRoute
   AuthenticatedadminCreateJobsJobsRoute: typeof AuthenticatedadminCreateJobsJobsRoute
   AuthenticatedadminGetMastersIdRoute: typeof AuthenticatedadminGetMastersIdRoute
@@ -717,15 +687,14 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminCreateCategoryRoute: AuthenticatedadminCreateCategoryRoute,
   AuthenticatedadminCreateCityRoute: AuthenticatedadminCreateCityRoute,
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
-  AuthenticatedmasterJobAssignmentRoute: AuthenticatedmasterJobAssignmentRoute,
-  AuthenticatedmasterMasterRoute: AuthenticatedmasterMasterRoute,
-  AuthenticatedmasterMasterProfileRoute: AuthenticatedmasterMasterProfileRoute,
-  AuthenticatedmasterQuestionsRoute: AuthenticatedmasterQuestionsRoute,
-  AuthenticatedmasterSettingsRoute: AuthenticatedmasterSettingsRoute,
-  AuthenticatedmasterUnlockCityRoute: AuthenticatedmasterUnlockCityRoute,
-  AuthenticatedmasterUnlockedCitiesRoute:
-    AuthenticatedmasterUnlockedCitiesRoute,
+  AuthenticatedMasterJobAssignmentRoute: AuthenticatedMasterJobAssignmentRoute,
+  AuthenticatedMasterMasterProfileRoute: AuthenticatedMasterMasterProfileRoute,
+  AuthenticatedMasterSettingsRoute: AuthenticatedMasterSettingsRoute,
+  AuthenticatedMasterUnlockCityRoute: AuthenticatedMasterUnlockCityRoute,
+  AuthenticatedMasterUnlockedCitiesRoute:
+    AuthenticatedMasterUnlockedCitiesRoute,
   AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
+  AuthenticatedMasterIndexRoute: AuthenticatedMasterIndexRoute,
   AuthenticatedadminCreateJobsIdRoute: AuthenticatedadminCreateJobsIdRoute,
   AuthenticatedadminCreateJobsJobsRoute: AuthenticatedadminCreateJobsJobsRoute,
   AuthenticatedadminGetMastersIdRoute: AuthenticatedadminGetMastersIdRoute,

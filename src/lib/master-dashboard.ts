@@ -3,7 +3,6 @@ import {
   CheckCircle,
   Home,
   MapPin,
-  MessageCircle,
   Settings,
   User,
 } from "lucide-react";
@@ -11,40 +10,36 @@ import {
 export const masterMainItems = [
   {
     title: "Dashboard",
-    url: "/",
+    url: "/master",
     icon: Home,
   },
   {
     title: "Master Profile",
-    url: "/master-profile",
+    url: "/master/master-profile",
     icon: User,
   },
   {
     title: "Profile Settings",
-    url: "/settings",
+    url: "master/settings",
     icon: Settings,
   },
   {
     title: "Job Assignment",
-    url: "/job-assignment",
+    url: "master/job-assignment",
     icon: Briefcase,
   },
   {
     title: "Unlock Cities",
-    url: "/unlock-city",
+    url: "master/unlock-city",
     icon: MapPin,
   },
   {
     title: "Unlocked Cities",
-    url: "/unlocked-cities",
+    url: "master/unlocked-cities",
     icon: CheckCircle,
   },
-  {
-    title: "Questions",
-    url: "/questions",
-    icon: MessageCircle,
-  },
 ];
+
 export const availabilityOptions = [
   {
     value: "now",
