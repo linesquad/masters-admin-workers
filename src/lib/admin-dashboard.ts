@@ -1,4 +1,12 @@
-import { Box, Briefcase, Home, MapPin, User, Users } from "lucide-react";
+import {
+  Box,
+  Briefcase,
+  CreditCardIcon,
+  Home,
+  MapPin,
+  User,
+  Users,
+} from "lucide-react";
 
 export const mainItems = [
   {
@@ -30,5 +38,10 @@ export const mainItems = [
     title: "All Masters",
     url: "/get-masters/all-masters",
     icon: Users,
+  },
+  {
+    title: "Billing",
+    url: "/billing",
+    icon: CreditCardIcon,
   },
 ];

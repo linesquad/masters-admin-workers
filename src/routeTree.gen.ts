@@ -24,10 +24,15 @@ import { Route as AuthenticatedmasterJobAssignmentRouteImport } from './routes/_
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
 import { Route as AuthenticatedadminCreateCityRouteImport } from './routes/_authenticated/(admin)/create-city'
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
+import { Route as AuthenticatedadminBillingRouteRouteImport } from './routes/_authenticated/(admin)/billing/route'
+import { Route as AuthenticatedadminBillingIndexRouteImport } from './routes/_authenticated/(admin)/billing/index'
 import { Route as AuthenticatedadminGetMastersAllMastersRouteImport } from './routes/_authenticated/(admin)/get-masters/all-masters'
 import { Route as AuthenticatedadminGetMastersIdRouteImport } from './routes/_authenticated/(admin)/get-masters/$id'
 import { Route as AuthenticatedadminCreateJobsJobsRouteImport } from './routes/_authenticated/(admin)/create-jobs/jobs'
 import { Route as AuthenticatedadminCreateJobsIdRouteImport } from './routes/_authenticated/(admin)/create-jobs/$id'
+import { Route as AuthenticatedadminBillingTriggerRouteImport } from './routes/_authenticated/(admin)/billing/trigger'
+import { Route as AuthenticatedadminBillingStatsRouteImport } from './routes/_authenticated/(admin)/billing/stats'
+import { Route as AuthenticatedadminBillingHistoryRouteImport } from './routes/_authenticated/(admin)/billing/history'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -103,6 +108,18 @@ const AuthenticatedadminCreateCategoryRoute =
     path: '/create-category',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedadminBillingRouteRoute =
+  AuthenticatedadminBillingRouteRouteImport.update({
+    id: '/(admin)/billing',
+    path: '/billing',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedadminBillingIndexRoute =
+  AuthenticatedadminBillingIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedadminBillingRouteRoute,
+  } as any)
 const AuthenticatedadminGetMastersAllMastersRoute =
   AuthenticatedadminGetMastersAllMastersRouteImport.update({
     id: '/(admin)/get-masters/all-masters',
@@ -127,10 +144,29 @@ const AuthenticatedadminCreateJobsIdRoute =
     path: '/create-jobs/$id',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedadminBillingTriggerRoute =
+  AuthenticatedadminBillingTriggerRouteImport.update({
+    id: '/trigger',
+    path: '/trigger',
+    getParentRoute: () => AuthenticatedadminBillingRouteRoute,
+  } as any)
+const AuthenticatedadminBillingStatsRoute =
+  AuthenticatedadminBillingStatsRouteImport.update({
+    id: '/stats',
+    path: '/stats',
+    getParentRoute: () => AuthenticatedadminBillingRouteRoute,
+  } as any)
+const AuthenticatedadminBillingHistoryRoute =
+  AuthenticatedadminBillingHistoryRouteImport.update({
+    id: '/history',
+    path: '/history',
+    getParentRoute: () => AuthenticatedadminBillingRouteRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/login': typeof authLoginRoute
+  '/billing': typeof AuthenticatedadminBillingRouteRouteWithChildren
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/create-city': typeof AuthenticatedadminCreateCityRoute
   '/register': typeof AuthenticatedadminRegisterRoute
@@ -142,10 +178,14 @@ export interface FileRoutesByFullPath {
   '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
   '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
   '/': typeof AuthenticatedadminIndexRoute
+  '/billing/history': typeof AuthenticatedadminBillingHistoryRoute
+  '/billing/stats': typeof AuthenticatedadminBillingStatsRoute
+  '/billing/trigger': typeof AuthenticatedadminBillingTriggerRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
   '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
+  '/billing/': typeof AuthenticatedadminBillingIndexRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
@@ -160,15 +200,20 @@ export interface FileRoutesByTo {
   '/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
   '/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
   '/': typeof AuthenticatedadminIndexRoute
+  '/billing/history': typeof AuthenticatedadminBillingHistoryRoute
+  '/billing/stats': typeof AuthenticatedadminBillingStatsRoute
+  '/billing/trigger': typeof AuthenticatedadminBillingTriggerRoute
   '/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
   '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
+  '/billing': typeof AuthenticatedadminBillingIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
+  '/_authenticated/(admin)/billing': typeof AuthenticatedadminBillingRouteRouteWithChildren
   '/_authenticated/(admin)/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/_authenticated/(admin)/create-city': typeof AuthenticatedadminCreateCityRoute
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
@@ -180,16 +225,21 @@ export interface FileRoutesById {
   '/_authenticated/(master)/unlock-city': typeof AuthenticatedmasterUnlockCityRoute
   '/_authenticated/(master)/unlocked-cities': typeof AuthenticatedmasterUnlockedCitiesRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
+  '/_authenticated/(admin)/billing/history': typeof AuthenticatedadminBillingHistoryRoute
+  '/_authenticated/(admin)/billing/stats': typeof AuthenticatedadminBillingStatsRoute
+  '/_authenticated/(admin)/billing/trigger': typeof AuthenticatedadminBillingTriggerRoute
   '/_authenticated/(admin)/create-jobs/$id': typeof AuthenticatedadminCreateJobsIdRoute
   '/_authenticated/(admin)/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
   '/_authenticated/(admin)/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/_authenticated/(admin)/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
+  '/_authenticated/(admin)/billing/': typeof AuthenticatedadminBillingIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
   fullPaths:
     | ''
     | '/login'
+    | '/billing'
     | '/create-category'
     | '/create-city'
     | '/register'
@@ -201,10 +251,14 @@ export interface FileRouteTypes {
     | '/unlock-city'
     | '/unlocked-cities'
     | '/'
+    | '/billing/history'
+    | '/billing/stats'
+    | '/billing/trigger'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
     | '/get-masters/$id'
     | '/get-masters/all-masters'
+    | '/billing/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -219,14 +273,19 @@ export interface FileRouteTypes {
     | '/unlock-city'
     | '/unlocked-cities'
     | '/'
+    | '/billing/history'
+    | '/billing/stats'
+    | '/billing/trigger'
     | '/create-jobs/$id'
     | '/create-jobs/jobs'
     | '/get-masters/$id'
     | '/get-masters/all-masters'
+    | '/billing'
   id:
     | '__root__'
     | '/_authenticated'
     | '/(auth)/login'
+    | '/_authenticated/(admin)/billing'
     | '/_authenticated/(admin)/create-category'
     | '/_authenticated/(admin)/create-city'
     | '/_authenticated/(admin)/register'
@@ -238,10 +297,14 @@ export interface FileRouteTypes {
     | '/_authenticated/(master)/unlock-city'
     | '/_authenticated/(master)/unlocked-cities'
     | '/_authenticated/(admin)/'
+    | '/_authenticated/(admin)/billing/history'
+    | '/_authenticated/(admin)/billing/stats'
+    | '/_authenticated/(admin)/billing/trigger'
     | '/_authenticated/(admin)/create-jobs/$id'
     | '/_authenticated/(admin)/create-jobs/jobs'
     | '/_authenticated/(admin)/get-masters/$id'
     | '/_authenticated/(admin)/get-masters/all-masters'
+    | '/_authenticated/(admin)/billing/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -264,6 +327,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/login'
       preLoaderRoute: typeof authLoginRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/_authenticated/(admin)/billing': {
+      id: '/_authenticated/(admin)/billing'
+      path: '/billing'
+      fullPath: '/billing'
+      preLoaderRoute: typeof AuthenticatedadminBillingRouteRouteImport
+      parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/create-category': {
       id: '/_authenticated/(admin)/create-category'
@@ -342,6 +412,27 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/(admin)/billing/history': {
+      id: '/_authenticated/(admin)/billing/history'
+      path: '/history'
+      fullPath: '/billing/history'
+      preLoaderRoute: typeof AuthenticatedadminBillingHistoryRouteImport
+      parentRoute: typeof AuthenticatedadminBillingRouteRoute
+    }
+    '/_authenticated/(admin)/billing/stats': {
+      id: '/_authenticated/(admin)/billing/stats'
+      path: '/stats'
+      fullPath: '/billing/stats'
+      preLoaderRoute: typeof AuthenticatedadminBillingStatsRouteImport
+      parentRoute: typeof AuthenticatedadminBillingRouteRoute
+    }
+    '/_authenticated/(admin)/billing/trigger': {
+      id: '/_authenticated/(admin)/billing/trigger'
+      path: '/trigger'
+      fullPath: '/billing/trigger'
+      preLoaderRoute: typeof AuthenticatedadminBillingTriggerRouteImport
+      parentRoute: typeof AuthenticatedadminBillingRouteRoute
+    }
     '/_authenticated/(admin)/create-jobs/$id': {
       id: '/_authenticated/(admin)/create-jobs/$id'
       path: '/create-jobs/$id'
@@ -370,6 +461,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminGetMastersAllMastersRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/(admin)/billing/': {
+      id: '/_authenticated/(admin)/billing/'
+      path: '/'
+      fullPath: '/billing/'
+      preLoaderRoute: typeof AuthenticatedadminBillingIndexRouteImport
+      parentRoute: typeof AuthenticatedadminBillingRouteRoute
+    }
   }
 }
 
@@ -389,6 +487,15 @@ declare module './routes/(auth)/login' {
     FileRoutesByPath['/(auth)/login']['id'],
     FileRoutesByPath['/(auth)/login']['path'],
     FileRoutesByPath['/(auth)/login']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(admin)/billing/route' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/billing',
+    FileRoutesByPath['/_authenticated/(admin)/billing']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/billing']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/billing']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/billing']['fullPath']
   >
 }
 declare module './routes/_authenticated/(admin)/create-category' {
@@ -490,6 +597,33 @@ declare module './routes/_authenticated/(admin)/index' {
     FileRoutesByPath['/_authenticated/(admin)/']['fullPath']
   >
 }
+declare module './routes/_authenticated/(admin)/billing/history' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/billing/history',
+    FileRoutesByPath['/_authenticated/(admin)/billing/history']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/history']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/history']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/history']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(admin)/billing/stats' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/billing/stats',
+    FileRoutesByPath['/_authenticated/(admin)/billing/stats']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/stats']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/stats']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/stats']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(admin)/billing/trigger' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/billing/trigger',
+    FileRoutesByPath['/_authenticated/(admin)/billing/trigger']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/trigger']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/trigger']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/trigger']['fullPath']
+  >
+}
 declare module './routes/_authenticated/(admin)/create-jobs/$id' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(admin)/create-jobs/$id',
@@ -526,8 +660,40 @@ declare module './routes/_authenticated/(admin)/get-masters/all-masters' {
     FileRoutesByPath['/_authenticated/(admin)/get-masters/all-masters']['fullPath']
   >
 }
+declare module './routes/_authenticated/(admin)/billing/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/billing/',
+    FileRoutesByPath['/_authenticated/(admin)/billing/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/billing/']['fullPath']
+  >
+}
+
+interface AuthenticatedadminBillingRouteRouteChildren {
+  AuthenticatedadminBillingHistoryRoute: typeof AuthenticatedadminBillingHistoryRoute
+  AuthenticatedadminBillingStatsRoute: typeof AuthenticatedadminBillingStatsRoute
+  AuthenticatedadminBillingTriggerRoute: typeof AuthenticatedadminBillingTriggerRoute
+  AuthenticatedadminBillingIndexRoute: typeof AuthenticatedadminBillingIndexRoute
+}
+
+const AuthenticatedadminBillingRouteRouteChildren: AuthenticatedadminBillingRouteRouteChildren =
+  {
+    AuthenticatedadminBillingHistoryRoute:
+      AuthenticatedadminBillingHistoryRoute,
+    AuthenticatedadminBillingStatsRoute: AuthenticatedadminBillingStatsRoute,
+    AuthenticatedadminBillingTriggerRoute:
+      AuthenticatedadminBillingTriggerRoute,
+    AuthenticatedadminBillingIndexRoute: AuthenticatedadminBillingIndexRoute,
+  }
+
+const AuthenticatedadminBillingRouteRouteWithChildren =
+  AuthenticatedadminBillingRouteRoute._addFileChildren(
+    AuthenticatedadminBillingRouteRouteChildren,
+  )
 
 interface AuthenticatedRouteChildren {
+  AuthenticatedadminBillingRouteRoute: typeof AuthenticatedadminBillingRouteRouteWithChildren
   AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
   AuthenticatedadminCreateCityRoute: typeof AuthenticatedadminCreateCityRoute
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
@@ -546,6 +712,8 @@ interface AuthenticatedRouteChildren {
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
+  AuthenticatedadminBillingRouteRoute:
+    AuthenticatedadminBillingRouteRouteWithChildren,
   AuthenticatedadminCreateCategoryRoute: AuthenticatedadminCreateCategoryRoute,
   AuthenticatedadminCreateCityRoute: AuthenticatedadminCreateCityRoute,
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
