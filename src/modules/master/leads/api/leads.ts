@@ -64,3 +64,21 @@ export const AcceptDeclineLead = async (id: string, status: LeadStatus) => {
 
   return response.data;
 };
+
+export interface CompleteLeadParams {
+  leadId: string;
+  price: number;
+}
+
+export const completeLead = async ({ leadId, price }: CompleteLeadParams) => {
+  const response = await instance.patch(`/api/leads/complete`, {
+    leadId,
+    price,
+  });
+
+  if (response.status !== 200) {
+    throw new Error(`Failed to complete lead with status: ${response.status}`);
+  }
+
+  return response.data;
+};

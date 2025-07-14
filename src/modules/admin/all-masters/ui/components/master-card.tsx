@@ -47,10 +47,18 @@ export function MasterCard({ master }: MasterCardProps) {
       <div className="py-4">
         <DottedSeparator />
       </div>
-      <CardContent>
+      <CardContent className="flex justify-between">
         <Button asChild variant="outline">
           <Link to="/get-masters/$id" params={{ id: master.id }}>
             View Details
+          </Link>
+        </Button>
+        <Button asChild variant="default">
+          <Link
+            to="/get-masters/leads/$leadsId"
+            params={{ leadsId: master.id }}
+          >
+            View Leads
           </Link>
         </Button>
       </CardContent>

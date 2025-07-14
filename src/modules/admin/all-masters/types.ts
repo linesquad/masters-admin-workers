@@ -1,3 +1,5 @@
+import type { Lead } from "@/modules/master/leads/types";
+
 export interface Master {
   id: string;
   fullName: string;
@@ -156,4 +158,12 @@ export interface SingleMaster {
   points: Points;
   questionsAndAnswers: QuestionsAndAnswers;
   summary: Summary;
+}
+
+export interface MasterLeadsResponse {
+  success: boolean;
+  data: {
+    data: Lead[];
+    pagination: Pagination;
+  };
 }

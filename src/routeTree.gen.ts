@@ -34,6 +34,7 @@ import { Route as AuthenticatedadminCreateJobsIdRouteImport } from './routes/_au
 import { Route as AuthenticatedadminBillingTriggerRouteImport } from './routes/_authenticated/(admin)/billing/trigger'
 import { Route as AuthenticatedadminBillingStatsRouteImport } from './routes/_authenticated/(admin)/billing/stats'
 import { Route as AuthenticatedadminBillingHistoryRouteImport } from './routes/_authenticated/(admin)/billing/history'
+import { Route as AuthenticatedadminGetMastersLeadsLeadsIdRouteImport } from './routes/_authenticated/(admin)/get-masters/leads/$leadsId'
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -169,6 +170,12 @@ const AuthenticatedadminBillingHistoryRoute =
     path: '/history',
     getParentRoute: () => AuthenticatedadminBillingRouteRoute,
   } as any)
+const AuthenticatedadminGetMastersLeadsLeadsIdRoute =
+  AuthenticatedadminGetMastersLeadsLeadsIdRouteImport.update({
+    id: '/(admin)/get-masters/leads/$leadsId',
+    path: '/get-masters/leads/$leadsId',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
@@ -194,6 +201,7 @@ export interface FileRoutesByFullPath {
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/billing/': typeof AuthenticatedadminBillingIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
+  '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof authLoginRoute
@@ -217,6 +225,7 @@ export interface FileRoutesByTo {
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/billing': typeof AuthenticatedadminBillingIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
+  '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -243,6 +252,7 @@ export interface FileRoutesById {
   '/_authenticated/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/_authenticated/(admin)/billing/': typeof AuthenticatedadminBillingIndexRoute
   '/_authenticated/master/leads/': typeof AuthenticatedMasterLeadsIndexRoute
+  '/_authenticated/(admin)/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -270,6 +280,7 @@ export interface FileRouteTypes {
     | '/master/leads/$id'
     | '/billing/'
     | '/master/leads'
+    | '/get-masters/leads/$leadsId'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/login'
@@ -293,6 +304,7 @@ export interface FileRouteTypes {
     | '/master/leads/$id'
     | '/billing'
     | '/master/leads'
+    | '/get-masters/leads/$leadsId'
   id:
     | '__root__'
     | '/_authenticated'
@@ -318,6 +330,7 @@ export interface FileRouteTypes {
     | '/_authenticated/master/leads/$id'
     | '/_authenticated/(admin)/billing/'
     | '/_authenticated/master/leads/'
+    | '/_authenticated/(admin)/get-masters/leads/$leadsId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -486,6 +499,13 @@ declare module '@tanstack/react-router' {
       path: '/master/leads'
       fullPath: '/master/leads'
       preLoaderRoute: typeof AuthenticatedMasterLeadsIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/get-masters/leads/$leadsId': {
+      id: '/_authenticated/(admin)/get-masters/leads/$leadsId'
+      path: '/get-masters/leads/$leadsId'
+      fullPath: '/get-masters/leads/$leadsId'
+      preLoaderRoute: typeof AuthenticatedadminGetMastersLeadsLeadsIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
   }
@@ -698,6 +718,15 @@ declare module './routes/_authenticated/master/leads/index' {
     FileRoutesByPath['/_authenticated/master/leads/']['fullPath']
   >
 }
+declare module './routes/_authenticated/(admin)/get-masters/leads/$leadsId' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/get-masters/leads/$leadsId',
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/leads/$leadsId']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/leads/$leadsId']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/leads/$leadsId']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/get-masters/leads/$leadsId']['fullPath']
+  >
+}
 
 interface AuthenticatedadminBillingRouteRouteChildren {
   AuthenticatedadminBillingHistoryRoute: typeof AuthenticatedadminBillingHistoryRoute
@@ -739,6 +768,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminGetMastersAllMastersRoute: typeof AuthenticatedadminGetMastersAllMastersRoute
   AuthenticatedMasterLeadsIdRoute: typeof AuthenticatedMasterLeadsIdRoute
   AuthenticatedMasterLeadsIndexRoute: typeof AuthenticatedMasterLeadsIndexRoute
+  AuthenticatedadminGetMastersLeadsLeadsIdRoute: typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
 
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
@@ -762,6 +792,8 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
     AuthenticatedadminGetMastersAllMastersRoute,
   AuthenticatedMasterLeadsIdRoute: AuthenticatedMasterLeadsIdRoute,
   AuthenticatedMasterLeadsIndexRoute: AuthenticatedMasterLeadsIndexRoute,
+  AuthenticatedadminGetMastersLeadsLeadsIdRoute:
+    AuthenticatedadminGetMastersLeadsLeadsIdRoute,
 }
 
 const AuthenticatedRouteWithChildren = AuthenticatedRoute._addFileChildren(

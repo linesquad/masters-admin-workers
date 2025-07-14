@@ -25,6 +25,12 @@ export interface Lead {
   client: Client;
   jobTitle: Translation;
   categoryName: Translation;
+  masterInfo: {
+    masterId: string;
+    masterName: string;
+    imageUrl: string;
+    city: string;
+  };
 }
 
 interface Pagination {

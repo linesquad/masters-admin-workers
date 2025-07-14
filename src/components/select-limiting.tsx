@@ -27,7 +27,7 @@ export function SelectLimiting({ limit, setLimit }: SelectLimitingProps) {
           <SelectLabel>Limit</SelectLabel>
         </SelectGroup>
         <SelectItem
-          value="1"
+          value="5"
           className="text-sm hover:bg-gray-100 focus:bg-gray-100"
         >
           5

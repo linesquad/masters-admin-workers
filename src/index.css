@@ -3,7 +3,7 @@
 
 /* Custom sidebar styling for mobile */
 [data-mobile="true"] {
-  background: linear-gradient(to bottom, #2D5BE3, #1E40AF) !important;
+  background: linear-gradient(to bottom, #2d5be3, #1e40af) !important;
   color: white !important;
 }
 
@@ -24,3 +24,9 @@
   background-color: rgba(255, 255, 255, 0.1) !important;
 }
 
+@layer base {
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+}
