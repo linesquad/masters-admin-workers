@@ -5,6 +5,7 @@ import {
   MapPin,
   Settings,
   User,
+  UserPlus,
 } from "lucide-react";
 
 export const masterMainItems = [
@@ -37,6 +38,11 @@ export const masterMainItems = [
     title: "Unlocked Cities",
     url: "master/unlocked-cities",
     icon: CheckCircle,
+  },
+  {
+    title: "Leads",
+    url: "master/leads",
+    icon: UserPlus,
   },
 ];
 

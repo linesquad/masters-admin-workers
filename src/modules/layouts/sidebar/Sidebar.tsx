@@ -65,7 +65,11 @@ export function SideBar({ user }: { user: UserTypes }) {
                       asChild
                       className="text-white hover:bg-white/10 data-[active=true]:bg-white/20"
                     >
-                      <Link {...activeLinkProps} to={item.url}>
+                      <Link
+                        activeOptions={{ exact: true }}
+                        {...activeLinkProps}
+                        to={item.url}
+                      >
                         <item.icon />
                         <span>{item.title}</span>
                       </Link>
@@ -79,7 +83,11 @@ export function SideBar({ user }: { user: UserTypes }) {
                       asChild
                       className="text-white hover:bg-white/10 data-[active=true]:bg-white/20"
                     >
-                      <Link {...activeLinkProps} to={item.url}>
+                      <Link
+                        activeOptions={{ exact: true }}
+                        {...activeLinkProps}
+                        to={item.url}
+                      >
                         <item.icon />
                         <span>{item.title}</span>
                       </Link>
