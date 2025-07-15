@@ -20,7 +20,9 @@ export function SelectLimiting({ limit, setLimit }: SelectLimitingProps) {
       onValueChange={(value) => setLimit(Number(value))}
     >
       <SelectTrigger className="w-[100px] border-gray-300 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
-        <SelectValue placeholder="Select a limit" className="text-sm" />
+        <SelectValue placeholder="Select a limit" className="text-sm">
+          {limit}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent className="bg-white border border-gray-200 rounded-md shadow-lg">
         <SelectGroup>

@@ -6,6 +6,7 @@ import {
   Settings,
   User,
   UserPlus,
+  Bell,
 } from "lucide-react";
 
 export const masterMainItems = [
@@ -43,6 +44,11 @@ export const masterMainItems = [
     title: "Leads",
     url: "master/leads",
     icon: UserPlus,
+  },
+  {
+    title: "Notifications",
+    url: "master/notifications",
+    icon: Bell,
   },
 ];
 

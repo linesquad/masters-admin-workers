@@ -14,7 +14,6 @@ import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { ResponsiveModal } from "@/components/responsive-modal";
 import { CompleteLeadForm } from "./complete-lead-form";
-import { useUser } from "@/modules/auth/hooks/useUser";
 import { useAwardMasterPoints } from "@/modules/admin/all-masters/hooks/use-award-master";
 
 interface LeadsCardProps {
@@ -26,7 +25,6 @@ export function LeadsCard({ lead }: LeadsCardProps) {
   const { completeLeadMutate, isPending } = useCompleteLead();
   const { mutate: awardMasterPoints, isPending: isAwardingPointsPending } =
     useAwardMasterPoints();
-  const { data: user } = useUser();
   const [isOpen, setIsOpen] = useState(false);
   const [price, setPrice] = useState(0);
 
@@ -123,27 +121,21 @@ export function LeadsCard({ lead }: LeadsCardProps) {
             {isAwardingPointsPending ? "Awarding..." : "Award Points"}
           </Button>
         ) : (
-          <Button
-            asChild
-            variant={"outline"}
-            disabled={user?.role !== "master"}
-            className="cursor-not-allowed"
-          >
+          <Button asChild variant={"outline"} disabled={isPending}>
             <Link to="/master/leads/$id" params={{ id: lead.id }}>
               View Lead
             </Link>
           </Button>
         )}
-        <Button
-          onClick={() => setIsOpen(true)}
-          variant={"default"}
-          disabled={user?.role !== "master" || pathname.includes("get-masters")}
-          className={`cursor-not-allowed ${
-            pathname.includes("get-masters") ? "cursor-pointer" : ""
-          }`}
-        >
-          {isPending ? "Completing..." : "Complete Lead"}
-        </Button>
+        {!pathname.includes("get-masters") && (
+          <Button
+            onClick={() => setIsOpen(true)}
+            variant={"default"}
+            disabled={isPending}
+          >
+            {isPending ? "Completing..." : "Complete Lead"}
+          </Button>
+        )}
       </CardContent>
     </Card>
   );

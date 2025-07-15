@@ -4,6 +4,7 @@ import {
   CreditCardIcon,
   Home,
   MapPin,
+  Star,
   User,
   Users,
 } from "lucide-react";
@@ -43,5 +44,10 @@ export const mainItems = [
     title: "Billing",
     url: "/billing",
     icon: CreditCardIcon,
+  },
+  {
+    title: "Reviews",
+    url: "reviews",
+    icon: Star,
   },
 ];

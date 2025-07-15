@@ -18,6 +18,7 @@ import { Route as AuthenticatedadminIndexRouteImport } from './routes/_authentic
 import { Route as AuthenticatedMasterUnlockedCitiesRouteImport } from './routes/_authenticated/master/unlocked-cities'
 import { Route as AuthenticatedMasterUnlockCityRouteImport } from './routes/_authenticated/master/unlock-city'
 import { Route as AuthenticatedMasterSettingsRouteImport } from './routes/_authenticated/master/settings'
+import { Route as AuthenticatedMasterNotificationsRouteImport } from './routes/_authenticated/master/notifications'
 import { Route as AuthenticatedMasterMasterProfileRouteImport } from './routes/_authenticated/master/master-profile'
 import { Route as AuthenticatedMasterJobAssignmentRouteImport } from './routes/_authenticated/master/job-assignment'
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
@@ -25,6 +26,7 @@ import { Route as AuthenticatedadminCreateCityRouteImport } from './routes/_auth
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
 import { Route as AuthenticatedadminBillingRouteRouteImport } from './routes/_authenticated/(admin)/billing/route'
 import { Route as AuthenticatedMasterLeadsIndexRouteImport } from './routes/_authenticated/master/leads/index'
+import { Route as AuthenticatedadminReviewsIndexRouteImport } from './routes/_authenticated/(admin)/reviews/index'
 import { Route as AuthenticatedadminBillingIndexRouteImport } from './routes/_authenticated/(admin)/billing/index'
 import { Route as AuthenticatedMasterLeadsIdRouteImport } from './routes/_authenticated/master/leads/$id'
 import { Route as AuthenticatedadminGetMastersAllMastersRouteImport } from './routes/_authenticated/(admin)/get-masters/all-masters'
@@ -74,6 +76,12 @@ const AuthenticatedMasterSettingsRoute =
     path: '/master/settings',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedMasterNotificationsRoute =
+  AuthenticatedMasterNotificationsRouteImport.update({
+    id: '/master/notifications',
+    path: '/master/notifications',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedMasterMasterProfileRoute =
   AuthenticatedMasterMasterProfileRouteImport.update({
     id: '/master/master-profile',
@@ -114,6 +122,12 @@ const AuthenticatedMasterLeadsIndexRoute =
   AuthenticatedMasterLeadsIndexRouteImport.update({
     id: '/master/leads/',
     path: '/master/leads/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedadminReviewsIndexRoute =
+  AuthenticatedadminReviewsIndexRouteImport.update({
+    id: '/(admin)/reviews/',
+    path: '/reviews/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedadminBillingIndexRoute =
@@ -186,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master/job-assignment': typeof AuthenticatedMasterJobAssignmentRoute
   '/master/master-profile': typeof AuthenticatedMasterMasterProfileRoute
+  '/master/notifications': typeof AuthenticatedMasterNotificationsRoute
   '/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
@@ -200,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/billing/': typeof AuthenticatedadminBillingIndexRoute
+  '/reviews': typeof AuthenticatedadminReviewsIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
   '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
@@ -210,6 +226,7 @@ export interface FileRoutesByTo {
   '/register': typeof AuthenticatedadminRegisterRoute
   '/master/job-assignment': typeof AuthenticatedMasterJobAssignmentRoute
   '/master/master-profile': typeof AuthenticatedMasterMasterProfileRoute
+  '/master/notifications': typeof AuthenticatedMasterNotificationsRoute
   '/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
@@ -224,6 +241,7 @@ export interface FileRoutesByTo {
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/billing': typeof AuthenticatedadminBillingIndexRoute
+  '/reviews': typeof AuthenticatedadminReviewsIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
   '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
@@ -237,6 +255,7 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
   '/_authenticated/master/job-assignment': typeof AuthenticatedMasterJobAssignmentRoute
   '/_authenticated/master/master-profile': typeof AuthenticatedMasterMasterProfileRoute
+  '/_authenticated/master/notifications': typeof AuthenticatedMasterNotificationsRoute
   '/_authenticated/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/_authenticated/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/_authenticated/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
@@ -251,6 +270,7 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
   '/_authenticated/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/_authenticated/(admin)/billing/': typeof AuthenticatedadminBillingIndexRoute
+  '/_authenticated/(admin)/reviews/': typeof AuthenticatedadminReviewsIndexRoute
   '/_authenticated/master/leads/': typeof AuthenticatedMasterLeadsIndexRoute
   '/_authenticated/(admin)/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
@@ -265,6 +285,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/master/job-assignment'
     | '/master/master-profile'
+    | '/master/notifications'
     | '/master/settings'
     | '/master/unlock-city'
     | '/master/unlocked-cities'
@@ -279,6 +300,7 @@ export interface FileRouteTypes {
     | '/get-masters/all-masters'
     | '/master/leads/$id'
     | '/billing/'
+    | '/reviews'
     | '/master/leads'
     | '/get-masters/leads/$leadsId'
   fileRoutesByTo: FileRoutesByTo
@@ -289,6 +311,7 @@ export interface FileRouteTypes {
     | '/register'
     | '/master/job-assignment'
     | '/master/master-profile'
+    | '/master/notifications'
     | '/master/settings'
     | '/master/unlock-city'
     | '/master/unlocked-cities'
@@ -303,6 +326,7 @@ export interface FileRouteTypes {
     | '/get-masters/all-masters'
     | '/master/leads/$id'
     | '/billing'
+    | '/reviews'
     | '/master/leads'
     | '/get-masters/leads/$leadsId'
   id:
@@ -315,6 +339,7 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/register'
     | '/_authenticated/master/job-assignment'
     | '/_authenticated/master/master-profile'
+    | '/_authenticated/master/notifications'
     | '/_authenticated/master/settings'
     | '/_authenticated/master/unlock-city'
     | '/_authenticated/master/unlocked-cities'
@@ -329,6 +354,7 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/get-masters/all-masters'
     | '/_authenticated/master/leads/$id'
     | '/_authenticated/(admin)/billing/'
+    | '/_authenticated/(admin)/reviews/'
     | '/_authenticated/master/leads/'
     | '/_authenticated/(admin)/get-masters/leads/$leadsId'
   fileRoutesById: FileRoutesById
@@ -394,6 +420,13 @@ declare module '@tanstack/react-router' {
       path: '/master/master-profile'
       fullPath: '/master/master-profile'
       preLoaderRoute: typeof AuthenticatedMasterMasterProfileRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/master/notifications': {
+      id: '/_authenticated/master/notifications'
+      path: '/master/notifications'
+      fullPath: '/master/notifications'
+      preLoaderRoute: typeof AuthenticatedMasterNotificationsRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/master/settings': {
@@ -494,6 +527,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminBillingIndexRouteImport
       parentRoute: typeof AuthenticatedadminBillingRouteRoute
     }
+    '/_authenticated/(admin)/reviews/': {
+      id: '/_authenticated/(admin)/reviews/'
+      path: '/reviews'
+      fullPath: '/reviews'
+      preLoaderRoute: typeof AuthenticatedadminReviewsIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/master/leads/': {
       id: '/_authenticated/master/leads/'
       path: '/master/leads'
@@ -581,6 +621,15 @@ declare module './routes/_authenticated/master/master-profile' {
     FileRoutesByPath['/_authenticated/master/master-profile']['id'],
     FileRoutesByPath['/_authenticated/master/master-profile']['path'],
     FileRoutesByPath['/_authenticated/master/master-profile']['fullPath']
+  >
+}
+declare module './routes/_authenticated/master/notifications' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/master/notifications',
+    FileRoutesByPath['/_authenticated/master/notifications']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/notifications']['id'],
+    FileRoutesByPath['/_authenticated/master/notifications']['path'],
+    FileRoutesByPath['/_authenticated/master/notifications']['fullPath']
   >
 }
 declare module './routes/_authenticated/master/settings' {
@@ -709,6 +758,15 @@ declare module './routes/_authenticated/(admin)/billing/index' {
     FileRoutesByPath['/_authenticated/(admin)/billing/']['fullPath']
   >
 }
+declare module './routes/_authenticated/(admin)/reviews/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/(admin)/reviews/',
+    FileRoutesByPath['/_authenticated/(admin)/reviews/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/(admin)/reviews/']['id'],
+    FileRoutesByPath['/_authenticated/(admin)/reviews/']['path'],
+    FileRoutesByPath['/_authenticated/(admin)/reviews/']['fullPath']
+  >
+}
 declare module './routes/_authenticated/master/leads/index' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/master/leads/',
@@ -757,6 +815,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
   AuthenticatedMasterJobAssignmentRoute: typeof AuthenticatedMasterJobAssignmentRoute
   AuthenticatedMasterMasterProfileRoute: typeof AuthenticatedMasterMasterProfileRoute
+  AuthenticatedMasterNotificationsRoute: typeof AuthenticatedMasterNotificationsRoute
   AuthenticatedMasterSettingsRoute: typeof AuthenticatedMasterSettingsRoute
   AuthenticatedMasterUnlockCityRoute: typeof AuthenticatedMasterUnlockCityRoute
   AuthenticatedMasterUnlockedCitiesRoute: typeof AuthenticatedMasterUnlockedCitiesRoute
@@ -767,6 +826,7 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminGetMastersIdRoute: typeof AuthenticatedadminGetMastersIdRoute
   AuthenticatedadminGetMastersAllMastersRoute: typeof AuthenticatedadminGetMastersAllMastersRoute
   AuthenticatedMasterLeadsIdRoute: typeof AuthenticatedMasterLeadsIdRoute
+  AuthenticatedadminReviewsIndexRoute: typeof AuthenticatedadminReviewsIndexRoute
   AuthenticatedMasterLeadsIndexRoute: typeof AuthenticatedMasterLeadsIndexRoute
   AuthenticatedadminGetMastersLeadsLeadsIdRoute: typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
@@ -779,6 +839,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,
   AuthenticatedMasterJobAssignmentRoute: AuthenticatedMasterJobAssignmentRoute,
   AuthenticatedMasterMasterProfileRoute: AuthenticatedMasterMasterProfileRoute,
+  AuthenticatedMasterNotificationsRoute: AuthenticatedMasterNotificationsRoute,
   AuthenticatedMasterSettingsRoute: AuthenticatedMasterSettingsRoute,
   AuthenticatedMasterUnlockCityRoute: AuthenticatedMasterUnlockCityRoute,
   AuthenticatedMasterUnlockedCitiesRoute:
@@ -791,6 +852,7 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminGetMastersAllMastersRoute:
     AuthenticatedadminGetMastersAllMastersRoute,
   AuthenticatedMasterLeadsIdRoute: AuthenticatedMasterLeadsIdRoute,
+  AuthenticatedadminReviewsIndexRoute: AuthenticatedadminReviewsIndexRoute,
   AuthenticatedMasterLeadsIndexRoute: AuthenticatedMasterLeadsIndexRoute,
   AuthenticatedadminGetMastersLeadsLeadsIdRoute:
     AuthenticatedadminGetMastersLeadsLeadsIdRoute,
