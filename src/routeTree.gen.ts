@@ -8,6 +8,7 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
+import { createFileRoute } from '@tanstack/react-router'
 import type { CreateFileRoute, FileRoutesByPath } from '@tanstack/react-router'
 
 import { Route as rootRouteImport } from './routes/__root'
@@ -24,7 +25,9 @@ import { Route as AuthenticatedMasterJobAssignmentRouteImport } from './routes/_
 import { Route as AuthenticatedadminRegisterRouteImport } from './routes/_authenticated/(admin)/register'
 import { Route as AuthenticatedadminCreateCityRouteImport } from './routes/_authenticated/(admin)/create-city'
 import { Route as AuthenticatedadminCreateCategoryRouteImport } from './routes/_authenticated/(admin)/create-category'
+import { Route as AuthenticatedMasterReviewsRouteRouteImport } from './routes/_authenticated/master/reviews/route'
 import { Route as AuthenticatedadminBillingRouteRouteImport } from './routes/_authenticated/(admin)/billing/route'
+import { Route as AuthenticatedMasterReviewsIndexRouteImport } from './routes/_authenticated/master/reviews/index'
 import { Route as AuthenticatedMasterLeadsIndexRouteImport } from './routes/_authenticated/master/leads/index'
 import { Route as AuthenticatedadminReviewsIndexRouteImport } from './routes/_authenticated/(admin)/reviews/index'
 import { Route as AuthenticatedadminBillingIndexRouteImport } from './routes/_authenticated/(admin)/billing/index'
@@ -37,6 +40,10 @@ import { Route as AuthenticatedadminBillingTriggerRouteImport } from './routes/_
 import { Route as AuthenticatedadminBillingStatsRouteImport } from './routes/_authenticated/(admin)/billing/stats'
 import { Route as AuthenticatedadminBillingHistoryRouteImport } from './routes/_authenticated/(admin)/billing/history'
 import { Route as AuthenticatedadminGetMastersLeadsLeadsIdRouteImport } from './routes/_authenticated/(admin)/get-masters/leads/$leadsId'
+
+const AuthenticatedMasterReviewsStatsLazyRouteImport = createFileRoute(
+  '/_authenticated/master/reviews/stats',
+)()
 
 const AuthenticatedRoute = AuthenticatedRouteImport.update({
   id: '/_authenticated',
@@ -112,11 +119,23 @@ const AuthenticatedadminCreateCategoryRoute =
     path: '/create-category',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedMasterReviewsRouteRoute =
+  AuthenticatedMasterReviewsRouteRouteImport.update({
+    id: '/master/reviews',
+    path: '/master/reviews',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedadminBillingRouteRoute =
   AuthenticatedadminBillingRouteRouteImport.update({
     id: '/(admin)/billing',
     path: '/billing',
     getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedMasterReviewsIndexRoute =
+  AuthenticatedMasterReviewsIndexRouteImport.update({
+    id: '/',
+    path: '/',
+    getParentRoute: () => AuthenticatedMasterReviewsRouteRoute,
   } as any)
 const AuthenticatedMasterLeadsIndexRoute =
   AuthenticatedMasterLeadsIndexRouteImport.update({
@@ -136,6 +155,16 @@ const AuthenticatedadminBillingIndexRoute =
     path: '/',
     getParentRoute: () => AuthenticatedadminBillingRouteRoute,
   } as any)
+const AuthenticatedMasterReviewsStatsLazyRoute =
+  AuthenticatedMasterReviewsStatsLazyRouteImport.update({
+    id: '/stats',
+    path: '/stats',
+    getParentRoute: () => AuthenticatedMasterReviewsRouteRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/master/reviews/stats.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 const AuthenticatedMasterLeadsIdRoute =
   AuthenticatedMasterLeadsIdRouteImport.update({
     id: '/master/leads/$id',
@@ -195,6 +224,7 @@ export interface FileRoutesByFullPath {
   '': typeof AuthenticatedRouteWithChildren
   '/login': typeof authLoginRoute
   '/billing': typeof AuthenticatedadminBillingRouteRouteWithChildren
+  '/master/reviews': typeof AuthenticatedMasterReviewsRouteRouteWithChildren
   '/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/create-city': typeof AuthenticatedadminCreateCityRoute
   '/register': typeof AuthenticatedadminRegisterRoute
@@ -214,9 +244,11 @@ export interface FileRoutesByFullPath {
   '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
+  '/master/reviews/stats': typeof AuthenticatedMasterReviewsStatsLazyRoute
   '/billing/': typeof AuthenticatedadminBillingIndexRoute
   '/reviews': typeof AuthenticatedadminReviewsIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
+  '/master/reviews/': typeof AuthenticatedMasterReviewsIndexRoute
   '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
 export interface FileRoutesByTo {
@@ -240,9 +272,11 @@ export interface FileRoutesByTo {
   '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
+  '/master/reviews/stats': typeof AuthenticatedMasterReviewsStatsLazyRoute
   '/billing': typeof AuthenticatedadminBillingIndexRoute
   '/reviews': typeof AuthenticatedadminReviewsIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
+  '/master/reviews': typeof AuthenticatedMasterReviewsIndexRoute
   '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
 export interface FileRoutesById {
@@ -250,6 +284,7 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteWithChildren
   '/(auth)/login': typeof authLoginRoute
   '/_authenticated/(admin)/billing': typeof AuthenticatedadminBillingRouteRouteWithChildren
+  '/_authenticated/master/reviews': typeof AuthenticatedMasterReviewsRouteRouteWithChildren
   '/_authenticated/(admin)/create-category': typeof AuthenticatedadminCreateCategoryRoute
   '/_authenticated/(admin)/create-city': typeof AuthenticatedadminCreateCityRoute
   '/_authenticated/(admin)/register': typeof AuthenticatedadminRegisterRoute
@@ -269,9 +304,11 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/_authenticated/(admin)/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
   '/_authenticated/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
+  '/_authenticated/master/reviews/stats': typeof AuthenticatedMasterReviewsStatsLazyRoute
   '/_authenticated/(admin)/billing/': typeof AuthenticatedadminBillingIndexRoute
   '/_authenticated/(admin)/reviews/': typeof AuthenticatedadminReviewsIndexRoute
   '/_authenticated/master/leads/': typeof AuthenticatedMasterLeadsIndexRoute
+  '/_authenticated/master/reviews/': typeof AuthenticatedMasterReviewsIndexRoute
   '/_authenticated/(admin)/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
 export interface FileRouteTypes {
@@ -280,6 +317,7 @@ export interface FileRouteTypes {
     | ''
     | '/login'
     | '/billing'
+    | '/master/reviews'
     | '/create-category'
     | '/create-city'
     | '/register'
@@ -299,9 +337,11 @@ export interface FileRouteTypes {
     | '/get-masters/$id'
     | '/get-masters/all-masters'
     | '/master/leads/$id'
+    | '/master/reviews/stats'
     | '/billing/'
     | '/reviews'
     | '/master/leads'
+    | '/master/reviews/'
     | '/get-masters/leads/$leadsId'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -325,15 +365,18 @@ export interface FileRouteTypes {
     | '/get-masters/$id'
     | '/get-masters/all-masters'
     | '/master/leads/$id'
+    | '/master/reviews/stats'
     | '/billing'
     | '/reviews'
     | '/master/leads'
+    | '/master/reviews'
     | '/get-masters/leads/$leadsId'
   id:
     | '__root__'
     | '/_authenticated'
     | '/(auth)/login'
     | '/_authenticated/(admin)/billing'
+    | '/_authenticated/master/reviews'
     | '/_authenticated/(admin)/create-category'
     | '/_authenticated/(admin)/create-city'
     | '/_authenticated/(admin)/register'
@@ -353,9 +396,11 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/get-masters/$id'
     | '/_authenticated/(admin)/get-masters/all-masters'
     | '/_authenticated/master/leads/$id'
+    | '/_authenticated/master/reviews/stats'
     | '/_authenticated/(admin)/billing/'
     | '/_authenticated/(admin)/reviews/'
     | '/_authenticated/master/leads/'
+    | '/_authenticated/master/reviews/'
     | '/_authenticated/(admin)/get-masters/leads/$leadsId'
   fileRoutesById: FileRoutesById
 }
@@ -385,6 +430,13 @@ declare module '@tanstack/react-router' {
       path: '/billing'
       fullPath: '/billing'
       preLoaderRoute: typeof AuthenticatedadminBillingRouteRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/master/reviews': {
+      id: '/_authenticated/master/reviews'
+      path: '/master/reviews'
+      fullPath: '/master/reviews'
+      preLoaderRoute: typeof AuthenticatedMasterReviewsRouteRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/create-category': {
@@ -520,6 +572,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMasterLeadsIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/master/reviews/stats': {
+      id: '/_authenticated/master/reviews/stats'
+      path: '/stats'
+      fullPath: '/master/reviews/stats'
+      preLoaderRoute: typeof AuthenticatedMasterReviewsStatsLazyRouteImport
+      parentRoute: typeof AuthenticatedMasterReviewsRouteRoute
+    }
     '/_authenticated/(admin)/billing/': {
       id: '/_authenticated/(admin)/billing/'
       path: '/'
@@ -541,12 +600,26 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedMasterLeadsIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/master/reviews/': {
+      id: '/_authenticated/master/reviews/'
+      path: '/'
+      fullPath: '/master/reviews/'
+      preLoaderRoute: typeof AuthenticatedMasterReviewsIndexRouteImport
+      parentRoute: typeof AuthenticatedMasterReviewsRouteRoute
+    }
     '/_authenticated/(admin)/get-masters/leads/$leadsId': {
       id: '/_authenticated/(admin)/get-masters/leads/$leadsId'
       path: '/get-masters/leads/$leadsId'
       fullPath: '/get-masters/leads/$leadsId'
       preLoaderRoute: typeof AuthenticatedadminGetMastersLeadsLeadsIdRouteImport
       parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/master/reviews/stats': {
+      id: '/_authenticated/master/reviews/stats'
+      path: '/stats'
+      fullPath: '/master/reviews/stats'
+      preLoaderRoute: typeof AuthenticatedMasterReviewsStatsLazyRouteImport
+      parentRoute: typeof AuthenticatedMasterReviewsRouteRoute
     }
   }
 }
@@ -576,6 +649,15 @@ declare module './routes/_authenticated/(admin)/billing/route' {
     FileRoutesByPath['/_authenticated/(admin)/billing']['id'],
     FileRoutesByPath['/_authenticated/(admin)/billing']['path'],
     FileRoutesByPath['/_authenticated/(admin)/billing']['fullPath']
+  >
+}
+declare module './routes/_authenticated/master/reviews/route' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/master/reviews',
+    FileRoutesByPath['/_authenticated/master/reviews']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/reviews']['id'],
+    FileRoutesByPath['/_authenticated/master/reviews']['path'],
+    FileRoutesByPath['/_authenticated/master/reviews']['fullPath']
   >
 }
 declare module './routes/_authenticated/(admin)/create-category' {
@@ -749,6 +831,11 @@ declare module './routes/_authenticated/master/leads/$id' {
     FileRoutesByPath['/_authenticated/master/leads/$id']['fullPath']
   >
 }
+declare module './routes/_authenticated/master/reviews/stats.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/_authenticated/master/reviews/stats']['preLoaderRoute']
+  >
+}
 declare module './routes/_authenticated/(admin)/billing/index' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/(admin)/billing/',
@@ -774,6 +861,15 @@ declare module './routes/_authenticated/master/leads/index' {
     FileRoutesByPath['/_authenticated/master/leads/']['id'],
     FileRoutesByPath['/_authenticated/master/leads/']['path'],
     FileRoutesByPath['/_authenticated/master/leads/']['fullPath']
+  >
+}
+declare module './routes/_authenticated/master/reviews/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/master/reviews/',
+    FileRoutesByPath['/_authenticated/master/reviews/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/reviews/']['id'],
+    FileRoutesByPath['/_authenticated/master/reviews/']['path'],
+    FileRoutesByPath['/_authenticated/master/reviews/']['fullPath']
   >
 }
 declare module './routes/_authenticated/(admin)/get-masters/leads/$leadsId' {
@@ -808,8 +904,26 @@ const AuthenticatedadminBillingRouteRouteWithChildren =
     AuthenticatedadminBillingRouteRouteChildren,
   )
 
+interface AuthenticatedMasterReviewsRouteRouteChildren {
+  AuthenticatedMasterReviewsStatsLazyRoute: typeof AuthenticatedMasterReviewsStatsLazyRoute
+  AuthenticatedMasterReviewsIndexRoute: typeof AuthenticatedMasterReviewsIndexRoute
+}
+
+const AuthenticatedMasterReviewsRouteRouteChildren: AuthenticatedMasterReviewsRouteRouteChildren =
+  {
+    AuthenticatedMasterReviewsStatsLazyRoute:
+      AuthenticatedMasterReviewsStatsLazyRoute,
+    AuthenticatedMasterReviewsIndexRoute: AuthenticatedMasterReviewsIndexRoute,
+  }
+
+const AuthenticatedMasterReviewsRouteRouteWithChildren =
+  AuthenticatedMasterReviewsRouteRoute._addFileChildren(
+    AuthenticatedMasterReviewsRouteRouteChildren,
+  )
+
 interface AuthenticatedRouteChildren {
   AuthenticatedadminBillingRouteRoute: typeof AuthenticatedadminBillingRouteRouteWithChildren
+  AuthenticatedMasterReviewsRouteRoute: typeof AuthenticatedMasterReviewsRouteRouteWithChildren
   AuthenticatedadminCreateCategoryRoute: typeof AuthenticatedadminCreateCategoryRoute
   AuthenticatedadminCreateCityRoute: typeof AuthenticatedadminCreateCityRoute
   AuthenticatedadminRegisterRoute: typeof AuthenticatedadminRegisterRoute
@@ -834,6 +948,8 @@ interface AuthenticatedRouteChildren {
 const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminBillingRouteRoute:
     AuthenticatedadminBillingRouteRouteWithChildren,
+  AuthenticatedMasterReviewsRouteRoute:
+    AuthenticatedMasterReviewsRouteRouteWithChildren,
   AuthenticatedadminCreateCategoryRoute: AuthenticatedadminCreateCategoryRoute,
   AuthenticatedadminCreateCityRoute: AuthenticatedadminCreateCityRoute,
   AuthenticatedadminRegisterRoute: AuthenticatedadminRegisterRoute,

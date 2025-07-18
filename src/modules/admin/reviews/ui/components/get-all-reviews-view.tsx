@@ -23,7 +23,6 @@ export const GetAllReviewsView = () => {
   if (isLoading) return <div>Loading...</div>;
   if (isError) return <div>Error: {error?.message}</div>;
   if (!data) return <div>No data</div>;
-  console.log(data);
 
   if (data.data.length === 0) return <div>No reviews found</div>;
 

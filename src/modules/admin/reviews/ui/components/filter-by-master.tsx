@@ -10,7 +10,6 @@ export const FilterByMaster = () => {
   const { data: masters, isLoading } = useGetAllMasters(page, 10);
   if (isLoading) return <div>Loading...</div>;
   if (!masters) return null;
-  console.log(masters);
 
   return (
     <div className="flex items-center gap-2">

@@ -7,6 +7,8 @@ import {
   User,
   UserPlus,
   Bell,
+  Star,
+  BarChart,
 } from "lucide-react";
 
 export const masterMainItems = [
@@ -50,6 +52,11 @@ export const masterMainItems = [
     url: "master/notifications",
     icon: Bell,
   },
+  {
+    title: "Reviews",
+    url: "master/reviews",
+    icon: Star,
+  },
 ];
 
 export const availabilityOptions = [
@@ -72,5 +79,18 @@ export const availabilityOptions = [
     value: "on_holiday",
     label: "On Holiday",
     description: "Currently unavailable, on vacation",
+  },
+];
+
+export const masterReviewsItems = [
+  {
+    title: "Reviews",
+    url: "/master/reviews",
+    icon: Star,
+  },
+  {
+    title: "Review Stats",
+    url: "/master/reviews/stats",
+    icon: BarChart,
   },
 ];

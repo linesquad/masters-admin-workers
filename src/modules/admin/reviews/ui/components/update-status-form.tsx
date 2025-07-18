@@ -33,6 +33,7 @@ export const UpdateStatusForm = ({
   isPending,
   reviewId,
 }: UpdateStatusFormProps) => {
+  console.log(reviewId);
   const form = useForm<z.infer<typeof adminUpdateStatusSchema>>({
     resolver: zodResolver(adminUpdateStatusSchema),
     defaultValues: {

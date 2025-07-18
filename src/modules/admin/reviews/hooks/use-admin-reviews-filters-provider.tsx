@@ -9,7 +9,7 @@ export const AdminReviewsFilterProvider = ({
   children,
 }: AdminReviewsFilterProviderProps) => {
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(1);
+  const [limit, setLimit] = useState(5);
   const [status, setStatus] = useState<string>();
   const [masterId, setMasterId] = useState<string>();
   const [clientId, setClientId] = useState<string>();
