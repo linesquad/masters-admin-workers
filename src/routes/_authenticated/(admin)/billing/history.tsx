@@ -1,7 +1,13 @@
+import { BillingStatsView } from "@/modules/admin/billing/ui/views/billing-stats-view";
+
 export const Route = createFileRoute({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/_authenticated/(admin)/billing/history"!</div>
+  return (
+    <div>
+      <BillingStatsView />
+    </div>
+  );
 }

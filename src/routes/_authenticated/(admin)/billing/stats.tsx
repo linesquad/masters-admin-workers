@@ -1,7 +1,9 @@
+import { BillingSummaryView } from "@/modules/admin/billing/ui/views/billing-summary-view";
+
 export const Route = createFileRoute({
   component: RouteComponent,
-})
+});
 
 function RouteComponent() {
-  return <div>Hello "/_authenticated/(admin)/billing/stats"!</div>
+  return <BillingSummaryView />;
 }

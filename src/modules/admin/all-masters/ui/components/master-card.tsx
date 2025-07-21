@@ -31,16 +31,20 @@ export function MasterCard({ master }: MasterCardProps) {
         </div>
         <div className="bg-blue-100 p-3 rounded-lg">
           <p className="text-sm text-blue-600">Total Score</p>
-          <p className="text-blue-800 font-medium">{master.totalScore}</p>
+          <p className="text-blue-800 font-medium">
+            {Number(master.totalScore).toFixed(2) || "-"}
+          </p>
         </div>
         <div className="bg-blue-100 p-3 rounded-lg">
           <p className="text-sm text-blue-600">Avg Price</p>
-          <p className="text-blue-800 font-medium">{master.avgPrice || "-"}</p>
+          <p className="text-blue-800 font-medium">
+            {Number(master.avgPrice).toFixed(2) || "-"}
+          </p>
         </div>
         <div className="bg-blue-100 p-3 rounded-lg">
           <p className="text-sm text-blue-600">Avg Quality</p>
           <p className="text-blue-800 font-medium">
-            {master.avgQuality || "-"}
+            {Number(master.avgQuality).toFixed(2) || "-"}
           </p>
         </div>
       </CardContent>
