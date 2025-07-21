@@ -56,13 +56,10 @@ export const reviewBilling = async ({
   status,
   adminNote,
 }: ReviewBillingProps) => {
-  const response = await instance.post(
-    `/api/billing/review/${billingId}/review`,
-    {
-      status,
-      adminNote,
-    }
-  );
+  const response = await instance.post(`/api/billing/${billingId}/review`, {
+    action: status,
+    adminNote,
+  });
 
   if (!response.data.success) {
     throw new Error(response.data.message);

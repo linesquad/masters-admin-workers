@@ -29,9 +29,11 @@ import { Route as AuthenticatedMasterReviewsRouteRouteImport } from './routes/_a
 import { Route as AuthenticatedadminBillingRouteRouteImport } from './routes/_authenticated/(admin)/billing/route'
 import { Route as AuthenticatedMasterReviewsIndexRouteImport } from './routes/_authenticated/master/reviews/index'
 import { Route as AuthenticatedMasterLeadsIndexRouteImport } from './routes/_authenticated/master/leads/index'
+import { Route as AuthenticatedMasterBillingIndexRouteImport } from './routes/_authenticated/master/billing/index'
 import { Route as AuthenticatedadminReviewsIndexRouteImport } from './routes/_authenticated/(admin)/reviews/index'
 import { Route as AuthenticatedadminBillingIndexRouteImport } from './routes/_authenticated/(admin)/billing/index'
 import { Route as AuthenticatedMasterLeadsIdRouteImport } from './routes/_authenticated/master/leads/$id'
+import { Route as AuthenticatedMasterBillingUploadProofRouteImport } from './routes/_authenticated/master/billing/upload-proof'
 import { Route as AuthenticatedadminGetMastersAllMastersRouteImport } from './routes/_authenticated/(admin)/get-masters/all-masters'
 import { Route as AuthenticatedadminGetMastersIdRouteImport } from './routes/_authenticated/(admin)/get-masters/$id'
 import { Route as AuthenticatedadminCreateJobsJobsRouteImport } from './routes/_authenticated/(admin)/create-jobs/jobs'
@@ -143,6 +145,12 @@ const AuthenticatedMasterLeadsIndexRoute =
     path: '/master/leads/',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
+const AuthenticatedMasterBillingIndexRoute =
+  AuthenticatedMasterBillingIndexRouteImport.update({
+    id: '/master/billing/',
+    path: '/master/billing/',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
 const AuthenticatedadminReviewsIndexRoute =
   AuthenticatedadminReviewsIndexRouteImport.update({
     id: '/(admin)/reviews/',
@@ -169,6 +177,12 @@ const AuthenticatedMasterLeadsIdRoute =
   AuthenticatedMasterLeadsIdRouteImport.update({
     id: '/master/leads/$id',
     path: '/master/leads/$id',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any)
+const AuthenticatedMasterBillingUploadProofRoute =
+  AuthenticatedMasterBillingUploadProofRouteImport.update({
+    id: '/master/billing/upload-proof',
+    path: '/master/billing/upload-proof',
     getParentRoute: () => AuthenticatedRoute,
   } as any)
 const AuthenticatedadminGetMastersAllMastersRoute =
@@ -243,10 +257,12 @@ export interface FileRoutesByFullPath {
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
   '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
+  '/master/billing/upload-proof': typeof AuthenticatedMasterBillingUploadProofRoute
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/master/reviews/stats': typeof AuthenticatedMasterReviewsStatsLazyRoute
   '/billing/': typeof AuthenticatedadminBillingIndexRoute
   '/reviews': typeof AuthenticatedadminReviewsIndexRoute
+  '/master/billing': typeof AuthenticatedMasterBillingIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
   '/master/reviews/': typeof AuthenticatedMasterReviewsIndexRoute
   '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
@@ -271,10 +287,12 @@ export interface FileRoutesByTo {
   '/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
   '/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
+  '/master/billing/upload-proof': typeof AuthenticatedMasterBillingUploadProofRoute
   '/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/master/reviews/stats': typeof AuthenticatedMasterReviewsStatsLazyRoute
   '/billing': typeof AuthenticatedadminBillingIndexRoute
   '/reviews': typeof AuthenticatedadminReviewsIndexRoute
+  '/master/billing': typeof AuthenticatedMasterBillingIndexRoute
   '/master/leads': typeof AuthenticatedMasterLeadsIndexRoute
   '/master/reviews': typeof AuthenticatedMasterReviewsIndexRoute
   '/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
@@ -303,10 +321,12 @@ export interface FileRoutesById {
   '/_authenticated/(admin)/create-jobs/jobs': typeof AuthenticatedadminCreateJobsJobsRoute
   '/_authenticated/(admin)/get-masters/$id': typeof AuthenticatedadminGetMastersIdRoute
   '/_authenticated/(admin)/get-masters/all-masters': typeof AuthenticatedadminGetMastersAllMastersRoute
+  '/_authenticated/master/billing/upload-proof': typeof AuthenticatedMasterBillingUploadProofRoute
   '/_authenticated/master/leads/$id': typeof AuthenticatedMasterLeadsIdRoute
   '/_authenticated/master/reviews/stats': typeof AuthenticatedMasterReviewsStatsLazyRoute
   '/_authenticated/(admin)/billing/': typeof AuthenticatedadminBillingIndexRoute
   '/_authenticated/(admin)/reviews/': typeof AuthenticatedadminReviewsIndexRoute
+  '/_authenticated/master/billing/': typeof AuthenticatedMasterBillingIndexRoute
   '/_authenticated/master/leads/': typeof AuthenticatedMasterLeadsIndexRoute
   '/_authenticated/master/reviews/': typeof AuthenticatedMasterReviewsIndexRoute
   '/_authenticated/(admin)/get-masters/leads/$leadsId': typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
@@ -336,10 +356,12 @@ export interface FileRouteTypes {
     | '/create-jobs/jobs'
     | '/get-masters/$id'
     | '/get-masters/all-masters'
+    | '/master/billing/upload-proof'
     | '/master/leads/$id'
     | '/master/reviews/stats'
     | '/billing/'
     | '/reviews'
+    | '/master/billing'
     | '/master/leads'
     | '/master/reviews/'
     | '/get-masters/leads/$leadsId'
@@ -364,10 +386,12 @@ export interface FileRouteTypes {
     | '/create-jobs/jobs'
     | '/get-masters/$id'
     | '/get-masters/all-masters'
+    | '/master/billing/upload-proof'
     | '/master/leads/$id'
     | '/master/reviews/stats'
     | '/billing'
     | '/reviews'
+    | '/master/billing'
     | '/master/leads'
     | '/master/reviews'
     | '/get-masters/leads/$leadsId'
@@ -395,10 +419,12 @@ export interface FileRouteTypes {
     | '/_authenticated/(admin)/create-jobs/jobs'
     | '/_authenticated/(admin)/get-masters/$id'
     | '/_authenticated/(admin)/get-masters/all-masters'
+    | '/_authenticated/master/billing/upload-proof'
     | '/_authenticated/master/leads/$id'
     | '/_authenticated/master/reviews/stats'
     | '/_authenticated/(admin)/billing/'
     | '/_authenticated/(admin)/reviews/'
+    | '/_authenticated/master/billing/'
     | '/_authenticated/master/leads/'
     | '/_authenticated/master/reviews/'
     | '/_authenticated/(admin)/get-masters/leads/$leadsId'
@@ -565,6 +591,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminGetMastersAllMastersRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/master/billing/upload-proof': {
+      id: '/_authenticated/master/billing/upload-proof'
+      path: '/master/billing/upload-proof'
+      fullPath: '/master/billing/upload-proof'
+      preLoaderRoute: typeof AuthenticatedMasterBillingUploadProofRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/master/leads/$id': {
       id: '/_authenticated/master/leads/$id'
       path: '/master/leads/$id'
@@ -591,6 +624,13 @@ declare module '@tanstack/react-router' {
       path: '/reviews'
       fullPath: '/reviews'
       preLoaderRoute: typeof AuthenticatedadminReviewsIndexRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/master/billing/': {
+      id: '/_authenticated/master/billing/'
+      path: '/master/billing'
+      fullPath: '/master/billing'
+      preLoaderRoute: typeof AuthenticatedMasterBillingIndexRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/master/leads/': {
@@ -822,6 +862,15 @@ declare module './routes/_authenticated/(admin)/get-masters/all-masters' {
     FileRoutesByPath['/_authenticated/(admin)/get-masters/all-masters']['fullPath']
   >
 }
+declare module './routes/_authenticated/master/billing/upload-proof' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/master/billing/upload-proof',
+    FileRoutesByPath['/_authenticated/master/billing/upload-proof']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/billing/upload-proof']['id'],
+    FileRoutesByPath['/_authenticated/master/billing/upload-proof']['path'],
+    FileRoutesByPath['/_authenticated/master/billing/upload-proof']['fullPath']
+  >
+}
 declare module './routes/_authenticated/master/leads/$id' {
   const createFileRoute: CreateFileRoute<
     '/_authenticated/master/leads/$id',
@@ -852,6 +901,15 @@ declare module './routes/_authenticated/(admin)/reviews/index' {
     FileRoutesByPath['/_authenticated/(admin)/reviews/']['id'],
     FileRoutesByPath['/_authenticated/(admin)/reviews/']['path'],
     FileRoutesByPath['/_authenticated/(admin)/reviews/']['fullPath']
+  >
+}
+declare module './routes/_authenticated/master/billing/index' {
+  const createFileRoute: CreateFileRoute<
+    '/_authenticated/master/billing/',
+    FileRoutesByPath['/_authenticated/master/billing/']['parentRoute'],
+    FileRoutesByPath['/_authenticated/master/billing/']['id'],
+    FileRoutesByPath['/_authenticated/master/billing/']['path'],
+    FileRoutesByPath['/_authenticated/master/billing/']['fullPath']
   >
 }
 declare module './routes/_authenticated/master/leads/index' {
@@ -939,8 +997,10 @@ interface AuthenticatedRouteChildren {
   AuthenticatedadminCreateJobsJobsRoute: typeof AuthenticatedadminCreateJobsJobsRoute
   AuthenticatedadminGetMastersIdRoute: typeof AuthenticatedadminGetMastersIdRoute
   AuthenticatedadminGetMastersAllMastersRoute: typeof AuthenticatedadminGetMastersAllMastersRoute
+  AuthenticatedMasterBillingUploadProofRoute: typeof AuthenticatedMasterBillingUploadProofRoute
   AuthenticatedMasterLeadsIdRoute: typeof AuthenticatedMasterLeadsIdRoute
   AuthenticatedadminReviewsIndexRoute: typeof AuthenticatedadminReviewsIndexRoute
+  AuthenticatedMasterBillingIndexRoute: typeof AuthenticatedMasterBillingIndexRoute
   AuthenticatedMasterLeadsIndexRoute: typeof AuthenticatedMasterLeadsIndexRoute
   AuthenticatedadminGetMastersLeadsLeadsIdRoute: typeof AuthenticatedadminGetMastersLeadsLeadsIdRoute
 }
@@ -967,8 +1027,11 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedadminGetMastersIdRoute: AuthenticatedadminGetMastersIdRoute,
   AuthenticatedadminGetMastersAllMastersRoute:
     AuthenticatedadminGetMastersAllMastersRoute,
+  AuthenticatedMasterBillingUploadProofRoute:
+    AuthenticatedMasterBillingUploadProofRoute,
   AuthenticatedMasterLeadsIdRoute: AuthenticatedMasterLeadsIdRoute,
   AuthenticatedadminReviewsIndexRoute: AuthenticatedadminReviewsIndexRoute,
+  AuthenticatedMasterBillingIndexRoute: AuthenticatedMasterBillingIndexRoute,
   AuthenticatedMasterLeadsIndexRoute: AuthenticatedMasterLeadsIndexRoute,
   AuthenticatedadminGetMastersLeadsLeadsIdRoute:
     AuthenticatedadminGetMastersLeadsLeadsIdRoute,

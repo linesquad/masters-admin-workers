@@ -11,11 +11,13 @@ interface BillingStatsCardProps {
 
 export const BillingStatsCard = ({ billing }: BillingStatsCardProps) => {
   const [open, setOpen] = useState(false);
+  const [openProof, setOpenProof] = useState(false);
   const { mutate, isPending } = useSendReminder();
   const close = () => setOpen(false);
   const sendReminder = () => {
     mutate(billing.id);
   };
+  console.log(billing);
   return (
     <div className="border rounded-lg p-6 shadow-sm bg-white">
       <ResponsiveModal open={open} onOpenChange={setOpen}>
@@ -75,6 +77,23 @@ export const BillingStatsCard = ({ billing }: BillingStatsCardProps) => {
           Send Reminder
         </Button>
       </div>
+
+      {billing.proofUrl && (
+        <div className="mt-4">
+          <ResponsiveModal open={openProof} onOpenChange={setOpenProof}>
+            <div className="flex items-center justify-center">
+              <img
+                src={billing.proofUrl}
+                alt="Proof"
+                className="w-full max-h-[80vh] object-contain"
+              />
+            </div>
+          </ResponsiveModal>
+          <Button className="mt-4" onClick={() => setOpenProof(true)}>
+            View Proof
+          </Button>
+        </div>
+      )}
     </div>
   );
 };

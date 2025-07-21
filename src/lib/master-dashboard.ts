@@ -9,6 +9,7 @@ import {
   Bell,
   Star,
   BarChart,
+  CreditCard,
 } from "lucide-react";
 
 export const masterMainItems = [
@@ -56,6 +57,11 @@ export const masterMainItems = [
     title: "Reviews",
     url: "master/reviews",
     icon: Star,
+  },
+  {
+    title: "Billing",
+    url: "master/billing",
+    icon: CreditCard,
   },
 ];
 
