@@ -4,6 +4,9 @@ import { Link } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { AcceptDeclineLead } from "./accept-decline-lead";
 import { useTranslation } from "react-i18next";
+import { EmptyState } from "@/components/empthy-state";
+import { LoadingState } from "@/components/loading-state";
+import { ErrorState } from "@/components/error-state";
 
 interface SingleLeadProps {
   id: string;
@@ -13,9 +16,30 @@ export function SingleLead({ id }: SingleLeadProps) {
   const { data, isLoading, isError, error } = useGetLeadByIdMaster(id);
   const { t } = useTranslation();
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error?.message}</div>;
-  if (!data) return <div>No lead found</div>;
+  if (isLoading)
+    return (
+      <LoadingState
+        title="Loading lead"
+        description="Please wait while we load the lead"
+        className="mt-12"
+      />
+    );
+  if (isError)
+    return (
+      <ErrorState
+        title="Error loading lead"
+        description={error?.message || "Please try again later"}
+        className="mt-12"
+      />
+    );
+  if (!data)
+    return (
+      <EmptyState
+        title="No lead found"
+        description="Please try again later"
+        className="mt-12"
+      />
+    );
 
   const { email, fullName, phone } = data.data.client;
 

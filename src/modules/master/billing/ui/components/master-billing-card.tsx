@@ -56,13 +56,13 @@ export const MasterBillingCard = ({ billing }: MasterBillingCardProps) => {
           <p className="text-sm text-gray-500">
             {t("billingMaster.billingCard.totalAmount")}
           </p>
-          <p className="font-medium">${billing.totalAmount}</p>
+          <p className="font-medium">{billing.totalAmount}₾</p>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg">
           <p className="text-sm text-gray-500">
             {t("billingMaster.billingCard.adminFee")}
           </p>
-          <p className="font-medium">${billing.adminFee}</p>
+          <p className="font-medium">{billing.adminFee}₾</p>
         </div>
       </div>
 
@@ -73,7 +73,7 @@ export const MasterBillingCard = ({ billing }: MasterBillingCardProps) => {
           {new Date(billing.weekEnd).toLocaleDateString()}
         </span>
         <span>
-          {t("billingMaster.billingCard.due")}:{" "}
+          {t("billingMaster.billingCard.duration")}:{" "}
           {new Date(billing.dueDate).toLocaleDateString()}
         </span>
       </div>
@@ -95,7 +95,7 @@ export const MasterBillingCard = ({ billing }: MasterBillingCardProps) => {
 
       <div className="flex justify-end mt-6">
         <Button onClick={() => setIsOpen(true)}>
-          {t("billingMaster.billingCard.uploadProof")}
+          {t("billingMaster.uploadProof.title")}
         </Button>
       </div>
     </div>

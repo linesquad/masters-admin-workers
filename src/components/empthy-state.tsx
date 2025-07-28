@@ -1,16 +1,20 @@
+import { cn } from "@/lib/utils";
+
 interface EmptyStateProps {
   title: string;
   description: string;
   image?: string;
+  className?: string;
 }
 
 export const EmptyState = ({
   title,
   description,
   image = "/linelogo.png",
+  className,
 }: EmptyStateProps) => {
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className={cn("flex flex-col items-center justify-center", className)}>
       <img
         src={image}
         alt="Empty State"

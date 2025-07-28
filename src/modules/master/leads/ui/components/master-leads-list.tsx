@@ -2,21 +2,48 @@ import { useGetLeadsList } from "@/modules/master/leads/hooks/use-get-leads-list
 import { LeadsCard } from "./leads-card";
 import { useMasterLeadsFilters } from "../../hooks/use-master-leads-filters";
 import PaginationComp from "@/components/PaginationComp";
+import { LoadingState } from "@/components/loading-state";
+import { ErrorState } from "@/components/error-state";
+import { EmptyState } from "@/components/empthy-state";
 
 export function MasterLeadsList() {
   const { page, limit, status, setPage } = useMasterLeadsFilters();
 
-  const { data, isLoading, isError, error } = useGetLeadsList({
+  const { data, isLoading, isError } = useGetLeadsList({
     page,
     limit,
     status,
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error?.message}</div>;
-  if (!data) return <div>No leads found</div>;
+  if (isLoading)
+    return (
+      <LoadingState
+        title="Loading leads"
+        description="Please wait while we load the leads"
+        className="mt-12"
+      />
+    );
+  if (isError)
+    return (
+      <ErrorState
+        title="Error loading leads"
+        description="Please try again later"
+        className="mt-12"
+      />
+    );
+  if (!data)
+    return (
+      <EmptyState
+        title="No leads found"
+        description="Please try again later"
+        className="mt-12"
+      />
+    );
 
-  if (data.data.leads.length === 0) return <div>No leads found</div>;
+  if (data.data.leads.length === 0)
+    return (
+      <EmptyState title="No leads found" description="Please try again later" />
+    );
 
   return (
     <div>
