@@ -1,13 +1,16 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { TrendingUp } from "lucide-react";
-import { DollarSign } from "lucide-react";
 import type { DashboardData } from "../../types/dashboard";
+import { useTranslation } from "react-i18next";
 
 interface AdminAddationalAnalyticsProps {
   data: DashboardData;
 }
 
-export function AdminAddationalAnalytics({ data }: AdminAddationalAnalyticsProps) {
+export function AdminAddationalAnalytics({
+  data,
+}: AdminAddationalAnalyticsProps) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
       {/* Registration Trends */}
@@ -15,7 +18,7 @@ export function AdminAddationalAnalytics({ data }: AdminAddationalAnalyticsProps
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <TrendingUp className="h-5 w-5" />
-            Registration Trends
+            {t("adminDashboard.registrationTrends")}
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -44,8 +47,7 @@ export function AdminAddationalAnalytics({ data }: AdminAddationalAnalyticsProps
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
-            <DollarSign className="h-5 w-5" />
-            Revenue Trends
+            ₾ {t("adminDashboard.revenueTrends")}
           </CardTitle>
         </CardHeader>
         <CardContent>

@@ -7,6 +7,7 @@ import type {
   Certificate,
   Work,
 } from "../../types";
+import { useTranslation } from "react-i18next";
 
 interface SingleMasterContentProps extends SingleMaster {
   works: Work[];
@@ -24,14 +25,21 @@ export function SingleMasterContent({
   memberSince,
   profileUpdatedAt,
 }: SingleMasterContentProps) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
       {[
-        { label: "Bio", value: bio },
-        { label: "City", value: city },
-        { label: "Availability", value: availability },
-        { label: "Member Since", value: memberSince },
-        { label: "Profile Updated At", value: profileUpdatedAt },
+        { label: t("allMasters.singleMaster.bio"), value: bio },
+        { label: t("allMasters.singleMaster.city"), value: city },
+        {
+          label: t("allMasters.singleMaster.availability"),
+          value: availability,
+        },
+        { label: t("allMasters.singleMaster.memberSince"), value: memberSince },
+        {
+          label: t("allMasters.singleMaster.profileUpdatedAt"),
+          value: profileUpdatedAt,
+        },
       ].map((item) => (
         <div
           key={item.label}

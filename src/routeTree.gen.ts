@@ -43,6 +43,12 @@ import { Route as AuthenticatedadminBillingStatsRouteImport } from './routes/_au
 import { Route as AuthenticatedadminBillingHistoryRouteImport } from './routes/_authenticated/(admin)/billing/history'
 import { Route as AuthenticatedadminGetMastersLeadsLeadsIdRouteImport } from './routes/_authenticated/(admin)/get-masters/leads/$leadsId'
 
+const AuthenticatedadminReportsLazyRouteImport = createFileRoute(
+  '/_authenticated/(admin)/reports',
+)()
+const AuthenticatedadminMasterAppliesLazyRouteImport = createFileRoute(
+  '/_authenticated/(admin)/master-applies',
+)()
 const AuthenticatedMasterReviewsStatsLazyRouteImport = createFileRoute(
   '/_authenticated/master/reviews/stats',
 )()
@@ -67,6 +73,24 @@ const AuthenticatedadminIndexRoute = AuthenticatedadminIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedRoute,
 } as any)
+const AuthenticatedadminReportsLazyRoute =
+  AuthenticatedadminReportsLazyRouteImport.update({
+    id: '/(admin)/reports',
+    path: '/reports',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/(admin)/reports.lazy').then((d) => d.Route),
+  )
+const AuthenticatedadminMasterAppliesLazyRoute =
+  AuthenticatedadminMasterAppliesLazyRouteImport.update({
+    id: '/(admin)/master-applies',
+    path: '/master-applies',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/(admin)/master-applies.lazy').then(
+      (d) => d.Route,
+    ),
+  )
 const AuthenticatedMasterUnlockedCitiesRoute =
   AuthenticatedMasterUnlockedCitiesRouteImport.update({
     id: '/master/unlocked-cities',
@@ -248,6 +272,8 @@ export interface FileRoutesByFullPath {
   '/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
+  '/master-applies': typeof AuthenticatedadminMasterAppliesLazyRoute
+  '/reports': typeof AuthenticatedadminReportsLazyRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/master': typeof AuthenticatedMasterIndexRoute
   '/billing/history': typeof AuthenticatedadminBillingHistoryRoute
@@ -278,6 +304,8 @@ export interface FileRoutesByTo {
   '/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
+  '/master-applies': typeof AuthenticatedadminMasterAppliesLazyRoute
+  '/reports': typeof AuthenticatedadminReportsLazyRoute
   '/': typeof AuthenticatedadminIndexRoute
   '/master': typeof AuthenticatedMasterIndexRoute
   '/billing/history': typeof AuthenticatedadminBillingHistoryRoute
@@ -312,6 +340,8 @@ export interface FileRoutesById {
   '/_authenticated/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/_authenticated/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/_authenticated/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
+  '/_authenticated/(admin)/master-applies': typeof AuthenticatedadminMasterAppliesLazyRoute
+  '/_authenticated/(admin)/reports': typeof AuthenticatedadminReportsLazyRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
   '/_authenticated/master/': typeof AuthenticatedMasterIndexRoute
   '/_authenticated/(admin)/billing/history': typeof AuthenticatedadminBillingHistoryRoute
@@ -347,6 +377,8 @@ export interface FileRouteTypes {
     | '/master/settings'
     | '/master/unlock-city'
     | '/master/unlocked-cities'
+    | '/master-applies'
+    | '/reports'
     | '/'
     | '/master'
     | '/billing/history'
@@ -377,6 +409,8 @@ export interface FileRouteTypes {
     | '/master/settings'
     | '/master/unlock-city'
     | '/master/unlocked-cities'
+    | '/master-applies'
+    | '/reports'
     | '/'
     | '/master'
     | '/billing/history'
@@ -410,6 +444,8 @@ export interface FileRouteTypes {
     | '/_authenticated/master/settings'
     | '/_authenticated/master/unlock-city'
     | '/_authenticated/master/unlocked-cities'
+    | '/_authenticated/(admin)/master-applies'
+    | '/_authenticated/(admin)/reports'
     | '/_authenticated/(admin)/'
     | '/_authenticated/master/'
     | '/_authenticated/(admin)/billing/history'
@@ -526,6 +562,20 @@ declare module '@tanstack/react-router' {
       path: '/master/unlocked-cities'
       fullPath: '/master/unlocked-cities'
       preLoaderRoute: typeof AuthenticatedMasterUnlockedCitiesRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/master-applies': {
+      id: '/_authenticated/(admin)/master-applies'
+      path: '/master-applies'
+      fullPath: '/master-applies'
+      preLoaderRoute: typeof AuthenticatedadminMasterAppliesLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/reports': {
+      id: '/_authenticated/(admin)/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedadminReportsLazyRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/': {
@@ -654,6 +704,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminGetMastersLeadsLeadsIdRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/(admin)/reports': {
+      id: '/_authenticated/(admin)/reports'
+      path: '/reports'
+      fullPath: '/reports'
+      preLoaderRoute: typeof AuthenticatedadminReportsLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/master-applies': {
+      id: '/_authenticated/(admin)/master-applies'
+      path: '/master-applies'
+      fullPath: '/master-applies'
+      preLoaderRoute: typeof AuthenticatedadminMasterAppliesLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/master/reviews/stats': {
       id: '/_authenticated/master/reviews/stats'
       path: '/stats'
@@ -779,6 +843,16 @@ declare module './routes/_authenticated/master/unlocked-cities' {
     FileRoutesByPath['/_authenticated/master/unlocked-cities']['id'],
     FileRoutesByPath['/_authenticated/master/unlocked-cities']['path'],
     FileRoutesByPath['/_authenticated/master/unlocked-cities']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(admin)/master-applies.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/_authenticated/(admin)/master-applies']['preLoaderRoute']
+  >
+}
+declare module './routes/_authenticated/(admin)/reports.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/_authenticated/(admin)/reports']['preLoaderRoute']
   >
 }
 declare module './routes/_authenticated/(admin)/index' {
@@ -991,6 +1065,8 @@ interface AuthenticatedRouteChildren {
   AuthenticatedMasterSettingsRoute: typeof AuthenticatedMasterSettingsRoute
   AuthenticatedMasterUnlockCityRoute: typeof AuthenticatedMasterUnlockCityRoute
   AuthenticatedMasterUnlockedCitiesRoute: typeof AuthenticatedMasterUnlockedCitiesRoute
+  AuthenticatedadminMasterAppliesLazyRoute: typeof AuthenticatedadminMasterAppliesLazyRoute
+  AuthenticatedadminReportsLazyRoute: typeof AuthenticatedadminReportsLazyRoute
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
   AuthenticatedMasterIndexRoute: typeof AuthenticatedMasterIndexRoute
   AuthenticatedadminCreateJobsIdRoute: typeof AuthenticatedadminCreateJobsIdRoute
@@ -1020,6 +1096,9 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedMasterUnlockCityRoute: AuthenticatedMasterUnlockCityRoute,
   AuthenticatedMasterUnlockedCitiesRoute:
     AuthenticatedMasterUnlockedCitiesRoute,
+  AuthenticatedadminMasterAppliesLazyRoute:
+    AuthenticatedadminMasterAppliesLazyRoute,
+  AuthenticatedadminReportsLazyRoute: AuthenticatedadminReportsLazyRoute,
   AuthenticatedadminIndexRoute: AuthenticatedadminIndexRoute,
   AuthenticatedMasterIndexRoute: AuthenticatedMasterIndexRoute,
   AuthenticatedadminCreateJobsIdRoute: AuthenticatedadminCreateJobsIdRoute,

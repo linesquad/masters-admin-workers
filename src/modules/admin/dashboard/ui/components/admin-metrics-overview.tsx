@@ -4,12 +4,14 @@ import { DollarSign } from "lucide-react";
 import { Activity } from "lucide-react";
 import { Star } from "lucide-react";
 import type { DashboardData } from "../../types/dashboard";
+import { useTranslation } from "react-i18next";
 
 interface AdminMetricsOverviewProps {
   data: DashboardData;
 }
 
-export function AdminMetricsOverview({ data }: AdminMetricsOverviewProps  ) {
+export function AdminMetricsOverview({ data }: AdminMetricsOverviewProps) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-2 sm:gap-3 mb-6 sm:mb-8">
       <Card className="bg-gradient-to-r from-blue-500 to-blue-600 text-white">
@@ -17,7 +19,7 @@ export function AdminMetricsOverview({ data }: AdminMetricsOverviewProps  ) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-blue-100 text-xs sm:text-sm font-medium">
-                Total Users
+                {t("adminDashboard.statsCardsHeader.totalUsers")}
               </p>
               <p className="text-xl sm:text-2xl md:text-3xl font-bold">
                 {parseInt(data.overview.users.totalClients) +
@@ -25,8 +27,10 @@ export function AdminMetricsOverview({ data }: AdminMetricsOverviewProps  ) {
                   parseInt(data.overview.users.totalAdmins)}
               </p>
               <p className="text-blue-100 text-xs">
-                {data.overview.users.totalClients} clients •{" "}
-                {data.overview.users.totalMasters} masters
+                {data.overview.users.totalClients}{" "}
+                {t("adminDashboard.statsCardsHeader.clients")} •{" "}
+                {data.overview.users.totalMasters}{" "}
+                {t("adminDashboard.statsCardsHeader.masters")}
               </p>
             </div>
             <Users className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-blue-200" />
@@ -39,13 +43,14 @@ export function AdminMetricsOverview({ data }: AdminMetricsOverviewProps  ) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-green-100 text-xs sm:text-sm font-medium">
-                Total Revenue
+                {t("adminDashboard.statsCardsHeader.totalRevenue")}
               </p>
               <p className="text-xl sm:text-2xl md:text-3xl font-bold">
                 ${data.overview.leads.totalRevenue}
               </p>
               <p className="text-green-100 text-xs">
-                {data.overview.leads.completedLeads} completed jobs
+                {data.overview.leads.completedLeads}{" "}
+                {t("adminDashboard.statsCardsHeader.completedJobs")}
               </p>
             </div>
             <DollarSign className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-green-200" />
@@ -58,13 +63,14 @@ export function AdminMetricsOverview({ data }: AdminMetricsOverviewProps  ) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-purple-100 text-xs sm:text-sm font-medium">
-                Total Leads
+                {t("adminDashboard.statsCardsHeader.totalLeads")}
               </p>
               <p className="text-xl sm:text-2xl md:text-3xl font-bold">
                 {data.overview.leads.totalLeads}
               </p>
               <p className="text-purple-100 text-xs">
-                {data.overview.leads.conversionRate}% conversion rate
+                {data.overview.leads.conversionRate}%{" "}
+                {t("adminDashboard.statsCardsHeader.conversionRate")}
               </p>
             </div>
             <Activity className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-purple-200" />
@@ -77,13 +83,14 @@ export function AdminMetricsOverview({ data }: AdminMetricsOverviewProps  ) {
           <div className="flex items-center justify-between">
             <div>
               <p className="text-yellow-100 text-xs sm:text-sm font-medium">
-                Avg Rating
+                {t("adminDashboard.statsCardsHeader.avgRating")}
               </p>
               <p className="text-xl sm:text-2xl md:text-3xl font-bold">
                 {data.overview.reviews.normalizedRating}
               </p>
               <p className="text-yellow-100 text-xs">
-                {data.overview.reviews.totalReviews} total reviews
+                {data.overview.reviews.totalReviews}{" "}
+                {t("adminDashboard.statsCardsHeader.totalReviews")}
               </p>
             </div>
             <Star className="h-5 w-5 sm:h-6 sm:w-6 md:h-8 md:w-8 text-yellow-200" />

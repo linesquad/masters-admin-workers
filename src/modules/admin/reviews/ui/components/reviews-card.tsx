@@ -25,7 +25,7 @@ export const ReviewsCard = ({ review }: ReviewsCardProps) => {
   const { updateStatus, isPending } = useUpdateStatusByAdmin();
   const { open, setOpen } = useAdminReviews();
   return (
-    <Card className="mb-4">
+    <Card className="mb-4 w-full">
       <ResponsiveModal open={open} onOpenChange={setOpen}>
         <UpdateStatusForm
           onCancel={() => setOpen(false)}

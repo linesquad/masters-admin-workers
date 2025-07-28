@@ -101,7 +101,9 @@
       "contact": "Contact",
       "message": "Message",
       "viewLead": "View Lead",
-      "completeLead": "Complete Lead"
+      "completeLead": "Complete Lead",
+      "awarding": "Awarding...",
+      "awardPoints": "Award Points"
     },
     "singleLead": {
       "title": "Information about {{ leadName }} lead",
@@ -173,6 +175,294 @@
       "cancel": "Cancel",
       "upload": "Upload Prood",
       "uploading": "Uploading..."
+    }
+  },
+  "adminDashboard": {
+    "title": "Admin Dashboard",
+    "lastUpdated": "Last Updated",
+    "timeframe": "Timeframe",
+    "statsCardsHeader": {
+      "totalUsers": "Total Users",
+      "clients": "Clients",
+      "masters": "Masters",
+      "totalRevenue": "Total Revenue",
+      "completedJobs": "Completed Jobs",
+      "totalLeads": "Total Leads",
+      "conversionRate": "Conversion Rate",
+      "avgRating": "Avg. Rating",
+      "totalReviews": "Total Reviews"
+    },
+    "userAnalytics": {
+      "title": "User Analytics",
+      "activeMasters": "Active Masters",
+      "activeClients": "Active Clients",
+      "growthRates": "Growth Rates",
+      "clientGrowth": "Client Growth",
+      "masterGrowth": "Master Growth",
+      "masterActivation": "Master Activation",
+      "newClients": "New Clients",
+      "newMasters": "New Masters"
+    },
+    "financialOverview": {
+      "title": "Financial Overview",
+      "platformRevenue": "Platform Revenue",
+      "averageJobValue": "Average Job Value",
+      "adminFees": "Admin Fees",
+      "leadAnalytics": "Lead Analytics",
+      "averageLeadValue": "Average Lead Value",
+      "acceptanceRate": "Acceptance Rate",
+      "leadsThisPeriod": "Leads This Period",
+      "completedThisPeriod": "Completed This Period",
+      "topCategories": "Top Categories"
+    },
+    "leadsStatusBreakdown": {
+      "totalLeads": "Total Leads",
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "declined": "Declined",
+      "completed": "Completed",
+      "cancelled": "Cancelled",
+      "conversionRate": "Conversion Rate"
+    },
+    "qualityMetrics": {
+      "title": "Quality Metrics",
+      "avgQuality": "Avg. Quality",
+      "avgPrice": "Avg. Price",
+      "avgPunctuality": "Avg. Punctuality",
+      "avgExperience": "Avg. Experience",
+      "reviewVolume": "Review Volume",
+      "lowRatingCount": "Low Rating Count",
+      "serviceQualityScore": "Service Quality Score"
+    },
+    "reviewsRatings": {
+      "title": "Reviews & Ratings",
+      "totalReviews": "Total Reviews",
+      "pendingReviews": "Pending Reviews",
+      "approvedReviews": "Approved Reviews",
+      "averadgeRating": "Average Rating",
+      "approvalRate": "Approval Rate",
+      "reviewsThisPeriod": "Reviews This Period",
+      "normalizedRating": "Normalized Rating"
+    },
+    "topMasters": {
+      "title": "Top Masters"
+    },
+    "geographicOverview": {
+      "title": "Geographic Overview",
+      "mastersByCity": "Masters by City",
+      "serviceLocations": "Service Locations",
+      "coverage": "Coverage"
+    },
+    "registrationTrends": "Registration Trends",
+    "revenueTrends": "Revenue Trends",
+    "systemHealth": {
+      "title": "System Health & Notifications",
+      "totalNotifications": "Total Notifications",
+      "unreadNotifications": "Unread Notifications",
+      "urgentNotifications": "Urgent Notifications",
+      "overdueNotifications": "Overdue Notifications",
+      "overallHealthScore": "Overall Health Score"
+    },
+    "masterPerformanceDetails": {
+      "title": "Master Performance Details"
+    },
+    "masterActivityDetails": {
+      "title": "Master Activity Details",
+      "leads": "Leads",
+      "points": "Points",
+      "earnings": "Earnings",
+      "joined": "Joined",
+      "completed": "Completed",
+      "status": "Status",
+      "avgRating": "Avg. Rating"
+    },
+    "topClients": {
+      "title": "Top Clients",
+      "orders": "Orders",
+      "joined": "Joined",
+      "completed": "Completed"
+    },
+    "systemCategories": {
+      "title": "System Categories",
+      "totalCategories": "Total Categories",
+      "totalJobs": "Total Jobs",
+      "serviceUtilization": "Service Utilization",
+      "activeOfferings": "Active Offerings"
+    },
+    "billingOverview": {
+      "title": "Billing Overview",
+      "pendingFees": "Pending Fees",
+      "paidFees": "Paid Fees",
+      "rejectedFees": "Rejected Fees",
+      "overdueBills": "Overdue Bills",
+      "feesThisPeriod": "Fees This Period",
+      "overdueRate": "Overdue Rate",
+      "collectionRate": "Collection Rate"
+    },
+    "pointsEngagement": {
+      "title": "Points & Engagement",
+      "pointsAwarded": "Points Awarded",
+      "pointsDeducted": "Points Deducted",
+      "masterWithCertificates": "Master with Certificates",
+      "totalCertificates": "Total Certificates",
+      "totalQuestions": "Total Questions",
+      "negativePointsMasters": "Negative Points Masters",
+      "mastersOverPointCap": "Masters Over Point Cap"
+    },
+    "locationUtilizationDemographics": {
+      "title": "Location Utilization & Demographics",
+      "unlockCost": "Unlock Cost",
+      "masters": "Masters",
+      "cityPartsOverview": "City Parts Overview",
+      "demographics": "Demographics",
+      "mastersbyAvailability": "Masters by Availability",
+      "mastersByCity": "Masters by City",
+      "clientEngagement": "Client Engagement",
+      "totalClients": "Total Clients",
+      "activeClients": "Active Clients",
+      "repeatClients": "Repeat Clients",
+      "geographicInsights": "Geographic Insights",
+      "mostPopularCities": "Most Popular Cities",
+      "topLocations": "Top Locations"
+    },
+    "recentActivities": {
+      "title": "Recent Activities",
+      "latestUsers": "Latest Users",
+      "latestLeads": "Latest Leads",
+      "latestReviews": "Latest Reviews",
+      "latestQuestions": "Latest Questions"
+    }
+  },
+  "createUser": {
+    "title": "Create User",
+    "subtitle": "Create a new user for the platform",
+    "emailAddress": "Email Address",
+    "enterEmailAddress": "Enter email address",
+    "password": "Password",
+    "enterPassword": "Enter password",
+    "fullName": "Full Name",
+    "enterFullName": "Enter full name",
+    "phoneNumber": "Phone Number",
+    "userRole": "User Role",
+    "selectRole": "Select a role",
+    "admin": "Admin",
+    "master": "Master",
+    "createUser": "Create User",
+    "creatingUser": "Creating User..."
+  },
+  "categories": {
+    "title": "Categories",
+    "activeCategories": "Active Categories",
+    "createCategory": "Create Category",
+    "editCategory": "Edit Category",
+    "englishName": "English Name",
+    "georgianName": "Georgian Name",
+    "russianName": "Russian Name",
+    "createNewCategory": "Create New Category",
+    "current": "Current",
+    "noCategories": "No categories created yet",
+    "getStarted": "Get started by creating your first category. Categories help organize and structure your job listings."
+  },
+  "reviewsMaster": {
+    "title": "Reviews",
+    "subtitle": "Manage your reviews and stay updated with the latest news and updates.",
+    "reviewFilters": {
+      "totalReviews": "Total Reviews",
+      "sorting": {
+        "createdAt": "Created At",
+        "averageRating": "Average Rating",
+        "ratingPrice": "Rating Price",
+        "ratingQuality": "Rating Quality",
+        "ratingPunctuality": "Rating Punctuality",
+        "ratingExperience": "Rating Experience",
+        "hasReply": "Has Reply",
+        "noReply": "No Reply",
+        "all": "All",
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      }
+    },
+    "reviewCard": {
+      "normalized": "Normalized",
+      "price": "Price",
+      "punctuality": "Punctuality",
+      "quality": "Quality",
+      "experience": "Experience",
+      "comment": "Comment",
+      "masterReply": "Master Reply",
+      "updated": "Updated"
+    }
+  },
+  "allMasters": {
+    "title": "All Masters",
+    "subtitle": "View all masters and their details",
+    "masterCard": {
+      "totalReviews": "Total Reviews",
+      "totalScore": "Total Score",
+      "avgPrice": "Avg. Price",
+      "avgQuality": "Avg. Quality",
+      "viewDetails": "View Details",
+      "viewLeads": "View Leads"
+    },
+    "singleMaster": {
+      "title": "Master Details",
+      "subtitle": "View the details of a specific master",
+      "back": "Back",
+      "bio": "Bio",
+      "city": "City",
+      "availability": "Availability",
+      "availabilitySubtitle": "Availability",
+      "memberSince": "Member Since",
+      "profileUpdatedAt": "Profile Updated At",
+      "works": "Works",
+      "reviews": "Reviews",
+      "totalReviews": "Total Reviews",
+      "avgRating": "Avg. Rating",
+      "totalScore": "Total Score",
+      "normalizedScore": "Normalized Score",
+      "recentReviews": "Recent Reviews",
+      "totalWorks": "Total Works",
+      "totalCertificates": "Total Certificates",
+      "totalQuestions": "Total Questions",
+      "joinedDate": "Joined Date",
+      "answeredQuestions": "Answered Questions",
+      "prodileCompleteness": "Profile Completeness",
+      "masterReply": "Master's reply"
+    }
+  },
+  "adminBilling": {
+    "title": "Billing",
+    "subtitle": "Manage your billing and stay updated with the latest news and updates.",
+    "billingCard": {
+      "week": "Week",
+      "totalJobs": "Total Jobs",
+      "totalAmount": "Total Amount",
+      "adminFee": "Admin Fee",
+      "remindersSent": "Reminders Sent",
+      "review": "Review",
+      "sendReminder": "Send Reminder",
+      "viewProof": "View Proof",
+      "due": "Due"
+    },
+    "reviewModal": {
+      "status": "Status",
+      "approve": "Approve",
+      "reject": "Reject",
+      "adminNote": "Admin Note",
+      "enterAdminNote": "Enter admin note here...",
+      "cancel": "Cancel",
+      "submit": "Submit",
+      "reviewing": "Reviewing..."
+    },
+    "billingStats": {
+      "pendingAmount": "Pending Amount",
+      "paidAmount": "Paid Amount",
+      "overdueAmount": "Overdue Amount"
+    },
+    "billingTrigger": {
+      "title": "Billing Trigger",
+      "triggerBilling": "Trigger Billing"
     }
   }
 }

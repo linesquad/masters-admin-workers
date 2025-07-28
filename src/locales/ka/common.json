@@ -101,7 +101,9 @@
       "contact": "კონტაქტი",
       "message": "შეტყობინება",
       "viewLead": "ლიდის ნახვა",
-      "completeLead": "ლიდის დასრულება"
+      "completeLead": "ლიდის დასრულება",
+      "awarding": "ქულების განაწილება...",
+      "awardPoints": "ქულების განაწილება"
     },
     "singleLead": {
       "title": "ინფორმაცია {{ leadName }} ლიდის შესახებ",
@@ -173,6 +175,301 @@
       "cancel": "გაუქმება",
       "upload": "მტკიცებულების ატვირთვა",
       "uploading": "იტვირთება..."
+    }
+  },
+  "adminDashboard": {
+    "title": "ადმინისტრატორის დაფა",
+    "lastUpdated": "ბოლოს განახლებული",
+    "timeframe": "დროის პერიოდი",
+    "statsCardsHeader": {
+      "totalUsers": "მომხმარებლების რაოდენობა",
+      "clients": "კლიენტები",
+      "masters": "მასტერები",
+      "totalRevenue": "მთლიანი შემოსავალი",
+      "completedJobs": "დასრულებული სამუშაოები",
+      "totalLeads": "მთლიანი ლიდები",
+      "conversionRate": "კონვერტაციის მაჩვენებელი",
+      "avgRating": "საშ. რეიტინგი",
+      "totalReviews": "მთლიანი რევიუები"
+    },
+    "userAnalytics": {
+      "title": "მომხმარებელთა ანალიტიკა",
+      "activeMasters": "აქტიური მასტერები",
+      "activeClients": "აქტიური კლიენტები",
+      "growthRates": "ზრდის მაჩვენებლები",
+      "clientGrowth": "კლიენტების ზრდა",
+      "masterGrowth": "მასტერების ზრდა",
+      "masterActivation": "მასტერების აქტივაცია",
+      "newClients": "ახალი კლიენტები",
+      "newMasters": "ახალი მასტერები"
+    },
+    "financialOverview": {
+      "title": "ფინანსური მიმოხილვა",
+      "platformRevenue": "პლატფორმის შემოსავალი",
+      "averageJobValue": "საშუალო სამუშაოს ღირებულება",
+      "adminFees": "ადმინისტრაციული გადასახადები",
+      "leadAnalytics": "ლიდების ანალიზი",
+      "averageLeadValue": "ლიდის საშუალო ღირებულება",
+      "acceptanceRate": "მიღების მაჩვენებელი",
+      "leadsThisPeriod": "ლიდები ამ პერიოდში",
+      "completedThisPeriod": "დასრულებული ამ პერიოდში",
+      "topCategories": "ტოპ კატეგორიები"
+    },
+    "leadsStatusBreakdown": {
+      "totalLeads": "მთლიანი ლიდები",
+      "pending": "მიმდინარე",
+      "accepted": "მიღებული",
+      "declined": "უარყოფილი",
+      "completed": "დასრულებული",
+      "cancelled": "გაუქმებული",
+      "conversionRate": "კონვერტაციის მაჩვენებელი"
+    },
+    "qualityMetrics": {
+      "title": "ხარისხის მეტრიკები",
+      "avgQuality": "საშ. ხარისხი",
+      "avgPrice": "საშ. ფასი",
+      "avgPunctuality": "საშ. პუნქტუალურობა",
+      "avgExperience": "საშ. გამოცდილება",
+      "reviewVolume": "რევიუების მოცულობა",
+      "lowRatingCount": "დაბალი რეიტინგების რაოდენობა",
+      "serviceQualityScore": "მომსახურების ხარისხის ქულა"
+    },
+    "reviewsRatings": {
+      "title": "რევიუები და რეიტინგები",
+      "totalReviews": "მთლიანი რევიუები",
+      "pendingReviews": "მიმდინარე რევიუები",
+      "approvedReviews": "დამტკიცებული რევიუები",
+      "averadgeRating": "საშუალო რეიტინგი",
+      "approvalRate": "დამტკიცების მაჩვენებელი",
+      "reviewsThisPeriod": "რევიუები ამ პერიოდში",
+      "normalizedRating": "ნორმალიზებული რეიტინგი"
+    },
+    "topMasters": {
+      "title": "ტოპ მასტერები"
+    },
+    "geographicOverview": {
+      "title": "ლოკაციის მიმოხილვა",
+      "mastersByCity": "მასტერები ქალაქების მიხედვით",
+      "serviceLocations": "მომსახურების ადგილები",
+      "coverage": "დაფარვა"
+    },
+    "registrationTrends": "რეგისტრაციის ტენდენციები",
+    "revenueTrends": "შემოსავლების ტენდენციები",
+    "systemHealth": {
+      "title": "სისტემის ჯანმრთელობა და შეტყობინებები",
+      "totalNotifications": "მთლიანი შეტყობინებები",
+      "unreadNotifications": "წაუკითხავი შეტყობინებები",
+      "urgentNotifications": "სასწრაფო შეტყობინებები",
+      "overdueNotifications": "ვადაგადაცილებული შეტყობინებები",
+      "overallHealthScore": "სისტემის ჯანმრთელობის ქულა"
+    },
+    "masterPerformanceDetails": {
+      "title": "მასტერების შესრულების დეტალები",
+      "leads": "ლიდები",
+      "points": "ქულები",
+      "earnings": "შემოსავლები",
+      "joined": "დამატებული",
+      "completed": "დასრულებული",
+      "status": "სტატუსი",
+      "avgRating": "საშუალო რეიტინგი"
+    },
+    "masterActivityDetails": {
+      "title": "მასტერების აქტივობის დეტალები",
+      "leads": "ლიდები",
+      "points": "ქულები",
+      "earnings": "შემოსავლები",
+      "joined": "დამატებული",
+      "completed": "დასრულებული",
+      "status": "სტატუსი",
+      "avgRating": "საშუალო რეიტინგი"
+    },
+    "topClients": {
+      "title": "ტოპ კლიენტები",
+      "orders": "შეკვეთები",
+      "joined": "დამატებული",
+      "completed": "დასრულებული"
+    },
+    "systemCategories": {
+      "title": "სისტემის კატეგორიები",
+      "totalCategories": "მთლიანი კატეგორიები",
+      "totalJobs": "მთლიანი სამუშაოები",
+      "serviceUtilization": "მომსახურების გამოყენება",
+      "activeOfferings": "აქტიური სამუშაოები"
+    },
+    "billingOverview": {
+      "title": "გადახდების მიმოხილვა",
+      "pendingFees": "მიმდინარე გადასახადები",
+      "paidFees": "გადახდილი გადასახადები",
+      "rejectedFees": "უარყოფილი გადასახადები",
+      "overdueBills": "ვადაგადაცილებული გადასახადები",
+      "feesThisPeriod": "გადასახადები ამ პერიოდში",
+      "overdueRate": "ვადაგადაცილების მაჩვენებელი",
+      "collectionRate": "შეგროვების მაჩვენებელი"
+    },
+    "pointsEngagement": {
+      "title": "ქულები და ჩართულობა",
+      "pointsAwarded": "მინიჭებული ქულები",
+      "pointsDeducted": "ჩამოჭრილი ქულები",
+      "masterWithCertificates": "მასტერები სერთიფიკატებით",
+      "totalCertificates": "მთლიანი სერთიფიკატები",
+      "totalQuestions": "მთლიანი კითხვები",
+      "negativePointsMasters": "უარყოფითი ქულების მქონე მასტერები",
+      "mastersOverPointCap": "მასტერები ქულების ლიმიტზე მაღლა"
+    },
+    "locationUtilizationDemographics": {
+      "title": "ლოკაციის გამოყენება და დემოგრაფია",
+      "unlockCost": "გასახლების საფუძველი",
+      "masters": "მასტერები",
+      "cityPartsOverview": "ქალაქის ნაწილების მიმოხილვა",
+      "demographics": "დემოგრაფია",
+      "mastersbyAvailability": "მასტერები ხელმისაწვდომობის მიხედვით",
+      "mastersByCity": "მასტერები ქალაქების მიხედვით",
+      "clientEngagement": "კლიენტების ჩართულობა",
+      "totalClients": "მთლიანი კლიენტები",
+      "activeClients": "აქტიური კლიენტები",
+      "repeatClients": "თავისუფალი კლიენტები",
+      "geographicInsights": "ლოკაციის გამოყენების გამოხმაურება",
+      "mostPopularCities": "ყველაზე მოხველი ქალაქები",
+      "topLocations": "ყველაზე მოხველი ადგილები"
+    },
+    "recentActivities": {
+      "title": "უახლესი აქტივობა",
+      "latestUsers": "უახლესი მომხმარებლები",
+      "latestLeads": "უახლესი ლიდები",
+      "latestReviews": "უახლესი რევიუები",
+      "latestQuestions": "უახლესი კითხვები"
+    }
+  },
+  "createUser": {
+    "title": "მომხმარებლის შექმნა",
+    "subtitle": "შექმენით ახალი მომხმარებელი პლატფორმისთვის",
+    "emailAddress": "ელ. ფოსტა",
+    "enterEmailAddress": "შეიყვანეთ ელ. ფოსტა",
+    "password": "პაროლი",
+    "enterPassword": "შეიყვანეთ პაროლი",
+    "fullName": "სრული სახელი",
+    "enterFullName": "შეიყვანეთ სრული სახელი",
+    "phoneNumber": "ტელეფონის ნომერი",
+    "userRole": "მომხმარებლის როლი",
+    "selectRole": "აირჩიეთ როლი",
+    "admin": "ადმინისტრატორი",
+    "master": "მასტერი",
+    "createUser": "შექმნა",
+    "creatingUser": "შექმნა..."
+  },
+  "categories": {
+    "title": "კატეგორიები",
+    "activeCategories": "აქტიური კატეგორიები",
+    "createCategory": "კატეგორიის შექმნა",
+    "editCategory": "კატეგორიის რედაქტირება",
+    "englishName": "ინგლისური სახელი",
+    "georgianName": "ქართული სახელი",
+    "russianName": "რუსული სახელი",
+    "createNewCategory": "ახალი კატეგორიის შექმნა",
+    "current": "მიმდინარე",
+    "noCategories": "კატეგორიები ჯერ ჯერ შექმნილი არაა",
+    "getStarted": "დაიწყეთ შექმნილი პირველი კატეგორია. კატეგორიები დაგეხმარებათ სწრაფად მონახულებული სამუშაოების სტრუქტურაზე და მორგებაში."
+  },
+  "reviewsMaster": {
+    "title": "რევიუები",
+    "subtitle": "მართეთ თქვენი რევიუები და იყავით განახლებული უახლესი ამბებითა და ცვლილებებით.",
+    "reviewFilters": {
+      "totalReviews": "სულ რევიუები",
+      "sorting": {
+        "createdAt": "შექმნის თარიღი",
+        "averageRating": "საშუალო რეიტინგი",
+        "ratingPrice": "ფასის რეიტინგი",
+        "ratingQuality": "ხარისხის რეიტინგი",
+        "ratingPunctuality": "დროულობის რეიტინგი",
+        "ratingExperience": "გამოცდილების რეიტინგი",
+        "hasReply": "აქვს პასუხი",
+        "noReply": "პასუხის გარეშე",
+        "all": "ყველა",
+        "pending": "მოლოდინში",
+        "approved": "დამტკიცებული",
+        "rejected": "უარყოფილი"
+      }
+    },
+    "reviewCard": {
+      "normalized": "ნორმალიზებული",
+      "price": "ფასი",
+      "punctuality": "დროულობა",
+      "quality": "ხარისხი",
+      "experience": "გამოცდილება",
+      "comment": "კომენტარი",
+      "masterReply": "მასტერის პასუხი",
+      "updated": "განახლებული"
+    }
+  },
+  "allMasters": {
+    "title": "ყველა მასტერი",
+    "subtitle": "იხილეთ ყველა მასტერი და მათი დეტალები",
+    "masterCard": {
+      "totalReviews": "სულ რევიუები",
+      "totalScore": "სულ ქულა",
+      "avgPrice": "საშ. ფასი",
+      "avgQuality": "საშ. ხარისხი",
+      "viewDetails": "დეტალების ნახვა",
+      "viewLeads": "ლიდების ნახვა"
+    },
+    "singleMaster": {
+      "title": "მასტერის დეტალები",
+      "subtitle": "იხილეთ მასტერის დეტალები",
+      "back": "უკან",
+      "bio": "ბიო",
+      "city": "ქალაქი",
+      "availability": "ხელმისაწვდომობა",
+      "availabilitySubtitle": "ხელმისაწვდომობა",
+      "memberSince": "წევრია",
+      "profileUpdatedAt": "პროფილი განახლდა",
+      "works": "სამუშაოები",
+      "reviews": "რევიუები",
+      "totalReviews": "სულ რევიუები",
+      "avgRating": "საშ. რეიტინგი",
+      "totalScore": "სულ ქულა",
+      "normalizedScore": "ნორმალიზებული ქულა",
+      "recentReviews": "ბოლო რევიუები",
+      "totalWorks": "სულ სამუშაოები",
+      "totalCertificates": "სულ სერტიფიკატები",
+      "totalQuestions": "სულ კითხვები",
+      "joinedDate": "შემოუერთდა",
+      "answeredQuestions": "პასუხი გაცემული კითხვები",
+      "prodileCompleteness": "პროფილის სისრულე",
+      "masterReply": "მასტერის პასუხი"
+    }
+  },
+  "adminBilling": {
+    "title": "ბილინგი",
+    "subtitle": "მართეთ თქვენი ბილინგი და იყავით განახლებული უახლესი ამბებითა და განახლებებით.",
+    "billingCard": {
+      "week": "კვირა",
+      "totalJobs": "სულ სამუშაოები",
+      "totalAmount": "სულ თანხა",
+      "adminFee": "ადმინისტრატორის საფუძველი",
+      "remindersSent": "გაგზავნილი შეხსენებები",
+      "review": "რევიუ",
+      "sendReminder": "შეხსენების გაგზავნა",
+      "viewProof": "მტკიცებულების ნახვა",
+      "due": "ვადა"
+    },
+    "reviewModal": {
+      "status": "სტატუსი",
+      "approve": "დამტკიცება",
+      "reject": "უარყოფა",
+      "adminNote": "ადმინისტრატორის შენიშვნა",
+      "enterAdminNote": "შეიყვანეთ ადმინისტრატორის შენიშვნა აქ...",
+      "cancel": "გაუქმება",
+      "submit": "გაგზავნა",
+      "reviewing": "რევიუების შემდეგ..."
+    },
+    "billingStats": {
+      "pendingAmount": "მომლოდინე თანხა",
+      "paidAmount": "გადახდილი თანხა",
+      "overdueAmount": "ვადაგადაცილებული თანხა"
+    },
+    "billingTrigger": {
+      "title": "ბილინგის ტრიგერი",
+      "triggerBilling": "ბილინგის გაშვება"
     }
   }
 }

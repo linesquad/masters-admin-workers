@@ -1,16 +1,40 @@
+import { LoadingState } from "@/components/loading-state";
 import { useGetSingleMaster } from "../../hooks/use-get-single-master";
 import { SingleMasterContent } from "./single-master-content";
 import { SingleMasterHeader } from "./single-master-header";
 import { SingleMasterReviews } from "./single-master-reviews";
 import { SingleMasterSummary } from "./single-master-summary";
 import { SingleMasterWorks } from "./single-master-works";
+import { ErrorState } from "@/components/error-state";
+import { EmptyState } from "@/components/empthy-state";
 
 export function SingleMaster({ id }: { id: string }) {
   const { data, isLoading, isError, error } = useGetSingleMaster(id);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error.message}</div>;
-  if (!data) return <div>No data found</div>;
+  if (isLoading)
+    return (
+      <LoadingState
+        title={"Loading"}
+        description={"Please wait while we load the master details"}
+        className="mt-4"
+      />
+    );
+  if (isError)
+    return (
+      <ErrorState
+        title={"Error"}
+        description={error?.message || "Something went wrong"}
+        className="mt-4"
+      />
+    );
+  if (!data)
+    return (
+      <EmptyState
+        title={"No data"}
+        description={"Please try again later"}
+        className="mt-4"
+      />
+    );
 
   const {
     fullName,

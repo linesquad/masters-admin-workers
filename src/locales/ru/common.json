@@ -101,7 +101,9 @@
       "contact": "Контакт",
       "message": "Сообщение",
       "viewLead": "Просмотр лида",
-      "completeLead": "Завершить лид"
+      "completeLead": "Завершить лид",
+      "awarding": "Начисление баллов...",
+      "awardPoints": "Начисление баллов"
     },
     "singleLead": {
       "title": "Информация о лиде {{ leadName }}",
@@ -173,6 +175,301 @@
       "cancel": "Отмена",
       "upload": "Загрузить подтверждение",
       "uploading": "Загрузка..."
+    }
+  },
+  "adminDashboard": {
+    "title": "Административная панель",
+    "lastUpdated": "Последнее обновление",
+    "timeframe": "Период времени",
+    "statsCardsHeader": {
+      "totalUsers": "Всего пользователей",
+      "clients": "Клиенты",
+      "masters": "Мастера",
+      "totalRevenue": "Общий доход",
+      "completedJobs": "Завершенные работы",
+      "totalLeads": "Всего лидов",
+      "conversionRate": "Коэффициент конверсии",
+      "avgRating": "Средний рейтинг",
+      "totalReviews": "Всего отзывов"
+    },
+    "userAnalytics": {
+      "title": "Аналитика пользователей",
+      "activeMasters": "Активные мастера",
+      "activeClients": "Активные клиенты",
+      "growthRates": "Темпы роста",
+      "clientGrowth": "Рост клиентов",
+      "masterGrowth": "Рост мастеров",
+      "masterActivation": "Активация мастеров",
+      "newClients": "Новые клиенты",
+      "newMasters": "Новые мастера"
+    },
+    "financialOverview": {
+      "title": "Финансовый обзор",
+      "platformRevenue": "Доход платформы",
+      "averageJobValue": "Средняя стоимость работы",
+      "adminFees": "Административные сборы",
+      "leadAnalytics": "Анализ лидов",
+      "averageLeadValue": "Средняя стоимость лида",
+      "acceptanceRate": "Процент принятия",
+      "leadsThisPeriod": "Лиды за этот период",
+      "completedThisPeriod": "Завершено за этот период",
+      "topCategories": "Топ категорий"
+    },
+    "leadsStatusBreakdown": {
+      "totalLeads": "Всего лидов",
+      "pending": "В ожидании",
+      "accepted": "Принято",
+      "declined": "Отклонено",
+      "completed": "Завершено",
+      "cancelled": "Отменено",
+      "conversionRate": "Коэффициент конверсии"
+    },
+    "qualityMetrics": {
+      "title": "Метрики качества",
+      "avgQuality": "Сред. качество",
+      "avgPrice": "Сред. цена",
+      "avgPunctuality": "Сред. пунктуальность",
+      "avgExperience": "Сред. опыт",
+      "reviewVolume": "Объем отзывов",
+      "lowRatingCount": "Количество низких оценок",
+      "serviceQualityScore": "Оценка качества услуг"
+    },
+    "reviewsRatings": {
+      "title": "Отзывы и рейтинги",
+      "totalReviews": "Всего отзывов",
+      "pendingReviews": "Отзывы на рассмотрении",
+      "approvedReviews": "Одобренные отзывы",
+      "averadgeRating": "Средний рейтинг",
+      "approvalRate": "Процент одобрения",
+      "reviewsThisPeriod": "Отзывы за этот период",
+      "normalizedRating": "Нормализованный рейтинг"
+    },
+    "topMasters": {
+      "title": "Лучшие мастера"
+    },
+    "geographicOverview": {
+      "title": "Географический обзор",
+      "mastersByCity": "Мастера по городам",
+      "serviceLocations": "Места оказания услуг",
+      "coverage": "Покрытие"
+    },
+    "registrationTrends": "Тенденции регистрации",
+    "revenueTrends": "Тенденции доходов",
+    "systemHealth": {
+      "title": "Состояние системы и уведомления",
+      "totalNotifications": "Всего уведомлений",
+      "unreadNotifications": "Непрочитанные уведомления",
+      "urgentNotifications": "Срочные уведомления",
+      "overdueNotifications": "Просроченные уведомления",
+      "overallHealthScore": "Общий показатель состояния"
+    },
+    "masterPerformanceDetails": {
+      "title": "Детали производительности мастеров",
+      "leads": "Лиды",
+      "points": "Баллы",
+      "earnings": "Доходы",
+      "joined": "Присоединился",
+      "completed": "Завершено",
+      "status": "Статус",
+      "avgRating": "Средний рейтинг"
+    },
+    "masterActivityDetails": {
+      "title": "Детали активности мастеров",
+      "leads": "Лиды",
+      "points": "Баллы",
+      "earnings": "Доходы",
+      "joined": "Присоединился",
+      "completed": "Завершено",
+      "status": "Статус",
+      "avgRating": "Средний рейтинг"
+    },
+    "topClients": {
+      "title": "Лучшие клиенты",
+      "orders": "Заказы",
+      "joined": "Присоединился",
+      "completed": "Завершено"
+    },
+    "systemCategories": {
+      "title": "Категории системы",
+      "totalCategories": "Всего категорий",
+      "totalJobs": "Всего работ",
+      "serviceUtilization": "Использование услуг",
+      "activeOfferings": "Активные предложения"
+    },
+    "billingOverview": {
+      "title": "Обзор платежей",
+      "pendingFees": "Ожидающие платежи",
+      "paidFees": "Оплаченные платежи",
+      "rejectedFees": "Отклоненные платежи",
+      "overdueBills": "Просроченные счета",
+      "feesThisPeriod": "Платежи за этот период",
+      "overdueRate": "Процент просрочки",
+      "collectionRate": "Процент сбора"
+    },
+    "pointsEngagement": {
+      "title": "Баллы и вовлеченность",
+      "pointsAwarded": "Начисленные баллы",
+      "pointsDeducted": "Снятые баллы",
+      "masterWithCertificates": "Мастера с сертификатами",
+      "totalCertificates": "Всего сертификатов",
+      "totalQuestions": "Всего вопросов",
+      "negativePointsMasters": "Мастера с отрицательными баллами",
+      "mastersOverPointCap": "Мастера превысившие лимит баллов"
+    },
+    "locationUtilizationDemographics": {
+      "title": "Использование местоположения и демография",
+      "unlockCost": "Стоимость разблокировки",
+      "masters": "Мастера",
+      "cityPartsOverview": "Обзор районов города",
+      "demographics": "Демография",
+      "mastersbyAvailability": "Мастера по доступности",
+      "mastersByCity": "Мастера по городам",
+      "clientEngagement": "Вовлеченность клиентов",
+      "totalClients": "Всего клиентов",
+      "activeClients": "Активные клиенты",
+      "repeatClients": "Повторные клиенты",
+      "geographicInsights": "Географические данные",
+      "mostPopularCities": "Самые популярные города",
+      "topLocations": "Топ местоположений"
+    },
+    "recentActivities": {
+      "title": "Недавние действия",
+      "latestUsers": "Последние пользователи",
+      "latestLeads": "Последние лиды",
+      "latestReviews": "Последние отзывы",
+      "latestQuestions": "Последние вопросы"
+    }
+  },
+  "createUser": {
+    "title": "Создание пользователя",
+    "subtitle": "Создайте нового пользователя для платформы",
+    "emailAddress": "Email адрес",
+    "enterEmailAddress": "Введите email адрес",
+    "password": "Пароль",
+    "enterPassword": "Введите пароль",
+    "fullName": "Полное имя",
+    "enterFullName": "Введите полное имя",
+    "phoneNumber": "Номер телефона",
+    "userRole": "Роль пользователя",
+    "selectRole": "Выберите роль",
+    "admin": "Администратор",
+    "master": "Мастер",
+    "createUser": "Создать пользователя",
+    "creatingUser": "Создание пользователя..."
+  },
+  "categories": {
+    "title": "Категории",
+    "activeCategories": "Активные категории",
+    "createCategory": "Создать категорию",
+    "editCategory": "Редактировать категорию",
+    "englishName": "Английское название",
+    "georgianName": "Грузинское название",
+    "russianName": "Русское название",
+    "createNewCategory": "Создать новую категорию",
+    "current": "Текущий",
+    "noCategories": "Категории еще не созданы",
+    "getStarted": "Начните создавать вашу первую категорию. Категории помогут организовать и структурировать ваши работы."
+  },
+  "reviewsMaster": {
+    "title": "Отзывы",
+    "subtitle": "Управляйте отзывами и будьте в курсе последних новостей и обновлений.",
+    "reviewFilters": {
+      "totalReviews": "Всего отзывов",
+      "sorting": {
+        "createdAt": "Дата создания",
+        "averageRating": "Средний рейтинг",
+        "ratingPrice": "Рейтинг цены",
+        "ratingQuality": "Рейтинг качества",
+        "ratingPunctuality": "Рейтинг пунктуальности",
+        "ratingExperience": "Рейтинг опыта",
+        "hasReply": "Есть ответ",
+        "noReply": "Нет ответа",
+        "all": "Все",
+        "pending": "В ожидании",
+        "approved": "Одобрено",
+        "rejected": "Отклонено"
+      }
+    },
+    "reviewCard": {
+      "normalized": "Нормализовано",
+      "price": "Цена",
+      "punctuality": "Пунктуальность",
+      "quality": "Качество",
+      "experience": "Опыт",
+      "comment": "Комментарий",
+      "masterReply": "Ответ мастера",
+      "updated": "Обновлено"
+    }
+  },
+  "allMasters": {
+    "title": "Все мастера",
+    "subtitle": "Просмотр всех мастеров и их деталей",
+    "masterCard": {
+      "totalReviews": "Всего отзывов",
+      "totalScore": "Общий балл",
+      "avgPrice": "Сред. цена",
+      "avgQuality": "Сред. качество",
+      "viewDetails": "Просмотр деталей",
+      "viewLeads": "Просмотр лидов"
+    },
+    "singleMaster": {
+      "title": "Детали мастера",
+      "subtitle": "Просмотр деталей конкретного мастера",
+      "back": "Назад",
+      "bio": "Био",
+      "city": "Город",
+      "availability": "Доступность",
+      "availabilitySubtitle": "Доступность",
+      "memberSince": "Участник с",
+      "profileUpdatedAt": "Профиль обновлен",
+      "works": "Работы",
+      "reviews": "Отзывы",
+      "totalReviews": "Всего отзывов",
+      "avgRating": "Сред. рейтинг",
+      "totalScore": "Общий балл",
+      "normalizedScore": "Нормализованный балл",
+      "recentReviews": "Последние отзывы",
+      "totalWorks": "Всего работ",
+      "totalCertificates": "Всего сертификатов",
+      "totalQuestions": "Всего вопросов",
+      "joinedDate": "Дата присоединения",
+      "answeredQuestions": "Отвеченные вопросы",
+      "prodileCompleteness": "Заполненность профиля",
+      "masterReply": "Ответ мастера"
+    }
+  },
+  "adminBilling": {
+    "title": "Биллинг",
+    "subtitle": "Управляйте биллингом и будьте в курсе последних новостей и обновлений.",
+    "billingCard": {
+      "week": "Неделя",
+      "totalJobs": "Всего работ",
+      "totalAmount": "Всего сумма",
+      "adminFee": "Административный сбор",
+      "remindersSent": "Отправлено напоминаний",
+      "review": "Проверка",
+      "sendReminder": "Отправить напоминание",
+      "viewProof": "Просмотр подтверждения",
+      "due": "Срок"
+    },
+    "reviewModal": {
+      "status": "Статус",
+      "approve": "Подтвердить",
+      "reject": "Отклонить",
+      "adminNote": "Заметка администратора",
+      "enterAdminNote": "Введите заметку администратора здесь...",
+      "cancel": "Отмена",
+      "submit": "Отправить",
+      "reviewing": "Проверка..."
+    },
+    "billingStats": {
+      "pendingAmount": "Ожидающая сумма",
+      "paidAmount": "Оплаченная сумма",
+      "overdueAmount": "Просроченная сумма"
+    },
+    "billingTrigger": {
+      "title": "Триггер биллинга",
+      "triggerBilling": "Запустить биллинг"
     }
   }
 }

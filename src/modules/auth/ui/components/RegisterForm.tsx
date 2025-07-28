@@ -8,6 +8,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import type { RegisterFormProps } from "@/modules/auth/types/registerTypes";
+import { useTranslation } from "react-i18next";
 
 function RegisterForm({
   register,
@@ -19,6 +20,7 @@ function RegisterForm({
   selectedRole,
   setValue,
 }: RegisterFormProps) {
+  const { t } = useTranslation();
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -27,12 +29,12 @@ function RegisterForm({
             htmlFor="email"
             className="block text-sm font-medium text-gray-700"
           >
-            Email Address
+            {t("createUser.emailAddress")}
           </label>
           <Input
             id="email"
             type="email"
-            placeholder="Enter email address"
+            placeholder={t("createUser.enterEmailAddress")}
             className="w-full border-gray-300 focus-visible:border-[#2751CF] focus-visible:ring-[#2751CF]/20 hover:border-[#2751CF]/60 transition-colors"
             {...register("email")}
           />
@@ -46,12 +48,12 @@ function RegisterForm({
             htmlFor="password"
             className="block text-sm font-medium text-gray-700"
           >
-            Password
+            {t("createUser.password")}
           </label>
           <Input
             id="password"
             type="password"
-            placeholder="Enter password"
+            placeholder={t("createUser.enterPassword")}
             className="w-full border-gray-300 focus-visible:border-[#2751CF] focus-visible:ring-[#2751CF]/20 hover:border-[#2751CF]/60 transition-colors"
             {...register("password")}
           />
@@ -67,12 +69,12 @@ function RegisterForm({
             htmlFor="fullName"
             className="block text-sm font-medium text-gray-700"
           >
-            Full Name
+            {t("createUser.fullName")}
           </label>
           <Input
             id="fullName"
             type="text"
-            placeholder="Enter full name"
+            placeholder={t("createUser.enterFullName")}
             className="w-full border-gray-300 focus-visible:border-[#2751CF] focus-visible:ring-[#2751CF]/20 hover:border-[#2751CF]/60 transition-colors"
             {...register("fullName")}
           />
@@ -86,7 +88,7 @@ function RegisterForm({
             htmlFor="phone"
             className="block text-sm font-medium text-gray-700"
           >
-            Phone Number
+            {t("createUser.phoneNumber")}
           </label>
           <Input
             id="phone"
@@ -106,7 +108,7 @@ function RegisterForm({
           htmlFor="role"
           className="block text-sm font-medium text-gray-700"
         >
-          User Role
+          {t("createUser.userRole")}
         </label>
         <Select
           value={selectedRole || ""}
@@ -115,17 +117,20 @@ function RegisterForm({
           }
         >
           <SelectTrigger className="w-full border-gray-300 focus-visible:border-[#2751CF] focus-visible:ring-[#2751CF]/20 hover:border-[#2751CF]/60 transition-colors">
-            <SelectValue placeholder="Select a role" />
+            <SelectValue placeholder={t("createUser.selectRole")} />
           </SelectTrigger>
           <SelectContent className="bg-[#2751CF] text-white">
-            <SelectItem value="admin" className="cursor-pointer">
-              Admin
+            <SelectItem
+              value="admin"
+              className=" hover:bg-white hover:text-[#2751CF] transition-colors"
+            >
+              {t("createUser.admin")}
             </SelectItem>
-            <SelectItem value="master" className="cursor-pointer">
-              Master
-            </SelectItem>
-            <SelectItem value="client" className="cursor-pointer">
-              Client
+            <SelectItem
+              value="master"
+              className=" hover:bg-white hover:text-[#2751CF] transition-colors"
+            >
+              {t("createUser.master")}
             </SelectItem>
           </SelectContent>
         </Select>
@@ -140,7 +145,9 @@ function RegisterForm({
           disabled={isSubmitting || isPending}
           className="w-full md:w-auto px-8 py-2 bg-[#2751CF] hover:bg-[#2751CF]/80 transition-colors text-white cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          {isSubmitting || isPending ? "Creating User..." : "Create User"}
+          {isSubmitting || isPending
+            ? t("createUser.creatingUser")
+            : t("createUser.createUser")}
         </Button>
       </div>
     </form>

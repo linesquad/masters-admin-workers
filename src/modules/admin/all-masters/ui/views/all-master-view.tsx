@@ -1,12 +1,14 @@
 import { MasterCard } from "@/modules/admin/all-masters/ui/components/master-card";
 import { useGetAllMasters } from "@/modules/admin/all-masters/hooks/use-get-all-masters";
 import type { Master } from "@/modules/admin/all-masters/types";
-import { NoDataFound } from "@/components/no-data-found";
 import { PageTitle } from "@/components/page-title";
 import PaginationComp from "@/components/PaginationComp";
 import { useState } from "react";
-import { MasterPageLoadingSkeleton } from "../components/master-page-loading-skeleton";
 import { SelectLimiting } from "@/components/select-limiting";
+import { useTranslation } from "react-i18next";
+import { ErrorState } from "@/components/error-state";
+import { EmptyState } from "@/components/empthy-state";
+import { LoadingState } from "@/components/loading-state";
 
 export function AllMasterView() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -15,10 +17,31 @@ export function AllMasterView() {
     currentPage,
     limit
   );
-
-  if (isLoading) return <MasterPageLoadingSkeleton />;
-  if (isError) return <div>Error: {error.message}</div>;
-  if (!data) return <NoDataFound />;
+  const { t } = useTranslation();
+  if (isLoading)
+    return (
+      <LoadingState
+        title={"Loading"}
+        description={"Please wait while we load the masters"}
+        className="mt-4"
+      />
+    );
+  if (isError)
+    return (
+      <ErrorState
+        title={"Error"}
+        description={error?.message || "Something went wrong"}
+        className="mt-4"
+      />
+    );
+  if (!data)
+    return (
+      <EmptyState
+        title={"No data"}
+        description={"Please try again later"}
+        className="mt-4"
+      />
+    );
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
@@ -27,8 +50,8 @@ export function AllMasterView() {
   return (
     <section className="px-5">
       <PageTitle
-        title="All Masters"
-        subtitle="View all masters and their details"
+        title={t("allMasters.title")}
+        subtitle={t("allMasters.subtitle")}
       />
       <div className="flex justify-end mb-5">
         <SelectLimiting limit={limit} setLimit={setLimit} />

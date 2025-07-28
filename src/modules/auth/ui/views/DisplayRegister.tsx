@@ -5,8 +5,10 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { registerSchema } from "@/modules/auth/schema/registerSchema";
 import type { RegisterFormData } from "@/modules/auth/types/registerTypes";
 import { useCreateUser } from "@/modules/auth/hooks/useCreateUser";
+import { useTranslation } from "react-i18next";
 
 function DisplayRegister() {
+  const { t } = useTranslation();
   const { mutate: createUser, isPending } = useCreateUser();
 
   const {
@@ -23,7 +25,7 @@ function DisplayRegister() {
       password: "",
       fullName: "",
       phone: "+995",
-      role: "" as "admin" | "master" | "client",
+      role: "" as "admin" | "master",
     },
   });
 
@@ -42,11 +44,9 @@ function DisplayRegister() {
         <div className="bg-white rounded-lg shadow-md p-6 md:p-8">
           <div className="mb-8">
             <h1 className="text-2xl md:text-3xl font-bold text-gray-900 mb-2">
-              Create User
+              {t("createUser.title")}
             </h1>
-            <p className="text-gray-600">
-              Add a new user to the system with their details and role
-            </p>
+            <p className="text-gray-600">{t("createUser.subtitle")}</p>
           </div>
           <RegisterForm
             register={register}

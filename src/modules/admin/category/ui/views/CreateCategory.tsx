@@ -23,8 +23,10 @@ import {
   SheetHeader,
   SheetTitle,
 } from "@/components/ui/sheet";
+import { useTranslation } from "react-i18next";
 
 function CreateCategory() {
+  const { t } = useTranslation();
   const { mutate: createCategory, isPending } = useCreateCategory();
   const { data: categories, isLoading, isError } = useCategories();
   const { mutate: deleteCategory, isPending: isDeleting } = useDeleteCategory();
@@ -74,7 +76,7 @@ function CreateCategory() {
     <div>
       <section className=" p-6 w-full">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
-          <h1 className="text-2xl font-bold">Categories</h1>
+          <h1 className="text-2xl font-bold">{t("categories.title")}</h1>
           <button
             onClick={() => setIsCreateOpen(true)}
             className="group cursor-pointer relative overflow-hidden rounded-2xl bg-gradient-to-r from-blue-600 to-purple-600 p-0.5 
@@ -88,7 +90,9 @@ function CreateCategory() {
                 <div className="rounded-full bg-white/20 p-1 transition-transform duration-300 group-hover:rotate-90">
                   <Plus className="h-4 w-4" />
                 </div>
-                <span className="font-semibold">Create Category</span>
+                <span className="font-semibold">
+                  {t("categories.createCategory")}
+                </span>
               </div>
             </div>
           </button>
@@ -97,7 +101,7 @@ function CreateCategory() {
           <div className="flex items-center gap-2 bg-gray-100 px-3 py-2 rounded-full">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span className="text-sm font-medium text-gray-700">
-              {categories?.data?.length || 0} active categories
+              {categories?.data?.length || 0} {t("categories.activeCategories")}
             </span>
           </div>
         </div>
@@ -117,7 +121,7 @@ function CreateCategory() {
           <Drawer open={isCreateOpen} onOpenChange={setIsCreateOpen}>
             <DrawerContent className="px-4 pb-6">
               <DrawerHeader>
-                <DrawerTitle>Create New Category</DrawerTitle>
+                <DrawerTitle>{t("categories.createNewCategory")}</DrawerTitle>
               </DrawerHeader>
               <form onSubmit={handleSubmit(onSubmit)} className="px-4">
                 <ThreeLanguageInputs
@@ -147,7 +151,7 @@ function CreateCategory() {
           <Sheet open={isCreateOpen} onOpenChange={setIsCreateOpen}>
             <SheetContent className="overflow-y-auto bg-white text-black">
               <SheetHeader>
-                <SheetTitle>Create New Category</SheetTitle>
+                <SheetTitle>{t("categories.createNewCategory")}</SheetTitle>
               </SheetHeader>
               <form onSubmit={handleSubmit(onSubmit)} className="px-4">
                 <ThreeLanguageInputs

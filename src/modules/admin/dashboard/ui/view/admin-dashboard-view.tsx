@@ -13,8 +13,10 @@ import { AdminMetricsOverview } from "../components/admin-metrics-overview";
 import { AdminNoData } from "../components/loaders/admin-no-data";
 import { AdminError } from "../components/loaders/admin-error";
 import { AdminLoader } from "../components/loaders/admin-loader";
+import { useTranslation } from "react-i18next";
 
 export function AdminDashboardView() {
+  const { t } = useTranslation();
   const {
     data: dashboardData,
     isLoading,
@@ -43,17 +45,18 @@ export function AdminDashboardView() {
         {/* Header */}
         <div className="mb-8">
           <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">
-            Admin Dashboard
+            {t("adminDashboard.title")}
           </h1>
           <p className="text-xs sm:text-sm md:text-base text-gray-600 break-words">
-            Last updated: {new Date(data.metadata.generatedAt).toLocaleString()}{" "}
-            • Health Score:{" "}
+            {t("adminDashboard.lastUpdated")}:{" "}
+            {new Date(data.metadata.generatedAt).toLocaleString()} •{" "}
+            {t("adminDashboard.healthScore")}:{" "}
             <span className="font-semibold text-green-600">
               {data.systemHealth.healthScore}%
             </span>
           </p>
           <p className="text-xs sm:text-sm text-gray-500 break-words">
-            Timeframe: {data.metadata.timeframe} • Data:{" "}
+            {t("adminDashboard.timeframe")}: {data.metadata.timeframe} • Data:{" "}
             {data.metadata.dataFreshness} • Requested:{" "}
             {new Date(typedDashboardData.metadata.requestedAt).toLocaleString()}{" "}
             • By: {typedDashboardData.metadata.requestedBy?.slice(0, 8)}...

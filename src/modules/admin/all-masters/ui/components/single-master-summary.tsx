@@ -1,20 +1,37 @@
 import type { Summary } from "../../types";
+import { useTranslation } from "react-i18next";
 
 export function SingleMasterSummary({ summary }: { summary: Summary }) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-2 gap-4 my-8">
       {[
-        { label: "Total Works", value: summary.totalWorks },
-        { label: "Total Certificates", value: summary.totalCertificates },
-        { label: "Total Reviews", value: summary.totalReviews },
-        { label: "Total Questions", value: summary.totalQuestions },
-        { label: "Answered Questions", value: summary.answeredQuestions },
         {
-          label: "Joined Date",
+          label: t("allMasters.singleMaster.totalWorks"),
+          value: summary.totalWorks,
+        },
+        {
+          label: t("allMasters.singleMaster.totalCertificates"),
+          value: summary.totalCertificates,
+        },
+        {
+          label: t("allMasters.singleMaster.totalReviews"),
+          value: summary.totalReviews,
+        },
+        {
+          label: t("allMasters.singleMaster.totalQuestions"),
+          value: summary.totalQuestions,
+        },
+        {
+          label: t("allMasters.singleMaster.answeredQuestions"),
+          value: summary.answeredQuestions,
+        },
+        {
+          label: t("allMasters.singleMaster.joinedDate"),
           value: new Date(summary.joinedDate).toLocaleDateString(),
         },
         {
-          label: "Profile Completeness",
+          label: t("allMasters.singleMaster.prodileCompleteness"),
           value: `${summary.profileCompleteness}%`,
         },
       ].map((item) => (

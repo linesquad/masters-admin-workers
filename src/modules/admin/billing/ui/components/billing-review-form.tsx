@@ -21,6 +21,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { DottedSeparator } from "@/components/dotted-separator";
 import { Button } from "@/components/ui/button";
+import { useTranslation } from "react-i18next";
 
 interface BillingReviewFormProps {
   billingId: string;
@@ -31,6 +32,7 @@ export const BillingReviewForm = ({
   billingId,
   onClose,
 }: BillingReviewFormProps) => {
+  const { t } = useTranslation();
   const { mutate, isPending } = useReviewBilling();
   const form = useForm<ReviewBillingSchema>({
     resolver: zodResolver(reviewBillingSchema),
@@ -53,7 +55,7 @@ export const BillingReviewForm = ({
             name="status"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Status</FormLabel>
+                <FormLabel>{t("adminBilling.reviewModal.status")}</FormLabel>
                 <Select
                   defaultValue={field.value}
                   onValueChange={field.onChange}
@@ -65,8 +67,12 @@ export const BillingReviewForm = ({
                   </FormControl>
                   <FormMessage />
                   <SelectContent className="bg-white">
-                    <SelectItem value="approve">Approve</SelectItem>
-                    <SelectItem value="reject">Reject</SelectItem>
+                    <SelectItem value="approve">
+                      {t("adminBilling.reviewModal.approve")}
+                    </SelectItem>
+                    <SelectItem value="reject">
+                      {t("adminBilling.reviewModal.reject")}
+                    </SelectItem>
                   </SelectContent>
                 </Select>
               </FormItem>
@@ -77,10 +83,10 @@ export const BillingReviewForm = ({
             name="adminNote"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Admin Note</FormLabel>
+                <FormLabel>{t("adminBilling.reviewModal.adminNote")}</FormLabel>
                 <FormControl>
                   <Input
-                    placeholder="Enter admin note"
+                    placeholder={t("adminBilling.reviewModal.enterAdminNote")}
                     {...field}
                     disabled={isPending}
                   />
@@ -92,10 +98,12 @@ export const BillingReviewForm = ({
           <DottedSeparator />
           <div className="flex flex-col w-full md:w-auto gap-y-4 md:flex-row items-center justify-between">
             <Button type="button" variant="outline" onClick={onClose}>
-              Cancel
+              {t("adminBilling.reviewModal.cancel")}
             </Button>
             <Button type="submit" disabled={isPending}>
-              {isPending ? "Reviewing..." : "Submit"}
+              {isPending
+                ? t("adminBilling.reviewModal.reviewing")
+                : t("adminBilling.reviewModal.submit")}
             </Button>
           </div>
         </form>

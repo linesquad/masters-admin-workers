@@ -4,12 +4,14 @@ import { ResponsiveModal } from "@/components/responsive-modal";
 import { BillingReviewForm } from "./billing-review-form";
 import { useState } from "react";
 import { useSendReminder } from "../../hooks/use-send-reminder";
+import { useTranslation } from "react-i18next";
 
 interface BillingStatsCardProps {
   billing: BillingItem;
 }
 
 export const BillingStatsCard = ({ billing }: BillingStatsCardProps) => {
+  const { t } = useTranslation();
   const [open, setOpen] = useState(false);
   const [openProof, setOpenProof] = useState(false);
   const { mutate, isPending } = useSendReminder();
@@ -17,7 +19,6 @@ export const BillingStatsCard = ({ billing }: BillingStatsCardProps) => {
   const sendReminder = () => {
     mutate(billing.id);
   };
-  console.log(billing);
   return (
     <div className="border rounded-lg p-6 shadow-sm bg-white">
       <ResponsiveModal open={open} onOpenChange={setOpen}>
@@ -42,39 +43,49 @@ export const BillingStatsCard = ({ billing }: BillingStatsCardProps) => {
 
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-3 gap-4 mb-6">
         <div className="bg-gray-50 p-3 rounded-lg w-full">
-          <p className="text-sm text-gray-500">Total Jobs</p>
+          <p className="text-sm text-gray-500">
+            {t("adminBilling.billingCard.totalJobs")}
+          </p>
           <p className="font-medium">{billing.totalJobs}</p>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg">
-          <p className="text-sm text-gray-500">Total Amount</p>
+          <p className="text-sm text-gray-500">
+            {t("adminBilling.billingCard.totalAmount")}
+          </p>
           <p className="font-medium">${billing.totalAmount}</p>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg">
-          <p className="text-sm text-gray-500">Admin Fee</p>
+          <p className="text-sm text-gray-500">
+            {t("adminBilling.billingCard.adminFee")}
+          </p>
           <p className="font-medium">${billing.adminFee}</p>
         </div>
       </div>
 
       <div className="flex justify-between text-sm text-gray-500 mb-2">
         <span>
-          Week: {new Date(billing.weekStart).toLocaleDateString()} -{" "}
+          {t("adminBilling.billingCard.week")}:{" "}
+          {new Date(billing.weekStart).toLocaleDateString()} -{" "}
           {new Date(billing.weekEnd).toLocaleDateString()}
         </span>
-        <span>Due: {new Date(billing.dueDate).toLocaleDateString()}</span>
+        <span>
+          {t("adminBilling.billingCard.due")}:{" "}
+          {new Date(billing.dueDate).toLocaleDateString()}
+        </span>
       </div>
 
       <div className="pt-4 border-t">
         <p className="text-sm text-gray-500">
-          Reminders sent: {billing.remindersSent}
+          {t("adminBilling.billingCard.remindersSent")}: {billing.remindersSent}
         </p>
       </div>
 
       <div className="flex items-center justify-between">
         <Button className="mt-10" onClick={() => setOpen(true)}>
-          Review
+          {t("adminBilling.billingCard.review")}
         </Button>
         <Button className="mt-10" onClick={sendReminder} disabled={isPending}>
-          Send Reminder
+          {t("adminBilling.billingCard.sendReminder")}
         </Button>
       </div>
 
@@ -90,7 +101,7 @@ export const BillingStatsCard = ({ billing }: BillingStatsCardProps) => {
             </div>
           </ResponsiveModal>
           <Button className="mt-4" onClick={() => setOpenProof(true)}>
-            View Proof
+            {t("adminBilling.billingCard.viewProof")}
           </Button>
         </div>
       )}

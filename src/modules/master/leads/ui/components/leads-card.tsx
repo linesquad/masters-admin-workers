@@ -16,6 +16,7 @@ import { ResponsiveModal } from "@/components/responsive-modal";
 import { CompleteLeadForm } from "./complete-lead-form";
 import { useAwardMasterPoints } from "@/modules/admin/all-masters/hooks/use-award-master";
 import { useTranslation } from "react-i18next";
+import i18n from "@/lib/i18n";
 
 interface LeadsCardProps {
   lead: Lead;
@@ -65,7 +66,11 @@ export function LeadsCard({ lead }: LeadsCardProps) {
       <CardHeader className="flex flex-col items-center justify-center gap-2 bg-blue-100 rounded-t-lg p-4">
         <CardTitle className="text-blue-800">{lead.client.fullName}</CardTitle>
         <CardDescription className="text-center text-blue-600">
-          {lead.jobTitle.en} ({lead.categoryName.en})
+          {t(lead.jobTitle[i18n.language as keyof typeof lead.jobTitle])} (
+          {t(
+            lead.categoryName[i18n.language as keyof typeof lead.categoryName]
+          )}
+          )
         </CardDescription>
         {pathname.includes("get-masters") && (
           <CardDescription className="text-center text-black">
@@ -132,7 +137,9 @@ export function LeadsCard({ lead }: LeadsCardProps) {
             variant={"default"}
             disabled={isAwardingPointsPending}
           >
-            {isAwardingPointsPending ? "Awarding..." : "Award Points"}
+            {isAwardingPointsPending
+              ? t("leads.leadCard.awarding")
+              : t("leads.leadCard.awardPoints")}
           </Button>
         ) : (
           <Button asChild variant={"outline"} disabled={isPending}>

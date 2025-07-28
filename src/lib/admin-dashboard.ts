@@ -2,10 +2,12 @@ import {
   Box,
   Briefcase,
   CreditCardIcon,
+  FileText,
   Home,
   MapPin,
   Star,
   User,
+  UserPlus,
   Users,
 } from "lucide-react";
 
@@ -49,5 +51,15 @@ export const mainItems = [
     title: "Reviews",
     url: "reviews",
     icon: Star,
+  },
+  {
+    title: "Reports",
+    url: "/reports",
+    icon: FileText,
+  },
+  {
+    title: "Master Applies",
+    url: "/master-applies",
+    icon: UserPlus,
   },
 ];

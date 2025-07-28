@@ -9,12 +9,14 @@ import {
 } from "@/components/ui/card";
 import type { Master } from "@/modules/admin/all-masters/types";
 import { Link } from "@tanstack/react-router";
+import { useTranslation } from "react-i18next";
 
 interface MasterCardProps {
   master: Master;
 }
 
 export function MasterCard({ master }: MasterCardProps) {
+  const { t } = useTranslation();
   return (
     <Card className="mt-10 border-blue-200 bg-blue-50">
       <CardHeader className="border-b border-blue-100">
@@ -26,23 +28,31 @@ export function MasterCard({ master }: MasterCardProps) {
       </CardHeader>
       <CardContent className="grid grid-cols-2 gap-4 p-6">
         <div className="bg-blue-100 p-3 rounded-lg">
-          <p className="text-sm text-blue-600">Total Reviews</p>
+          <p className="text-sm text-blue-600">
+            {t("allMasters.masterCard.totalReviews")}
+          </p>
           <p className="text-blue-800 font-medium">{master.totalReviews}</p>
         </div>
         <div className="bg-blue-100 p-3 rounded-lg">
-          <p className="text-sm text-blue-600">Total Score</p>
+          <p className="text-sm text-blue-600">
+            {t("allMasters.masterCard.totalScore")}
+          </p>
           <p className="text-blue-800 font-medium">
             {Number(master.totalScore).toFixed(2) || "-"}
           </p>
         </div>
         <div className="bg-blue-100 p-3 rounded-lg">
-          <p className="text-sm text-blue-600">Avg Price</p>
+          <p className="text-sm text-blue-600">
+            {t("allMasters.masterCard.avgPrice")}
+          </p>
           <p className="text-blue-800 font-medium">
             {Number(master.avgPrice).toFixed(2) || "-"}
           </p>
         </div>
         <div className="bg-blue-100 p-3 rounded-lg">
-          <p className="text-sm text-blue-600">Avg Quality</p>
+          <p className="text-sm text-blue-600">
+            {t("allMasters.masterCard.avgQuality")}
+          </p>
           <p className="text-blue-800 font-medium">
             {Number(master.avgQuality).toFixed(2) || "-"}
           </p>
@@ -54,7 +64,7 @@ export function MasterCard({ master }: MasterCardProps) {
       <CardContent className="flex justify-between">
         <Button asChild variant="outline">
           <Link to="/get-masters/$id" params={{ id: master.id }}>
-            View Details
+            {t("allMasters.masterCard.viewDetails")}
           </Link>
         </Button>
         <Button asChild variant="default">
@@ -62,7 +72,7 @@ export function MasterCard({ master }: MasterCardProps) {
             to="/get-masters/leads/$leadsId"
             params={{ leadsId: master.id }}
           >
-            View Leads
+            {t("allMasters.masterCard.viewLeads")}
           </Link>
         </Button>
       </CardContent>

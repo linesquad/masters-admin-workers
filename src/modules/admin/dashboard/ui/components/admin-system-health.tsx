@@ -1,49 +1,61 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Activity, AlertCircle, Star } from "lucide-react";
 import type { DashboardData } from "../../types/dashboard";
+import { useTranslation } from "react-i18next";
 
 interface AdminSystemHealthProps {
   data: DashboardData;
 }
 
 export function AdminSystemHealth({ data }: AdminSystemHealthProps) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
       <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertCircle className="h-5 w-5" />
-            System Health & Notifications
+            {t("adminDashboard.systemHealth.title")}
           </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="space-y-3">
             <div className="flex justify-between">
-              <span className="text-sm">Total Notifications</span>
+              <span className="text-sm">
+                {t("adminDashboard.systemHealth.totalNotifications")}
+              </span>
               <span className="font-semibold">
                 {data.systemHealth.system.totalNotifications}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm">Unread Notifications</span>
+              <span className="text-sm">
+                {t("adminDashboard.systemHealth.unreadNotifications")}
+              </span>
               <span className="font-semibold text-orange-600">
                 {data.systemHealth.system.unreadNotifications}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm">Urgent Notifications</span>
+              <span className="text-sm">
+                {t("adminDashboard.systemHealth.urgentNotifications")}
+              </span>
               <span className="font-semibold text-red-600">
                 {data.systemHealth.system.urgentNotifications}
               </span>
             </div>
             <div className="flex justify-between">
-              <span className="text-sm">Overdue Notifications</span>
+              <span className="text-sm">
+                {t("adminDashboard.systemHealth.overdueNotifications")}
+              </span>
               <span className="font-semibold text-red-600">
                 {data.systemHealth.system.overdueNotifications}
               </span>
             </div>
             <div className="mt-4 p-3 bg-green-50 rounded-lg">
-              <p className="text-sm text-gray-600">Overall Health Score</p>
+              <p className="text-sm text-gray-600">
+                {t("adminDashboard.systemHealth.overallHealthScore")}
+              </p>
               <p className="text-2xl font-bold text-green-600">
                 {data.systemHealth.healthScore}%
               </p>
@@ -56,7 +68,7 @@ export function AdminSystemHealth({ data }: AdminSystemHealthProps) {
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <Activity className="h-5 w-5" />
-            Master Performance Details
+            {t("adminDashboard.masterPerformanceDetails.title")}
           </CardTitle>
         </CardHeader>
         <CardContent>

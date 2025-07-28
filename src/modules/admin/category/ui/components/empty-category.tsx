@@ -1,6 +1,8 @@
 import { Package } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export function EmptyCategory() {
+  const { t } = useTranslation();
   return (
     <div className="relative">
       <div className="absolute inset-0 bg-gradient-to-r from-blue-50 to-purple-50 rounded-2xl"></div>
@@ -9,11 +11,10 @@ export function EmptyCategory() {
           <Package className="w-10 h-10 text-gray-400" />
         </div>
         <h3 className="text-xl font-semibold text-gray-900 mb-3">
-          No categories created yet
+          {t("categories.noCategories")}
         </h3>
         <p className="text-gray-500 max-w-md mx-auto">
-          Get started by creating your first category. Categories help organize
-          and structure your job listings.
+          {t("categories.getStarted")}
         </p>
       </div>
     </div>

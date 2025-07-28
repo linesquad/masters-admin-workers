@@ -1,8 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { useTriggerBilling } from "../../hooks/use-trigger-billing";
 import { Loader } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const TriggerBillingButton = () => {
+  const { t } = useTranslation();
   const { mutate, isPending } = useTriggerBilling();
 
   const handleTriggerBilling = () => {
@@ -14,7 +16,7 @@ export const TriggerBillingButton = () => {
       {isPending ? (
         <Loader className="size-4 animate-spin" />
       ) : (
-        "Trigger Billing"
+        t("adminBilling.billingTrigger.triggerBilling")
       )}
     </Button>
   );

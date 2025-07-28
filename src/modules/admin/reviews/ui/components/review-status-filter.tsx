@@ -1,9 +1,10 @@
+import { useTranslation } from "react-i18next";
 import { useAdminReviews } from "../../hooks/use-admin-reviews";
 import { ReviewStatus } from "../../types";
 
 export const ReviewStatusFilter = () => {
   const { status, setStatus } = useAdminReviews();
-
+  const { t } = useTranslation();
   return (
     <select
       value={status}
@@ -12,7 +13,9 @@ export const ReviewStatusFilter = () => {
     >
       {Object.values(ReviewStatus).map((status) => (
         <option key={status} value={status}>
-          {status === "" ? "All" : status}
+          {status === ""
+            ? t("reviewsMaster.reviewFilters.sorting.all")
+            : t(`reviewsMaster.reviewFilters.sorting.${status}`)}
         </option>
       ))}
     </select>

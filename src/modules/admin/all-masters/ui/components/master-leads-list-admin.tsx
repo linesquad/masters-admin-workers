@@ -3,6 +3,9 @@ import { useMasterLeadsFilters } from "@/modules/master/leads/hooks/use-master-l
 import PaginationComp from "@/components/PaginationComp";
 import { useGetMasterLeads } from "../../hooks/use-get-master-leads";
 import type { Lead } from "@/modules/master/leads/types";
+import { LoadingState } from "@/components/loading-state";
+import { ErrorState } from "@/components/error-state";
+import { EmptyState } from "@/components/empthy-state";
 
 export function MasterLeadsListAdmin({ id }: { id: string }) {
   const { page, limit, setPage, status } = useMasterLeadsFilters();
@@ -19,11 +22,30 @@ export function MasterLeadsListAdmin({ id }: { id: string }) {
       | "",
   });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error?.message}</div>;
-  if (!data) return <div>No leads found</div>;
-
-  if (data.data.data.length === 0) return <div>No leads found</div>;
+  if (isLoading)
+    return (
+      <LoadingState
+        title={"Loading"}
+        description={"Please wait while we load the leads"}
+        className="mt-4"
+      />
+    );
+  if (isError)
+    return (
+      <ErrorState
+        title={"Error"}
+        description={error?.message || "Something went wrong"}
+        className="mt-4"
+      />
+    );
+  if (!data || data.data.data.length === 0)
+    return (
+      <EmptyState
+        title={"No data"}
+        description={"Please try again later"}
+        className="mt-4"
+      />
+    );
 
   return (
     <div>

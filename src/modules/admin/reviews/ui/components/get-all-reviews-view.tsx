@@ -2,6 +2,9 @@ import PaginationComp from "@/components/PaginationComp";
 import { useAdminReviews } from "../../hooks/use-admin-reviews";
 import { useGetAllReviews } from "../../hooks/use-get-all-reviews";
 import { ReviewsCard } from "./reviews-card";
+import { LoadingState } from "@/components/loading-state";
+import { ErrorState } from "@/components/error-state";
+import { EmptyState } from "@/components/empthy-state";
 
 export const GetAllReviewsView = () => {
   const { page, limit, status, hasReply, sortBy, setPage, masterId } =
@@ -20,11 +23,39 @@ export const GetAllReviewsView = () => {
     setPage(page);
   };
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error: {error?.message}</div>;
-  if (!data) return <div>No data</div>;
+  if (isLoading)
+    return (
+      <LoadingState
+        title={"Loading"}
+        description={"Please wait while we load the reviews"}
+        className="mt-4"
+      />
+    );
+  if (isError)
+    return (
+      <ErrorState
+        title={"Error"}
+        description={error?.message || "Something went wrong"}
+        className="mt-4"
+      />
+    );
+  if (!data)
+    return (
+      <EmptyState
+        title={"No reviews found"}
+        description={"Please try again later"}
+        className="mt-4"
+      />
+    );
 
-  if (data.data.length === 0) return <div>No reviews found</div>;
+  if (data.data.length === 0)
+    return (
+      <EmptyState
+        title={"No reviews found"}
+        description={"Please try again later"}
+        className="mt-4"
+      />
+    );
 
   return (
     <div className="">

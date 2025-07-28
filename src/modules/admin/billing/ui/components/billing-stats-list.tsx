@@ -2,16 +2,50 @@ import PaginationComp from "@/components/PaginationComp";
 import { useGetBilling } from "../../hooks/use-get-billing";
 import { BillingStatsCard } from "./billing-stats-card";
 import { useState } from "react";
+import { LoadingState } from "@/components/loading-state";
+import { ErrorState } from "@/components/error-state";
+import { EmptyState } from "@/components/empthy-state";
 
 export const BillingStatsList = () => {
   const [page, setPage] = useState(1);
   const [limit] = useState(10);
   const { data, isLoading, error } = useGetBilling({ page, limit });
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <div>Error: {error.message}</div>;
+  if (isLoading)
+    return (
+      <LoadingState
+        title={"Loading"}
+        description={"Please wait while we load the billing stats"}
+        className="mt-4"
+      />
+    );
 
-  if (!data) return <div>No data</div>;
+  if (error)
+    return (
+      <ErrorState
+        title={"Error"}
+        description={error.message || "Something went wrong"}
+        className="mt-4"
+      />
+    );
+
+  if (!data)
+    return (
+      <EmptyState
+        title={"No data"}
+        description={"Please try again later"}
+        className="mt-4"
+      />
+    );
+
+  if (data.data.length === 0)
+    return (
+      <EmptyState
+        title={"No data"}
+        description={"Please try again later"}
+        className="mt-4"
+      />
+    );
 
   return (
     <div>
