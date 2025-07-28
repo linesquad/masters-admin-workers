@@ -7,8 +7,10 @@ import { UnlockedSkeleton } from "../components/unlocked-skeleton";
 import { UnlockedError } from "../components/unlocked-error";
 import { UnlockedNoData } from "../components/unlocked-noData";
 import { UnlockedCards } from "../components/unlocked-cards";
+import { useTranslation } from "react-i18next";
 
 export function UnlockedLocation() {
+  const { t } = useTranslation();
   const { data, isLoading, isError, error } = useGetUnlockedMasterLocations();
   const { mutate: deleteUnlockedLocation, isPending } =
     useDeleteUnlockedLocation();
@@ -33,22 +35,21 @@ export function UnlockedLocation() {
           <div className="text-center mb-8">
             <h1 className="text-4xl font-bold text-slate-800 mb-4 flex items-center justify-center gap-3">
               <MapPin className="size-8 text-green-600" />
-              My Unlocked Cities
+              {t("unlockCity.title")}
             </h1>
             <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-              Manage your unlocked service areas. You can remove cities you no
-              longer want to service.
+              {t("unlockCity.subtitle")}
             </p>
           </div>
 
           <div className="text-center mb-6">
             <p className="text-lg text-slate-600">
-              <span className="font-semibold text-slate-800">
+              <span className="font-semibold text-slate-800 mr-2">
                 {unlockedCities.length}
               </span>
               {unlockedCities.length === 1
-                ? " city unlocked"
-                : " cities unlocked"}
+                ? t("unlockCity.cityUnlocked")
+                : t("unlockCity.citiesUnlocked")}
             </p>
           </div>
         </div>

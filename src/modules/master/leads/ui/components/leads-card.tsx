@@ -15,12 +15,14 @@ import { useState } from "react";
 import { ResponsiveModal } from "@/components/responsive-modal";
 import { CompleteLeadForm } from "./complete-lead-form";
 import { useAwardMasterPoints } from "@/modules/admin/all-masters/hooks/use-award-master";
+import { useTranslation } from "react-i18next";
 
 interface LeadsCardProps {
   lead: Lead;
 }
 
 export function LeadsCard({ lead }: LeadsCardProps) {
+  const { t } = useTranslation();
   const pathname = useLocation().pathname;
   const { completeLeadMutate, isPending } = useCompleteLead();
   const { mutate: awardMasterPoints, isPending: isAwardingPointsPending } =
@@ -78,40 +80,52 @@ export function LeadsCard({ lead }: LeadsCardProps) {
       <DottedSeparator className="mb-2 border-blue-200" />
       <CardContent className="space-y-4 p-6">
         <div className="flex justify-between">
-          <span className="font-medium text-blue-700">Status:</span>
+          <span className="font-medium text-blue-700">
+            {t("leads.leadCard.status")}:
+          </span>
           <span className="capitalize text-blue-900 font-semibold">
             {lead.status}
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="font-medium text-blue-700">Location:</span>
+          <span className="font-medium text-blue-700">
+            {t("leads.leadCard.location")}:
+          </span>
           <span className="text-blue-800">{lead.location}</span>
         </div>
         <div className="flex justify-between">
-          <span className="font-medium text-blue-700">Requested Time:</span>
+          <span className="font-medium text-blue-700">
+            {t("leads.leadCard.requestedTime")}:
+          </span>
           <span className="text-blue-800">
             {new Date(lead.requestedTime).toLocaleString()}
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="font-medium text-blue-700">Price:</span>
+          <span className="font-medium text-blue-700">
+            {t("leads.leadCard.price")}:
+          </span>
           <span className="text-blue-800 font-medium">
             {lead.price ? `${lead.price} ₾` : "Not set"}
           </span>
         </div>
         <div className="flex justify-between">
-          <span className="font-medium text-blue-700">Contact:</span>
+          <span className="font-medium text-blue-700">
+            {t("leads.leadCard.contact")}:
+          </span>
           <span className="text-blue-800">{lead.client.phone}</span>
         </div>
         <div className="pt-4 border-t border-blue-100">
-          <p className="font-medium text-blue-700">Message:</p>
+          <p className="font-medium text-blue-700">
+            {t("leads.leadCard.message")}:
+          </p>
           <p className="text-sm text-blue-600 mt-2 bg-blue-50 p-3 rounded-lg">
             {lead.message}
           </p>
         </div>
       </CardContent>
       <DottedSeparator className="mb-4 border-blue-200" />
-      <CardContent className="flex justify-between">
+      <CardContent className="flex justify-between gap-2 items-center">
         {pathname.includes("get-masters") ? (
           <Button
             onClick={handleAwardMasterPoints}
@@ -123,7 +137,7 @@ export function LeadsCard({ lead }: LeadsCardProps) {
         ) : (
           <Button asChild variant={"outline"} disabled={isPending}>
             <Link to="/master/leads/$id" params={{ id: lead.id }}>
-              View Lead
+              {t("leads.leadCard.viewLead")}
             </Link>
           </Button>
         )}
@@ -133,7 +147,9 @@ export function LeadsCard({ lead }: LeadsCardProps) {
             variant={"default"}
             disabled={isPending}
           >
-            {isPending ? "Completing..." : "Complete Lead"}
+            {isPending
+              ? t("leads.leadCard.completing")
+              : t("leads.leadCard.completeLead")}
           </Button>
         )}
       </CardContent>

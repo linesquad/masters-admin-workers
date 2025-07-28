@@ -1,5 +1,6 @@
 import { MapPin } from "lucide-react";
 import type { City } from "@/modules/master/unlock-cities/types/unlock";
+import { useTranslation } from "react-i18next";
 
 export function UnlockLocationCities({
   cities,
@@ -8,6 +9,7 @@ export function UnlockLocationCities({
   cities: City[];
   handleCityClick: (cityId: string) => void;
 }) {
+  const { t } = useTranslation();
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
       {cities.map((city) => (
@@ -28,7 +30,7 @@ export function UnlockLocationCities({
               className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             />
           </div>
-          
+
           <div className="p-6">
             {/* City Info */}
             <div className="mb-4">
@@ -58,7 +60,7 @@ export function UnlockLocationCities({
                 }`}
               >
                 <MapPin className="size-4" />
-                View areas
+                {t("unlockCities.viewAreas")}
               </div>
             </div>
           </div>

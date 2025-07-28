@@ -1,7 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Save } from "lucide-react";
+import { Loader, Save } from "lucide-react";
+import { useTranslation } from "react-i18next";
 
 export const SettingsButtons = ({ isUpdating }: { isUpdating: boolean }) => {
+  const { t } = useTranslation();
   return (
     <div className="bg-white rounded-xl shadow-lg border border-slate-200 p-6">
       <div className="flex flex-col sm:flex-row gap-4 justify-end">
@@ -13,12 +15,12 @@ export const SettingsButtons = ({ isUpdating }: { isUpdating: boolean }) => {
           {isUpdating ? (
             <>
               <div className="size-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-              Updating...
+              <Loader className="size-4 animate-spin" />
             </>
           ) : (
             <>
               <Save className="size-4" />
-              Save Changes
+              {t("profileSettings.saveChanges")}
             </>
           )}
         </Button>

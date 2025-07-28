@@ -1,0 +1,178 @@
+{
+  "common": {
+    "language": "English"
+  },
+  "masterProfile": {
+    "completedJobs": "Completed Jobs",
+    "totalReviews": "Total Reviews",
+    "totalEarnings": "Total Earnings",
+    "points": "Points",
+    "about": "About",
+    "contactInformation": "Contact Information",
+    "phone": "Phone",
+    "email": "Email",
+    "memberSince": "Member Since",
+    "quickActions": "Quick Actions",
+    "editProfile": "Edit Profile",
+    "manageSchedule": "Manage Schedule",
+    "viewAnalytics": "View Analytics",
+    "leadsGenerated": "Leads Generated",
+    "leadsConverted": "Leads Converted",
+    "convertedValue": "Converted Value",
+    "averageJobValue": "Average Job Value",
+    "totalRevenue": "Total Revenue",
+    "totalLeadsDeclined": "Total Leads Declined"
+  },
+  "profileSettings": {
+    "profileSettings": "Profile Settings",
+    "updateYourOrifileInformation": "Update your profile information",
+    "location": "Location",
+    "city": "City",
+    "enterYourCity": "Enter your city",
+    "profilePicture": "Profile Picture",
+    "uploadProfilePicture": "Upload Profile Picture",
+    "aboutMe": "About Me",
+    "professionalBio": "Professional Bio",
+    "tellPotentialClientsAboutYourself": "Tell potential clients about yourself",
+    "saveChanges": "Save Changes"
+  },
+  "jobAssigment": {
+    "chooseCategory": "Choose Category",
+    "selectACategoryToSeeAvailableJobs": "Select a category to see available jobs",
+    "selectJob": "Select Job",
+    "chooseAJobFromThisCategory": "Choose a job from this category",
+    "jobDetails": "Job Details",
+    "jobSubtitle": "Fill in the job assignment details",
+    "confirmation": "Confirm Job Assignment",
+    "confirmationSubtitle": "Please review the details before confirming",
+    "confirmationDetails": "Job Details",
+    "back": "Back to Jobs",
+    "next": "Continue to Review",
+    "finalBack": "Back to Details",
+    "assign": "Confirm Assignment",
+    "minimumPrice": "Minimum Price",
+    "maximumPrice": "Maximum Price",
+    "duration": "Duration (Minutes)",
+    "note": "Note",
+    "enterYourNote": "Enter your note here..."
+  },
+  "unlockCities": {
+    "title": "Manage Cities",
+    "subtitle": "Manage your service areas by exploring cities. Click on a city to unlock specific areas within it.",
+    "availableCities": "Available Cities",
+    "viewAreas": "View Areas",
+    "areas": "Areas",
+    "areaSubtitle": "Unlock specific areas within {{Tbilisi}} to expand your service coverage and reach more customers.",
+    "unlock": "Unlock",
+    "unlocking": "Unlocking...",
+    "backToCities": "Back to Cities"
+  },
+  "unlockCity": {
+    "title": "My Unlocked Cities",
+    "subtitle": "Manage your unlocked service areas. You can remove cities you no longer want to service.",
+    "citiesUnlocked": "Cities Unlocked",
+    "removeCity": "Remove City",
+    "removeCitySubtitle": "Are you sure you want to remove {{Tbilisi}} from your unlocked cities? This action cannot be undone and you'll need to unlock it again if you want to service this area.",
+    "cancel": "Cancel",
+    "remove": "Remove",
+    "unlockCost": "Unlock Cost",
+    "unlocked": "Unlocked",
+    "status": "Status",
+    "removing": "Removing...",
+    "active": "Active",
+    "inactive": "Inactive"
+  },
+  "leads": {
+    "title": "Leads",
+    "subtitle": "Manage your leads and convert them into jobs.",
+    "filters": {
+      "all": "All",
+      "pending": "Pending",
+      "accepted": "Accepted",
+      "cancelled": "Cancelled",
+      "completed": "Completed",
+      "declined": "Declined"
+    },
+    "leadCard": {
+      "status": "Status",
+      "location": "Location",
+      "requestedTime": "Requested Time",
+      "price": "Price",
+      "contact": "Contact",
+      "message": "Message",
+      "viewLead": "View Lead",
+      "completeLead": "Complete Lead"
+    },
+    "singleLead": {
+      "title": "Information about {{ leadName }} lead",
+      "goBack": "Go Back",
+      "clientInformation": "Client Information",
+      "fullName": "Full Name",
+      "email": "Email",
+      "phone": "Phone",
+      "jobDetails": "Job Details",
+      "clientMessage": "Client Message",
+      "completionDetails": "Completion Details",
+      "accept": "Accept",
+      "decline": "Decline",
+      "accepting": "Accepting...",
+      "declining": "Declining...",
+      "completedAt": "Completed At"
+    }
+  },
+  "notifications": {
+    "title": "Notifications",
+    "subtitle": "Manage your notifications and stay updated with the latest news and updates.",
+    "count": "You have {{count}} unread notifications",
+    "marked": "marked",
+    "asRead": "Mark as read"
+  },
+  "reviews": {
+    "title": "Reviews",
+    "subtitle": "Manage your reviews and stay updated with the latest news and updates.",
+    "reviewsnav": ["Reviews", "Review Stats"],
+    "reviewPage": {
+      "title": "Review Details",
+      "subtitle": "Manage your reviews and stay updated with the latest news and updates."
+    },
+    "reviewFilters": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "reviewVard": {
+      "price": "Price",
+      "quality": "Quality",
+      "punctuality": "Punctuality",
+      "experience": "Experience",
+      "comment": "Comment",
+      "yourReply": "Your Reply",
+      "editReply": "Edit Reply",
+      "reply": "Reply",
+      "addReply": "Add Reply"
+    }
+  },
+  "billingMaster": {
+    "title": "Billing",
+    "subtitle": "Manage your billing and stay updated with the latest news and updates.",
+    "billingCard": {
+      "title": "Billing",
+      "createdAt": "Created At",
+      "totalJobs": "Total Jobs",
+      "totalAmount": "Total Amount",
+      "adminFee": "Admin Fee",
+      "week": "Week",
+      "duration": "Due",
+      "adminNote": "Admin Note",
+      "remindersSent": "Reminders Sent"
+    },
+    "uploadProof": {
+      "title": "Upload Proof",
+      "uploadImage": "Upload Image",
+      "cancel": "Cancel",
+      "upload": "Upload Prood",
+      "uploading": "Uploading..."
+    }
+  }
+}

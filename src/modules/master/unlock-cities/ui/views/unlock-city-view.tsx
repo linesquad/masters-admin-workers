@@ -12,7 +12,10 @@ import type {
 } from "@/modules/master/unlock-cities/types/unlock";
 import { UnlockLocationCities } from "../components/unlock-location-cities";
 import { UnlockLocationParts } from "../components/unlock-location-parts";
+import { useTranslation } from "react-i18next";
+
 export function UnlockCityView() {
+  const { t } = useTranslation();
   const { data, isLoading, isError, error } = useGetCities();
   const { mutate: unlockCityMutation, isPending: isUnlockingCity } =
     useUnlockCity();
@@ -81,7 +84,7 @@ export function UnlockCityView() {
               onClick={handleBackToCities}
               className="flex items-center gap-2 text-blue-600 hover:text-blue-700 transition-colors font-medium cursor-pointer"
             >
-              ← Back to Cities
+              ← {t("unlockCities.backToCities")}
             </button>
           </div>
 
@@ -92,11 +95,12 @@ export function UnlockCityView() {
                 <div className="text-center mb-8">
                   <h1 className="text-4xl font-bold text-slate-800 mb-4 flex items-center justify-center gap-3">
                     <MapPin className="size-8 text-blue-600" />
-                    {selectedCity.name} Areas
+                    {selectedCity.name} {t("unlockCities.areas")}
                   </h1>
                   <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                    Unlock specific areas within {selectedCity.name} to expand
-                    your service coverage and reach more customers.
+                    {t("unlockCities.areaSubtitle", {
+                      Tbilisi: selectedCity.name,
+                    })}
                   </p>
                 </div>
 
@@ -106,7 +110,7 @@ export function UnlockCityView() {
                     <span className="font-semibold text-slate-800">
                       {totalParts}
                     </span>{" "}
-                    areas available in {selectedCity.name}
+                    {t("unlockCities.areas")} {selectedCity.name}
                   </p>
                 </div>
               </div>
@@ -149,11 +153,10 @@ export function UnlockCityView() {
             <div className="text-center mb-8">
               <h1 className="text-4xl font-bold text-slate-800 mb-4 flex items-center justify-center gap-3">
                 <MapPin className="size-8 text-blue-600" />
-                Manage Cities
+                {t("unlockCities.title")}
               </h1>
               <p className="text-lg text-slate-600 max-w-2xl mx-auto">
-                Manage your service areas by exploring cities. Click on a city
-                to unlock specific areas within it.
+                {t("unlockCities.subtitle")}
               </p>
             </div>
             <div className="text-center mb-6">
@@ -161,7 +164,7 @@ export function UnlockCityView() {
                 <span className="font-semibold text-slate-800">
                   {totalCities}
                 </span>
-                cities available
+                {t("unlockCities.availableCities")}
               </p>
             </div>
           </div>

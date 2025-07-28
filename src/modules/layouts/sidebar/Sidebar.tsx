@@ -17,6 +17,7 @@ import { masterMainItems } from "@/lib/master-dashboard";
 import { Link, useLocation } from "@tanstack/react-router";
 import { XIcon } from "lucide-react";
 import { useEffect } from "react";
+import Languages from "@/components/labguages";
 
 const activeLinkProps = {
   activeProps: {
@@ -34,6 +35,18 @@ export function SideBar({ user }: { user: UserTypes }) {
   useEffect(() => {
     setOpenMobile(false);
   }, [location.pathname, setOpenMobile]);
+
+  if (!user)
+    return (
+      <div className="animate-pulse space-y-4 p-4">
+        <div className="h-8 w-32 rounded bg-gray-200" />
+        <div className="space-y-2">
+          {[...Array(5)].map((_, i) => (
+            <div key={i} className="h-10 rounded bg-gray-200" />
+          ))}
+        </div>
+      </div>
+    );
 
   return (
     <Sidebar className="bg-gradient-to-b from-[#2D5BE3] to-[#1E40AF] text-white [&_[data-mobile=true]]:bg-gradient-to-b [&_[data-mobile=true]]:from-[#2D5BE3] [&_[data-mobile=true]]:to-[#1E40AF] [&_[data-mobile=true]]:text-white">
@@ -54,11 +67,11 @@ export function SideBar({ user }: { user: UserTypes }) {
         {/* Main Navigation */}
         <SidebarGroup>
           <SidebarGroupLabel className="text-white/70">
-            {user.role === "admin" ? "Admin" : "Master"}
+            {user?.role === "admin" ? "Admin" : "Master"}
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
-              {user.role === "admin" &&
+              {user?.role === "admin" &&
                 mainItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
@@ -76,7 +89,7 @@ export function SideBar({ user }: { user: UserTypes }) {
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
-              {user.role === "master" &&
+              {user?.role === "master" &&
                 masterMainItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
@@ -97,6 +110,7 @@ export function SideBar({ user }: { user: UserTypes }) {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+        <Languages />
         {/* Logout */}
         <SidebarGroup className="mt-auto">
           <SidebarGroupContent>

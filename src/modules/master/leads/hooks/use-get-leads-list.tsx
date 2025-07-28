@@ -7,23 +7,20 @@ interface UseGetLeadsListProps {
   page: number;
   limit: number;
   status: LeadStatus;
-  search: string;
 }
 
 export const useGetLeadsList = ({
   page,
   limit,
   status,
-  search,
 }: UseGetLeadsListProps) => {
   const { data, isLoading, isError, error } = useQuery<LeadsResponse, Error>({
-    queryKey: ["leads", page, limit, status, search],
+    queryKey: ["leads", page, limit, status],
     queryFn: () =>
       getLeadsForMaster({
         page,
         limit,
         status,
-        search,
       }),
   });
 

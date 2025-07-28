@@ -13,6 +13,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { MapPin, Trash2 } from "lucide-react";
+import { useTranslation } from "react-i18next";
 export function UnlockedCards({
   city,
   isPending,
@@ -24,6 +25,7 @@ export function UnlockedCards({
   deleteUnlockedLocation: (cityPartId: string) => void;
   unlockedDate: string;
 }) {
+  const { t } = useTranslation();
   return (
     <div
       key={city.cityPartId}
@@ -62,24 +64,23 @@ export function UnlockedCards({
           </AlertDialogTrigger>
           <AlertDialogContent className="bg-white">
             <AlertDialogHeader>
-              <AlertDialogTitle>Remove Unlocked City</AlertDialogTitle>
+              <AlertDialogTitle>{t("unlockCity.removeCity")}</AlertDialogTitle>
               <AlertDialogDescription>
-                Are you sure you want to remove "{city.cityName} -{" "}
-                {city.cityPartName}" from your unlocked cities? This action
-                cannot be undone and you'll need to unlock it again if you want
-                to service this area.
+                {t("unlockCity.removeCitySubtitle", {
+                  Tbilisi: city.cityName,
+                })}
               </AlertDialogDescription>
             </AlertDialogHeader>
             <AlertDialogFooter>
               <AlertDialogCancel className="cursor-pointer">
-                Cancel
+                {t("unlockCity.cancel")}
               </AlertDialogCancel>
               <AlertDialogAction
                 className="bg-red-600 text-white hover:bg-red-700 cursor-pointer"
                 onClick={() => deleteUnlockedLocation(city.cityPartId)}
                 disabled={isPending}
               >
-                {isPending ? "Removing..." : "Remove City"}
+                {isPending ? t("unlockCity.removing") : t("unlockCity.remove")}
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
@@ -88,15 +89,15 @@ export function UnlockedCards({
 
       <div className="space-y-2">
         <div className="flex items-center gap-2 text-sm text-slate-600">
-          <span className="font-medium">Unlock Cost:</span>
+          <span className="font-medium">{t("unlockCity.unlockCost")}:</span>
           <span>{city.unlockCost} points</span>
         </div>
         <div className="flex items-center gap-2 text-sm text-slate-600">
-          <span className="font-medium">Unlocked:</span>
+          <span className="font-medium">{t("unlockCity.unlocked")}:</span>
           <span>{unlockedDate}</span>
         </div>
         <div className="flex items-center gap-2 text-sm">
-          <span className="font-medium">Status:</span>
+          <span className="font-medium">{t("unlockCity.status")}:</span>
           <span
             className={`px-2 py-1 rounded-full text-xs font-medium ${
               city.isActive
@@ -104,7 +105,7 @@ export function UnlockedCards({
                 : "bg-slate-100 text-slate-700"
             }`}
           >
-            {city.isActive ? "Active" : "Inactive"}
+            {city.isActive ? t("unlockCity.active") : t("unlockCity.inactive")}
           </span>
         </div>
       </div>

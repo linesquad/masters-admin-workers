@@ -16,7 +16,6 @@ export const MasterBillingList = () => {
   if (error) return <div>Error: {error.message}</div>;
 
   if (!data) return <div>No data</div>;
-  console.log(data);
 
   return (
     <div className="flex flex-col">

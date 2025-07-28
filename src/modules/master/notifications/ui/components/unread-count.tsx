@@ -1,7 +1,9 @@
 import { useGetUnreadNotifications } from "../../hooks/use-get-unread-notifications";
+import { useTranslation } from "react-i18next";
 
 export const UnreadCount = () => {
   const { data, isLoading, error, isError } = useGetUnreadNotifications();
+  const { t } = useTranslation();
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -21,7 +23,7 @@ export const UnreadCount = () => {
 
   return (
     <div className="flex items-center gap-2">
-      <h3>You have unread notifications</h3>
+      <h3>{t("notifications.count", { count: data.unreadCount })}</h3>
       <div className="w-2 h-2 bg-red-500 rounded-full"></div>
       <p className="text-sm font-medium">{data.unreadCount}</p>
     </div>

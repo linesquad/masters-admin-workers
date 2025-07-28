@@ -3,6 +3,7 @@ import type { MasterBillingItem } from "../../types";
 import { useState } from "react";
 import { ResponsiveModal } from "@/components/responsive-modal";
 import { BillingProofForm } from "./billing-proof-form";
+import { useTranslation } from "react-i18next";
 
 interface MasterBillingCardProps {
   billing: MasterBillingItem;
@@ -10,6 +11,7 @@ interface MasterBillingCardProps {
 
 export const MasterBillingCard = ({ billing }: MasterBillingCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const { t } = useTranslation();
 
   const handleClose = () => {
     setIsOpen(false);
@@ -23,10 +25,11 @@ export const MasterBillingCard = ({ billing }: MasterBillingCardProps) => {
       <div className="flex justify-between items-start mb-4">
         <div>
           <h3 className="text-lg font-semibold">
-            Billing #{billing.id.slice(0, 8)}
+            {t("billingMaster.billingCard.title")} #{billing.id.slice(0, 8)}
           </h3>
           <p className="text-sm text-gray-500">
-            Created: {new Date(billing.createdAt).toLocaleDateString()}
+            {t("billingMaster.billingCard.createdAt")}:{" "}
+            {new Date(billing.createdAt).toLocaleDateString()}
           </p>
         </div>
         <span
@@ -44,43 +47,56 @@ export const MasterBillingCard = ({ billing }: MasterBillingCardProps) => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
         <div className="bg-gray-50 p-3 rounded-lg">
-          <p className="text-sm text-gray-500">Total Jobs</p>
+          <p className="text-sm text-gray-500">
+            {t("billingMaster.billingCard.totalJobs")}
+          </p>
           <p className="font-medium">{billing.totalJobs}</p>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg">
-          <p className="text-sm text-gray-500">Total Amount</p>
+          <p className="text-sm text-gray-500">
+            {t("billingMaster.billingCard.totalAmount")}
+          </p>
           <p className="font-medium">${billing.totalAmount}</p>
         </div>
         <div className="bg-gray-50 p-3 rounded-lg">
-          <p className="text-sm text-gray-500">Admin Fee</p>
+          <p className="text-sm text-gray-500">
+            {t("billingMaster.billingCard.adminFee")}
+          </p>
           <p className="font-medium">${billing.adminFee}</p>
         </div>
       </div>
 
       <div className="flex justify-between text-sm text-gray-500 mb-2">
         <span>
-          Week: {new Date(billing.weekStart).toLocaleDateString()} -{" "}
+          {t("billingMaster.billingCard.week")}:{" "}
+          {new Date(billing.weekStart).toLocaleDateString()} -{" "}
           {new Date(billing.weekEnd).toLocaleDateString()}
         </span>
-        <span>Due: {new Date(billing.dueDate).toLocaleDateString()}</span>
+        <span>
+          {t("billingMaster.billingCard.due")}:{" "}
+          {new Date(billing.dueDate).toLocaleDateString()}
+        </span>
       </div>
 
       {billing.adminNote && (
         <div className="pt-4 border-t">
           <p className="text-sm text-gray-500">
-            Admin Note: {billing.adminNote}
+            {t("billingMaster.billingCard.adminNote")}: {billing.adminNote}
           </p>
         </div>
       )}
 
       <div className="pt-4 border-t">
         <p className="text-sm text-gray-500">
-          Reminders sent: {billing.remindersSent}
+          {t("billingMaster.billingCard.remindersSent")}:{" "}
+          {billing.remindersSent}
         </p>
       </div>
 
       <div className="flex justify-end mt-6">
-        <Button onClick={() => setIsOpen(true)}>Upload Proof</Button>
+        <Button onClick={() => setIsOpen(true)}>
+          {t("billingMaster.billingCard.uploadProof")}
+        </Button>
       </div>
     </div>
   );

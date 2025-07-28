@@ -1,0 +1,178 @@
+{
+  "common": {
+    "language": "Русский"
+  },
+  "masterProfile": {
+    "completedJobs": "Выполненные работы",
+    "totalReviews": "Всего отзывов",
+    "totalEarnings": "Общий доход",
+    "points": "Баллы",
+    "about": "О себе",
+    "contactInformation": "Контактная информация",
+    "phone": "Телефон",
+    "email": "Email",
+    "memberSince": "Участник с",
+    "quickActions": "Быстрые действия",
+    "editProfile": "Редактировать профиль",
+    "manageSchedule": "Управление расписанием",
+    "viewAnalytics": "Просмотр аналитики",
+    "leadsGenerated": "Сгенерированные лиды",
+    "leadsConverted": "Конвертированные лиды",
+    "convertedValue": "Конвертированная стоимость",
+    "averageJobValue": "Средняя стоимость работы",
+    "totalRevenue": "Общий доход",
+    "totalLeadsDeclined": "Отклоненные лиды"
+  },
+  "profileSettings": {
+    "profileSettings": "Настройки профиля",
+    "updateYourOrifileInformation": "Обновите информацию профиля",
+    "location": "Местоположение",
+    "city": "Город",
+    "enterYourCity": "Введите ваш город",
+    "profilePicture": "Фото профиля",
+    "uploadProfilePicture": "Загрузить фото профиля",
+    "aboutMe": "Обо мне",
+    "professionalBio": "Профессиональная биография",
+    "tellPotentialClientsAboutYourself": "Расскажите потенциальным клиентам о себе",
+    "saveChanges": "Сохранить изменения"
+  },
+  "jobAssigment": {
+    "chooseCategory": "Выберите категорию",
+    "selectACategoryToSeeAvailableJobs": "Выберите категорию, чтобы увидеть доступные работы",
+    "selectJob": "Выберите работу",
+    "chooseAJobFromThisCategory": "Выберите работу из этой категории",
+    "jobDetails": "Детали работы",
+    "jobSubtitle": "Заполните детали назначения работы",
+    "confirmation": "Подтверждение назначения работы",
+    "confirmationSubtitle": "Пожалуйста, проверьте детали перед подтверждением",
+    "confirmationDetails": "Детали работы",
+    "back": "Назад к работам",
+    "next": "Продолжить к обзору",
+    "finalBack": "Назад к деталям",
+    "assign": "Подтвердить назначение",
+    "minimumPrice": "Минимальная цена",
+    "maximumPrice": "Максимальная цена",
+    "duration": "Продолжительность (минуты)",
+    "note": "Примечание",
+    "enterYourNote": "Введите ваше примечание здесь..."
+  },
+  "unlockCities": {
+    "title": "Управление городами",
+    "subtitle": "Управляйте зонами обслуживания, исследуя города. Нажмите на город, чтобы разблокировать конкретные районы в нем.",
+    "availableCities": "Доступные города",
+    "viewAreas": "Просмотр районов",
+    "areas": "Районы",
+    "areaSubtitle": "Разблокируйте конкретные районы в {{Tbilisi}}, чтобы расширить зону обслуживания и привлечь больше клиентов.",
+    "unlock": "Разблокировать",
+    "unlocking": "Разблокировка...",
+    "backToCities": "Назад к городам"
+  },
+  "unlockCity": {
+    "title": "Мои разблокированные города",
+    "subtitle": "Управляйте разблокированными зонами обслуживания. Вы можете удалить города, в которых больше не хотите работать.",
+    "citiesUnlocked": "Разблокированные города",
+    "removeCity": "Удалить город",
+    "removeCitySubtitle": "Вы уверены, что хотите удалить {{Tbilisi}} из разблокированных городов? Это действие нельзя отменить, и вам нужно будет снова разблокировать город, если вы захотите работать в этом районе.",
+    "cancel": "Отмена",
+    "remove": "Удалить",
+    "unlockCost": "Стоимость разблокировки",
+    "unlocked": "Разблокировано",
+    "status": "Статус",
+    "removing": "Удаление...",
+    "active": "Активный",
+    "inactive": "Неактивный"
+  },
+  "leads": {
+    "title": "Лиды",
+    "subtitle": "Управляйте своими лидами и преобразуйте их в работы.",
+    "filters": {
+      "all": "Все",
+      "pending": "В ожидании",
+      "accepted": "Принято",
+      "cancelled": "Отменено",
+      "completed": "Завершено",
+      "declined": "Отклонено"
+    },
+    "leadCard": {
+      "status": "Статус",
+      "location": "Местоположение",
+      "requestedTime": "Запрошенное время",
+      "price": "Цена",
+      "contact": "Контакт",
+      "message": "Сообщение",
+      "viewLead": "Просмотр лида",
+      "completeLead": "Завершить лид"
+    },
+    "singleLead": {
+      "title": "Информация о лиде {{ leadName }}",
+      "goBack": "Назад",
+      "clientInformation": "Информация о клиенте",
+      "fullName": "Полное имя",
+      "email": "Email",
+      "phone": "Телефон",
+      "jobDetails": "Детали работы",
+      "clientMessage": "Сообщение клиента",
+      "completionDetails": "Детали завершения",
+      "accept": "Принять",
+      "decline": "Отклонить",
+      "accepting": "Принятие...",
+      "declining": "Отклонение...",
+      "completedAt": "Завершено в"
+    }
+  },
+  "notifications": {
+    "title": "Уведомления",
+    "subtitle": "Управляйте своими уведомлениями и будьте в курсе последних новостей и обновлений.",
+    "count": "У вас {{count}} непрочитанных уведомлений",
+    "marked": "отмечено",
+    "asRead": "Пометить как прочитанное"
+  },
+  "reviews": {
+    "title": "Отзывы",
+    "subtitle": "Управляйте своими отзывами и будьте в курсе последних новостей и обновлений.",
+    "reviewsnav": ["Отзывы", "Статистика отзывов"],
+    "reviewPage": {
+      "title": "Детали отзыва",
+      "subtitle": "Управляйте своими отзывами и будьте в курсе последних новостей и обновлений."
+    },
+    "reviewFilters": {
+      "all": "Все",
+      "pending": "В ожидании",
+      "approved": "Одобрено",
+      "rejected": "Отклонено"
+    },
+    "reviewVard": {
+      "price": "Цена",
+      "quality": "Качество",
+      "punctuality": "Пунктуальность",
+      "experience": "Опыт",
+      "comment": "Комментарий",
+      "yourReply": "Ваш ответ",
+      "editReply": "Редактировать ответ",
+      "reply": "Ответить",
+      "addReply": "Добавить ответ"
+    }
+  },
+  "billingMaster": {
+    "title": "Биллинг",
+    "subtitle": "Управляйте своими платежами и будьте в курсе последних новостей и обновлений.",
+    "billingCard": {
+      "title": "Платеж",
+      "createdAt": "Дата создания",
+      "totalJobs": "Всего работ",
+      "totalAmount": "Общая сумма",
+      "adminFee": "Комиссия сервиса",
+      "week": "Неделя",
+      "duration": "Срок",
+      "adminNote": "Примечание сервиса",
+      "remindersSent": "Напоминания отправлены"
+    },
+    "uploadProof": {
+      "title": "Загрузка подтверждения",
+      "uploadImage": "Загрузить изображение",
+      "cancel": "Отмена",
+      "upload": "Загрузить подтверждение",
+      "uploading": "Загрузка..."
+    }
+  }
+}

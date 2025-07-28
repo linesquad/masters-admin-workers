@@ -6,13 +6,14 @@ import { useCallback, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Calendar } from "lucide-react";
 import { availabilityOptions } from "@/lib/master-dashboard";
+import { useTranslation } from "react-i18next";
 
 export function AvailabilitySheetDrawer({ id }: { id: string }) {
+  const { t } = useTranslation();
   const { mutate: updateAvailability } = useUpdateAvailability();
   const [isManageScheduleOpen, setIsManageScheduleOpen] = useState(false);
   const [selectedAvailability, setSelectedAvailability] = useState("now");
 
- 
   const handleAvailabilityChange = useCallback(
     (value: string) => {
       setSelectedAvailability(value);
@@ -27,7 +28,7 @@ export function AvailabilitySheetDrawer({ id }: { id: string }) {
   const ManageScheduleTrigger = (
     <Button className="w-full justify-start cursor-pointer" variant="outline">
       <Calendar className="w-4 h-4 mr-3" />
-      Manage Schedule
+      {t("masterProfile.manageSchedule")}
     </Button>
   );
   return (

@@ -1,5 +1,6 @@
 import { getJobsByCategoryId } from "@/modules/admin/createjob/services/jobs";
 import { JobSingleView } from "@/modules/admin/createjob/ui/views/job-single-view";
+import { useEffect } from "react";
 
 export const Route = createFileRoute({
   component: RouteComponent,
@@ -10,5 +11,8 @@ export const Route = createFileRoute({
 });
 
 function RouteComponent() {
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   return <JobSingleView />;
 }

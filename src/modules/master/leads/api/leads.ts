@@ -5,7 +5,6 @@ export interface GetLeadsForMasterParams {
   page: number;
   limit: number;
   status: LeadStatus;
-  search: string;
 }
 
 export enum LeadStatus {
@@ -21,14 +20,12 @@ export const getLeadsForMaster = async ({
   page,
   limit,
   status,
-  search,
 }: GetLeadsForMasterParams) => {
   const response = await instance.get<LeadsResponse>(`/api/leads/master`, {
     params: {
       page,
       limit,
       status,
-      search,
     },
   });
 

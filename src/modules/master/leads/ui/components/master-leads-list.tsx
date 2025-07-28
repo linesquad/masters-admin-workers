@@ -4,13 +4,12 @@ import { useMasterLeadsFilters } from "../../hooks/use-master-leads-filters";
 import PaginationComp from "@/components/PaginationComp";
 
 export function MasterLeadsList() {
-  const { page, limit, search, status, setPage } = useMasterLeadsFilters();
+  const { page, limit, status, setPage } = useMasterLeadsFilters();
 
   const { data, isLoading, isError, error } = useGetLeadsList({
     page,
     limit,
     status,
-    search,
   });
 
   if (isLoading) return <div>Loading...</div>;
@@ -21,7 +20,7 @@ export function MasterLeadsList() {
 
   return (
     <div>
-      <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-4 mx-auto w-full">
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 mt-4 mx-auto w-full">
         {data.data.leads.map((lead) => (
           <div
             key={lead.id}

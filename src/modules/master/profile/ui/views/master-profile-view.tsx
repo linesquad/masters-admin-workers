@@ -45,8 +45,6 @@ export function MasterProfileView({ id }: { id: string }) {
     return <div>No profile data found</div>;
   }
 
-  console.log(leadStats);
-
   const {
     totalLeads,
     pendingLeads,
