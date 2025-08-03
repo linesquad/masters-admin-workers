@@ -18,13 +18,12 @@ function Portal({ children, containerId = "portal" }: PortalProps) {
   if (!mounted) return null;
 
   const portalContainer = document.getElementById(containerId);
-  
+
   if (!portalContainer) {
-    console.warn(`Portal container with id "${containerId}" not found`);
     return null;
   }
 
   return createPortal(children, portalContainer);
 }
 
-export default Portal; 
+export default Portal;

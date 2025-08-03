@@ -9,43 +9,28 @@ export const login = async (email: string, password: string) => {
     });
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
 
 export const getUserId = async (): Promise<string> => {
-  try {
-    const response = await instance.get("/api/auth/me");
-    return response.data.user.id;
-  } catch (error) {
-    throw error;
-  }
+  const response = await instance.get("/api/auth/me");
+  return response.data.user.id;
 };
 
-export const getUser = async (): Promise<UserTypes> => {
-  try {
-    const response = await instance.get("/api/auth/me");
-    return response.data.user;
-  } catch (error) {
-    throw error;
-  }
+export const getUser = async (): Promise<UserTypes | null> => {
+  const response = await instance.get("/api/auth/me");
+  return response.data.user;
 };
 
 export const getUserRole = async (): Promise<string> => {
-  try {
-    const response = await instance.get("/api/auth/me");
-    return response.data.user.role;
-  } catch (error) {
-    throw error;
-  }
+  const response = await instance.get("/api/auth/me");
+  return response.data.user.role;
 };
 
 export const logoutUser = async () => {
-  try {
-    await instance.post("/api/auth/logout");
-  } catch (error) {
-    throw error;
-  }
+  await instance.post("/api/auth/logout");
 };
 
 export const createUser = async ({
@@ -61,18 +46,19 @@ export const createUser = async ({
   phone: string;
   role: string;
 }) => {
-  try {
-    const response = await instance.post("/api/auth/create-user-by-admin", {
-      email,
-      password,
-      fullName,
-      phone,
-      role,
-    });
-    return response.data;
-  } catch (error) {
-    throw error;
+  const response = await instance.post("/api/auth/create-user-by-admin", {
+    email,
+    password,
+    fullName,
+    phone,
+    role,
+  });
+
+  if (response.status !== 201) {
+    throw new Error("Failed to create user");
   }
+
+  return response.data;
 };
 
 export type User = UserTypes;

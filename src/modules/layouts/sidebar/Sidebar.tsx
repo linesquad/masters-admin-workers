@@ -11,13 +11,14 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import DashboardUser from "./dashboard-user";
-import { mainItems } from "@/lib/admin-dashboard";
 import type { UserTypes } from "@/modules/auth/types/userTypes";
-import { masterMainItems } from "@/lib/master-dashboard";
 import { Link, useLocation } from "@tanstack/react-router";
 import { XIcon } from "lucide-react";
 import { useEffect } from "react";
 import Languages from "@/components/labguages";
+import { getAdminNavigationItems } from "@/lib/admin-navigation";
+import { useTranslation } from "react-i18next";
+import { getMasterNavigationItems } from "@/lib/master-navigation";
 
 const activeLinkProps = {
   activeProps: {
@@ -29,8 +30,11 @@ const activeLinkProps = {
 };
 
 export function SideBar({ user }: { user: UserTypes }) {
+  const { t } = useTranslation();
   const { setOpenMobile } = useSidebar();
   const location = useLocation();
+  const adminNavigationItems = getAdminNavigationItems(t);
+  const masterNavigationItems = getMasterNavigationItems(t);
 
   useEffect(() => {
     setOpenMobile(false);
@@ -72,7 +76,7 @@ export function SideBar({ user }: { user: UserTypes }) {
           <SidebarGroupContent>
             <SidebarMenu>
               {user?.role === "admin" &&
-                mainItems.map((item) => (
+                adminNavigationItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
                       asChild
@@ -90,7 +94,7 @@ export function SideBar({ user }: { user: UserTypes }) {
                   </SidebarMenuItem>
                 ))}
               {user?.role === "master" &&
-                masterMainItems.map((item) => (
+                masterNavigationItems.map((item) => (
                   <SidebarMenuItem key={item.title}>
                     <SidebarMenuButton
                       asChild

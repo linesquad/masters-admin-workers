@@ -1,6 +1,6 @@
 import { DottedSeparator } from "@/components/dotted-separator";
 import { PageTitle } from "@/components/page-title";
-import { NewAppliesView } from "@/modules/admin/new-applies/ui/new-applies-view";
+import { SubscriptionsView } from "@/modules/admin/gmail-subscriptions/ui/subscriptions-view";
 
 export const Route = createLazyFileRoute({
   component: RouteComponent,
@@ -9,9 +9,9 @@ export const Route = createLazyFileRoute({
 function RouteComponent() {
   return (
     <div className="flex flex-col gap-4 p-2">
-      <PageTitle title="Master Applies" />
+      <PageTitle title="Gmail Subscriptions" />
       <DottedSeparator />
-      <NewAppliesView />
+      <SubscriptionsView />
     </div>
   );
 }

@@ -49,6 +49,12 @@ const AuthenticatedadminReportsLazyRouteImport = createFileRoute(
 const AuthenticatedadminMasterAppliesLazyRouteImport = createFileRoute(
   '/_authenticated/(admin)/master-applies',
 )()
+const AuthenticatedadminGmailSubscriptionsLazyRouteImport = createFileRoute(
+  '/_authenticated/(admin)/gmail-subscriptions',
+)()
+const AuthenticatedadminContactUsLazyRouteImport = createFileRoute(
+  '/_authenticated/(admin)/contact-us',
+)()
 const AuthenticatedMasterReviewsStatsLazyRouteImport = createFileRoute(
   '/_authenticated/master/reviews/stats',
 )()
@@ -88,6 +94,26 @@ const AuthenticatedadminMasterAppliesLazyRoute =
     getParentRoute: () => AuthenticatedRoute,
   } as any).lazy(() =>
     import('./routes/_authenticated/(admin)/master-applies.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+const AuthenticatedadminGmailSubscriptionsLazyRoute =
+  AuthenticatedadminGmailSubscriptionsLazyRouteImport.update({
+    id: '/(admin)/gmail-subscriptions',
+    path: '/gmail-subscriptions',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/(admin)/gmail-subscriptions.lazy').then(
+      (d) => d.Route,
+    ),
+  )
+const AuthenticatedadminContactUsLazyRoute =
+  AuthenticatedadminContactUsLazyRouteImport.update({
+    id: '/(admin)/contact-us',
+    path: '/contact-us',
+    getParentRoute: () => AuthenticatedRoute,
+  } as any).lazy(() =>
+    import('./routes/_authenticated/(admin)/contact-us.lazy').then(
       (d) => d.Route,
     ),
   )
@@ -272,6 +298,8 @@ export interface FileRoutesByFullPath {
   '/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
+  '/contact-us': typeof AuthenticatedadminContactUsLazyRoute
+  '/gmail-subscriptions': typeof AuthenticatedadminGmailSubscriptionsLazyRoute
   '/master-applies': typeof AuthenticatedadminMasterAppliesLazyRoute
   '/reports': typeof AuthenticatedadminReportsLazyRoute
   '/': typeof AuthenticatedadminIndexRoute
@@ -304,6 +332,8 @@ export interface FileRoutesByTo {
   '/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
+  '/contact-us': typeof AuthenticatedadminContactUsLazyRoute
+  '/gmail-subscriptions': typeof AuthenticatedadminGmailSubscriptionsLazyRoute
   '/master-applies': typeof AuthenticatedadminMasterAppliesLazyRoute
   '/reports': typeof AuthenticatedadminReportsLazyRoute
   '/': typeof AuthenticatedadminIndexRoute
@@ -340,6 +370,8 @@ export interface FileRoutesById {
   '/_authenticated/master/settings': typeof AuthenticatedMasterSettingsRoute
   '/_authenticated/master/unlock-city': typeof AuthenticatedMasterUnlockCityRoute
   '/_authenticated/master/unlocked-cities': typeof AuthenticatedMasterUnlockedCitiesRoute
+  '/_authenticated/(admin)/contact-us': typeof AuthenticatedadminContactUsLazyRoute
+  '/_authenticated/(admin)/gmail-subscriptions': typeof AuthenticatedadminGmailSubscriptionsLazyRoute
   '/_authenticated/(admin)/master-applies': typeof AuthenticatedadminMasterAppliesLazyRoute
   '/_authenticated/(admin)/reports': typeof AuthenticatedadminReportsLazyRoute
   '/_authenticated/(admin)/': typeof AuthenticatedadminIndexRoute
@@ -377,6 +409,8 @@ export interface FileRouteTypes {
     | '/master/settings'
     | '/master/unlock-city'
     | '/master/unlocked-cities'
+    | '/contact-us'
+    | '/gmail-subscriptions'
     | '/master-applies'
     | '/reports'
     | '/'
@@ -409,6 +443,8 @@ export interface FileRouteTypes {
     | '/master/settings'
     | '/master/unlock-city'
     | '/master/unlocked-cities'
+    | '/contact-us'
+    | '/gmail-subscriptions'
     | '/master-applies'
     | '/reports'
     | '/'
@@ -444,6 +480,8 @@ export interface FileRouteTypes {
     | '/_authenticated/master/settings'
     | '/_authenticated/master/unlock-city'
     | '/_authenticated/master/unlocked-cities'
+    | '/_authenticated/(admin)/contact-us'
+    | '/_authenticated/(admin)/gmail-subscriptions'
     | '/_authenticated/(admin)/master-applies'
     | '/_authenticated/(admin)/reports'
     | '/_authenticated/(admin)/'
@@ -562,6 +600,20 @@ declare module '@tanstack/react-router' {
       path: '/master/unlocked-cities'
       fullPath: '/master/unlocked-cities'
       preLoaderRoute: typeof AuthenticatedMasterUnlockedCitiesRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/contact-us': {
+      id: '/_authenticated/(admin)/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof AuthenticatedadminContactUsLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/gmail-subscriptions': {
+      id: '/_authenticated/(admin)/gmail-subscriptions'
+      path: '/gmail-subscriptions'
+      fullPath: '/gmail-subscriptions'
+      preLoaderRoute: typeof AuthenticatedadminGmailSubscriptionsLazyRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
     '/_authenticated/(admin)/master-applies': {
@@ -718,6 +770,20 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedadminMasterAppliesLazyRouteImport
       parentRoute: typeof AuthenticatedRoute
     }
+    '/_authenticated/(admin)/gmail-subscriptions': {
+      id: '/_authenticated/(admin)/gmail-subscriptions'
+      path: '/gmail-subscriptions'
+      fullPath: '/gmail-subscriptions'
+      preLoaderRoute: typeof AuthenticatedadminGmailSubscriptionsLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
+    '/_authenticated/(admin)/contact-us': {
+      id: '/_authenticated/(admin)/contact-us'
+      path: '/contact-us'
+      fullPath: '/contact-us'
+      preLoaderRoute: typeof AuthenticatedadminContactUsLazyRouteImport
+      parentRoute: typeof AuthenticatedRoute
+    }
     '/_authenticated/master/reviews/stats': {
       id: '/_authenticated/master/reviews/stats'
       path: '/stats'
@@ -843,6 +909,16 @@ declare module './routes/_authenticated/master/unlocked-cities' {
     FileRoutesByPath['/_authenticated/master/unlocked-cities']['id'],
     FileRoutesByPath['/_authenticated/master/unlocked-cities']['path'],
     FileRoutesByPath['/_authenticated/master/unlocked-cities']['fullPath']
+  >
+}
+declare module './routes/_authenticated/(admin)/contact-us.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/_authenticated/(admin)/contact-us']['preLoaderRoute']
+  >
+}
+declare module './routes/_authenticated/(admin)/gmail-subscriptions.lazy' {
+  const createLazyFileRoute: CreateLazyFileRoute<
+    FileRoutesByPath['/_authenticated/(admin)/gmail-subscriptions']['preLoaderRoute']
   >
 }
 declare module './routes/_authenticated/(admin)/master-applies.lazy' {
@@ -1065,6 +1141,8 @@ interface AuthenticatedRouteChildren {
   AuthenticatedMasterSettingsRoute: typeof AuthenticatedMasterSettingsRoute
   AuthenticatedMasterUnlockCityRoute: typeof AuthenticatedMasterUnlockCityRoute
   AuthenticatedMasterUnlockedCitiesRoute: typeof AuthenticatedMasterUnlockedCitiesRoute
+  AuthenticatedadminContactUsLazyRoute: typeof AuthenticatedadminContactUsLazyRoute
+  AuthenticatedadminGmailSubscriptionsLazyRoute: typeof AuthenticatedadminGmailSubscriptionsLazyRoute
   AuthenticatedadminMasterAppliesLazyRoute: typeof AuthenticatedadminMasterAppliesLazyRoute
   AuthenticatedadminReportsLazyRoute: typeof AuthenticatedadminReportsLazyRoute
   AuthenticatedadminIndexRoute: typeof AuthenticatedadminIndexRoute
@@ -1096,6 +1174,9 @@ const AuthenticatedRouteChildren: AuthenticatedRouteChildren = {
   AuthenticatedMasterUnlockCityRoute: AuthenticatedMasterUnlockCityRoute,
   AuthenticatedMasterUnlockedCitiesRoute:
     AuthenticatedMasterUnlockedCitiesRoute,
+  AuthenticatedadminContactUsLazyRoute: AuthenticatedadminContactUsLazyRoute,
+  AuthenticatedadminGmailSubscriptionsLazyRoute:
+    AuthenticatedadminGmailSubscriptionsLazyRoute,
   AuthenticatedadminMasterAppliesLazyRoute:
     AuthenticatedadminMasterAppliesLazyRoute,
   AuthenticatedadminReportsLazyRoute: AuthenticatedadminReportsLazyRoute,

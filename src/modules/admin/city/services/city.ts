@@ -16,6 +16,7 @@ export const createCity = async (name: string, image: File | undefined) => {
     });
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
@@ -25,6 +26,7 @@ export const deleteCity = async (id: string) => {
     const response = await instance.delete(`/api/categories/cities/${id}`);
     return response.data;
   } catch (error) {
+    console.log(error);
     throw error;
   }
 };
