@@ -1,5 +1,6 @@
 import { AdminDashboardView } from "@/modules/admin/dashboard/ui/view/admin-dashboard-view";
-import { redirect } from "@tanstack/react-router";
+import { useUser } from "@/modules/auth/hooks/useUser";
+import { redirect, useNavigate } from "@tanstack/react-router";
 import { useEffect } from "react";
 
 export const Route = createFileRoute({
@@ -14,6 +15,13 @@ export const Route = createFileRoute({
 });
 
 function RouteComponent() {
+  const navigate = useNavigate();
+  const { data: user } = useUser();
+  useEffect(() => {
+    if (user?.role !== "admin") {
+      navigate({ to: "/" });
+    }
+  }, [user, navigate]);
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);

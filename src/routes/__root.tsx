@@ -16,10 +16,6 @@ export const Route = createRootRouteWithContext<RouterContext>()({
     lang: z.string().optional(),
   }),
   component: RootComponent,
-  loader: async ({ context }) => {
-    const user = await context.getUser().catch(() => null);
-    return { user };
-  },
 });
 
 function RootComponent() {
